@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "News": "News",
+    "Club": "The Club",
+    "Training": "Training Schedule",
+    "Events": "Events Calendar",
+    "Contacts": "Contact Us",
+    "Language": "Language"
+  },
+  "Contacts": {
+    "Fullname": "Full name",
+    "Email": "Email",
+    "Subject": "Subject",
+    "Message": "Message",
+    "Send": "Send Message"
+  }
+}
