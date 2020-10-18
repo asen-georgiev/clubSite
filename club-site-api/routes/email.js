@@ -3,6 +3,7 @@ const router = express.Router();
 const sendGrid = require("@sendgrid/mail");
 const _ = require('lodash');
 
+
 const apiKey = process.env.SENDGRID_API_KEY;
 
 
@@ -16,14 +17,15 @@ router.post('/', async (req, res) => {
         text: "Thank you, for your e-mail, we will contact with you soon!",
     };
 
-    sendGrid
+     sendGrid
         .send(msg)
         .then(() => {
-            console.log('Email sent');
-            res.status(200);
+            console.log('Email sent successfully!');
+            res.status(200).send('success');
         })
         .catch((error) => {
-            console.error(error)
+           res.status(401).send('error');
+           console.log(error);
         })
 });
 

@@ -10,3 +10,8 @@ export function uploadImage(data) {
             console.log(response.statusText)
         });
 }
+
+export function getImages(){
+    return httpService
+        .get(apiEndpoint)
+}

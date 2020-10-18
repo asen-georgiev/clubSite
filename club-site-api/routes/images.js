@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const multer = require("multer");
-const {Upload} = require('../models/image');
+const {Upload,getImagesFromDirectory} = require('../models/image');
 
+//Post request for uploading image into gallery
 router.post('/',(req, res) => {
+
    Upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(500).json(err)
@@ -13,6 +16,13 @@ router.post('/',(req, res) => {
         return res.status(200).send(req.file)
     })
 
+})
+
+//Get request for retrieving images from gallery
+router.get('/',async (req, res) => {
+
+    let images = getImagesFromDirectory( 'gallery');
+    res.send(images);
 })
 
 module.exports = router;

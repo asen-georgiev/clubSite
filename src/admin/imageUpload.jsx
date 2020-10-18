@@ -16,13 +16,15 @@ class ImageUpload extends Component {
         super(props);
         this.state = {
             selectedFile: null,
+            showedFile:null,
             isDisabled: true
         }
     }
 
     onChangeHandler = (event) => {
         this.setState({
-            selectedFile:  URL.createObjectURL(event.target.files[0]),
+            showedFile:  URL.createObjectURL(event.target.files[0]),
+            selectedFile: event.target.files[0],
             loaded: 0,
             isDisabled: false
         })
@@ -37,6 +39,8 @@ class ImageUpload extends Component {
             return;
         }
         toast.success('The image is uploaded successfully!');
+        console.log(data);
+        console.log(this.state.showedFile);
     }
 
     adminRedirect = () => {
@@ -79,7 +83,7 @@ class ImageUpload extends Component {
                     </Row>
                 </Form>
                 <Row>
-                <Image src={this.state.selectedFile} width="300" height="auto"/>
+                <Image src={this.state.showedFile} width="300" height="auto"/>
                 </Row>
             </div>
         );

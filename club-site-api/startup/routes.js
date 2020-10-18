@@ -11,6 +11,7 @@ const authentication = require('../routes/authentication');
         app.use(express.json());
         app.use(express.urlencoded({extended: true}));
         app.use(express.static('public'));
+        app.use(express.static('gallery'));
         app.use(helmet());
         app.use('/api/users',users);
         app.use('/api/images',images);

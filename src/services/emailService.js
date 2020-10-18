@@ -6,10 +6,16 @@ const apiEndpoint = apiUrl + "/email";
 export function sendEmail(email){
     return httpService
         .post(apiEndpoint,email)
-        .then(response => {
-            if (response.status===200) {
-                console.log("It worked!")
-                };
-            return response.data;
+        .then(res => {
+           if(res.status===200){
+                console.log('Everything ok!');
+           }
+           else{
+               console.log('Not Ok');
+           }
+        })
+        .catch(err => {
+            console.log(err);
         });
+
 }

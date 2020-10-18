@@ -24,6 +24,7 @@ function Contacts(props) {
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
+    const [errors,setErrors]=useState({});
 
 
     const schema = Joi.object({
@@ -61,11 +62,21 @@ function Contacts(props) {
         console.log(result);
 
         if(!result.error) return null;
+
+        const errors = {};
+        for(let item of result.error.details)
+            errors[item.path[0]] = item.message;
+        return errors;
     }
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const errors = validate();
+        setErrors(errors || {});
+        console.log(errors);
+        if(errors) return toast.error("Wrong credentials - your message was not sent!");
+
         setIsDisabled(true);
         const obj = {
             fullname: fullname,
@@ -73,8 +84,10 @@ function Contacts(props) {
             subject: subject,
             message: message
         };
+        toast.success('Your message was sent successfully!');
+        props.history.push("/news");
         await sendEmail(obj);
-        console.log(obj);
+
     }
 
     return (
@@ -92,6 +105,10 @@ function Contacts(props) {
                             type="text"
                             placeholder={t('Contacts.Fullname')}
                             onChange={event => setFullname(event.target.value)}/>
+                        {errors.fullname &&
+                        <div className="alert alert-danger">
+                            {errors.fullname}
+                        </div>}
                         <FormLabel>
                             {t('Contacts.Email')}
                         </FormLabel>
@@ -102,6 +119,10 @@ function Contacts(props) {
                             type="email"
                             placeholder={t('Contacts.Email')}
                             onChange={event => setEmail(event.target.value)}/>
+                        {errors.email &&
+                        <div className="alert alert-danger">
+                            {errors.email}
+                        </div>}
                         <FormLabel>
                             {t('Contacts.Subject')}
                         </FormLabel>
@@ -112,6 +133,10 @@ function Contacts(props) {
                             type="text"
                             placeholder={t('Contacts.Subject')}
                             onChange={event => setSubject(event.target.value)}/>
+                        {errors.subject &&
+                        <div className="alert alert-danger">
+                            {errors.subject}
+                        </div>}
                         <FormLabel>
                             {t('Contacts.Message')}
                         </FormLabel>
@@ -123,6 +148,10 @@ function Contacts(props) {
                             placeholder={t('Contacts.Message')}
                             rows="3"
                             onChange={event => setMessage(event.target.value)}/>
+                        {errors.message &&
+                        <div className="alert alert-danger">
+                            {errors.message}
+                        </div>}
                     </FormGroup>
                     <Row>
                         <Button
