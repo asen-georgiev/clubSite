@@ -10,7 +10,8 @@ const storage = multer.diskStorage({
         cb(null, 'gallery')
     },
     filename: function (req, file, cb) {
-        cb(null, today.toDateString() + '-' + file.originalname)
+        //ako iskam da dobavi dneshna data dobavqm toq cod pred file.originalname: today.toDateString() + '-' +
+        cb(null, file.originalname)
     }
 });
 

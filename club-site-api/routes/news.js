@@ -13,9 +13,13 @@ router.post('/',authorization, async(req, res) => {
         const reqTitle = req.body.title;
         if(anew) return res.status(400).send(`A new with ${reqTitle} already exists.`);
 
-        anew = new Anew(_.pick(req.body,['title','text','linkTo']));
+        anew = new Anew(_.pick(req.body,['title','text','linkTo','pictureName']));
         await anew.save();
         res.send(anew);
 })
 
+router.get('/',async(req, res) => {
+        const news = await Anew.find().sort('eventDate');
+        res.send(news);
+})
 module.exports = router;

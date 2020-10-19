@@ -31,8 +31,8 @@ class ImageUpload extends Component {
     }
 
     onClickHandler = async () => {
-        const data = new FormData()
-        data.append('file', this.state.selectedFile)
+        const data = new FormData();
+        data.append('file', this.state.selectedFile);
         await uploadImage(data);
         if(this.state.selectedFile===null){
             toast.error('You must select image to upload');

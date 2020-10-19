@@ -10,6 +10,7 @@ import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import {createNews} from "../services/newsService";
+import {uploadImage} from "../services/imageService";
 
 
 class CreateNewsForm extends Component {
@@ -20,6 +21,9 @@ class CreateNewsForm extends Component {
             title:'',
             text:'',
             linkTo:'',
+            pictureName:'',
+            showedPicture:'',
+            uploadedPicture:'',
             errors:{},
             isDisabled:false
         }
@@ -39,8 +43,13 @@ class CreateNewsForm extends Component {
         linkTo: Joi.string()
             .min(0)
             .max(255)
-            .label("Link")
-            .allow('')
+            .label("LinkTo")
+            .allow(''),
+        pictureName: Joi.string()
+            .required()
+            .min(5)
+            .max(50)
+            .label('PictureName')
 
     })
 
@@ -58,7 +67,8 @@ class CreateNewsForm extends Component {
         const obj = {
             title: this.state.title,
             text: this.state.text,
-            linkTo: this.state.linkTo
+            linkTo: this.state.linkTo,
+            pictureName: this.state.pictureName
         };
         const options = {abortEarly:false};
         const result = this.schema.validate(obj,options);
@@ -79,17 +89,39 @@ class CreateNewsForm extends Component {
         this.setState({errors: errors || {}});
         console.log(errors);
         if (errors) return;
+
         this.setState({isDisabled: true});
-        console.log('The news are created!');
+
+        const data = new FormData();
+        data.append('file', this.state.uploadedPicture);
+        await uploadImage(data);
+        if(this.state.uploadedPicture===null){
+            toast.error('You must select image to upload');
+            return;
+        }
+        toast.success('The image is uploaded successfully!');
+        console.log('Image was uploaded to gallery!');
 
         const obj = {
             title: this.state.title,
             text: this.state.text,
-            linkTo: this.state.linkTo
+            linkTo: this.state.linkTo,
+            pictureName: this.state.pictureName
         };
 
         await createNews(obj);
         toast.success('The news are created!');
+    }
+
+
+    onPictureHandler = (event) => {
+        this.setState({
+            showedPicture:  URL.createObjectURL(event.target.files[0]),
+            pictureName: event.target.files[0].name,
+            uploadedPicture: event.target.files[0],
+            loaded: 0,
+            isDisabled: false
+        })
     }
 
     adminRedirect = () => {
@@ -148,6 +180,14 @@ class CreateNewsForm extends Component {
                                 <p className="text-danger pt-2">
                                     {this.state.errors.linkTo}
                                 </p>}
+                            </FormGroup>
+                            <FormGroup>
+                                <Form.File
+                                    id="image"
+                                    name="image"
+                                    label="Upload image for the News event"
+                                    onChange={this.onPictureHandler}
+                                />
                             </FormGroup>
                             <Row>
                                 <Col md={4}>

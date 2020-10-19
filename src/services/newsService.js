@@ -13,3 +13,8 @@ export function createNews(news){
     });
 }
 
+export function getNews(){
+    return httpService
+        .get(apiEndpoint)
+}
+

@@ -25,6 +25,12 @@ const anewSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         required: true
+    },
+    pictureName:{
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength:50
     }
 })
 
@@ -34,7 +40,8 @@ const anewSchema = new mongoose.Schema({
         const schema = Joi.object({
             title: Joi.string().required().min(5).max(50),
             text: Joi.string().required().min(10).max(1024),
-            linkTo: Joi.string().min(0).max(255).allow('')
+            linkTo: Joi.string().min(0).max(255).allow(''),
+            pictureName: Joi.string().required().min(5).max(55)
         });
         return schema.validate(anew);
     }

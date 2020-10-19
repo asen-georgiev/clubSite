@@ -4,6 +4,9 @@ import {getUsers} from "../services/userService";
 import {getImages} from "../services/imageService";
 import {Image} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
+import {getNews} from "../services/newsService";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 
 
 class News extends Component {
@@ -12,19 +15,23 @@ class News extends Component {
         super(props);
         this.state={
             user:[],
-            images:[]
+            images:[],
+            news:[]
         }
     }
 
     async componentDidMount() {
         const gallery = await getImages();
-        const images = [gallery]
+        const images = [gallery];
 
         const data = await getUsers();
-        const user = [data]
+        const user = [data];
 
-        console.log('before user')
-        this.setState({user,images});
+        const events = await getNews();
+        const news = [events];
+
+        console.log('before setState')
+        this.setState({user,images,news});
         console.log(this.state);
 
     }
@@ -33,6 +40,7 @@ class News extends Component {
     render() {
         return (
             <div>
+                <h1>Users Array</h1>
                 <ul>
                     {this.state.user.map((user, index) => {
                         return (
@@ -47,6 +55,7 @@ class News extends Component {
                         );
                     })}
                 </ul>
+                <h1>Pictures Gallery</h1>
                 <Row>
                     {this.state.images.map(image=> (
                         image.data.map(pic=> {
@@ -56,7 +65,32 @@ class News extends Component {
                                 </Col>
                             )
                         }))
-                    )};
+                    )}
+                </Row>
+                <h1>News Array</h1>
+                <Row>
+                    {this.state.news.map(ne=> (
+                        ne.data.map(n=>{
+                            return(
+                                <Container>
+                                <Row>
+                                    <Col sm={4}>
+                                        <Image src={"http://localhost:3900/"+n.pictureName} thumbnail width="300"/>
+                                    </Col>
+                                    <Col sm={8}>
+                                        <Card>
+                                            <Card.Body>
+                                        <Card.Title>{n.title}</Card.Title>
+                                        <Card.Text>{n.text}</Card.Text>
+                                        <Card.Link href={n.linkTo}>{n.linkTo}</Card.Link>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                                </Container>
+                        )
+                    })
+                        ))}
                 </Row>
             </div>
         );
