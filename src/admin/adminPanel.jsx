@@ -44,6 +44,10 @@ class AdminPanel extends Component {
                             <td>Creating news</td>
                             <td><Link to="/admin/createnews">Create</Link></td>
                         </tr>
+                        <tr>
+                            <td>Creating training schedule</td>
+                            <td><Link to="/admin/createschedule">Create</Link></td>
+                        </tr>
                         </tbody>
                     </Table>
                     <Button onClick={this.logoutAdmin}>Logout</Button>

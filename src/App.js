@@ -13,6 +13,8 @@ import ImageUpload from "./admin/imageUpload";
 import {getCurrentUser} from "./services/loginService";
 import Contacts from "./pages/contacts";
 import CreateNewsForm from "./admin/createNewsForm";
+import Schedule from "./pages/schedule";
+import CreateScheduleForm from "./admin/createScheduleForm";
 
 
 class App extends Component {
@@ -39,11 +41,13 @@ class App extends Component {
                         <Route path="/login" component={LoginForm}/>
                         <Route path="/news" component={News}/>
                         <Route path="/contacts" component={Contacts}/>
+                        <Route path="/schedule" component={Schedule}/>
                         {this.state.user &&
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>
                                 <Route exact path="/admin/registeruser" component={RegisterUserForm}/>
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
+                                <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>

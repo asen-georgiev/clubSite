@@ -75,7 +75,7 @@ class News extends Component {
                                 <Container>
                                 <Row>
                                     <Col sm={4}>
-                                        <Image src={"http://localhost:3900/"+n.pictureName} thumbnail width="300"/>
+                                        <Image src={"http://localhost:3900/"+n.pictureName} width="300"/>
                                     </Col>
                                     <Col sm={8}>
                                         <Card>

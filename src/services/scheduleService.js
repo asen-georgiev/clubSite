@@ -2,18 +2,17 @@ import httpService from "./httpService";
 import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/news";
+const apiEndpoint = apiUrl + "/schedules";
 
-export function createNews(news){
-    return httpService.post(apiEndpoint,news,{
-        headers: {
+export function createSchedule(schedule){
+    return httpService.post(apiEndpoint,schedule,{
+        headers:{
             'x-auth-token': getCurrentUser()
         }
     });
 }
 
-export function getNews(){
+export function getSchedule(){
     return httpService
-        .get(apiEndpoint)
+        .get(apiEndpoint);
 }
-
