@@ -11,7 +11,7 @@ axios.interceptors.response.use(success=>{
         error.response.status <500;
     if (expectedError){
         console.log(error)
-        toast.error("Wrong Login Credentials!");
+        toast.error(error.response.statusText);
     }
     if(!expectedError){
         console.log(error);

@@ -13,10 +13,10 @@ class News extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
-            user:[],
-            images:[],
-            news:[]
+        this.state = {
+            user: [],
+            images: [],
+            news: []
         }
     }
 
@@ -31,7 +31,7 @@ class News extends Component {
         const news = [events];
 
         console.log('before setState')
-        this.setState({user,images,news});
+        this.setState({user, images, news});
         console.log(this.state);
 
     }
@@ -44,11 +44,11 @@ class News extends Component {
                 <ul>
                     {this.state.user.map((user, index) => {
                         return (
-                            <ul>
-                            <li key={user.data[0].name}>
-                                <div>{user.data[0].name}</div>
-                            </li>
-                                <li key={user.data[0].email}>
+                            <ul key={index}>
+                                <li>
+                                    <div>{user.data[0].name}</div>
+                                </li>
+                                <li>
                                     <div>{user.data[0].email}</div>
                                 </li>
                             </ul>
@@ -57,11 +57,11 @@ class News extends Component {
                 </ul>
                 <h1>Pictures Gallery</h1>
                 <Row>
-                    {this.state.images.map(image=> (
-                        image.data.map(pic=> {
+                    {this.state.images.map(image => (
+                        image.data.map(pic => {
                             return (
-                                <Col>
-                                <Image src={"http://localhost:3900/"+pic} width="400" height="auto"/>
+                                <Col key={pic}>
+                                    <Image src={"http://localhost:3900/" + pic} width="400" height="auto"/>
                                 </Col>
                             )
                         }))
@@ -69,28 +69,28 @@ class News extends Component {
                 </Row>
                 <h1>News Array</h1>
                 <Row>
-                    {this.state.news.map(ne=> (
-                        ne.data.map(n=>{
-                            return(
-                                <Container>
-                                <Row>
-                                    <Col sm={4}>
-                                        <Image src={"http://localhost:3900/"+n.pictureName} width="300"/>
-                                    </Col>
-                                    <Col sm={8}>
-                                        <Card>
-                                            <Card.Body>
-                                        <Card.Title>{n.title}</Card.Title>
-                                        <Card.Text>{n.text}</Card.Text>
-                                        <Card.Link href={n.linkTo}>{n.linkTo}</Card.Link>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                </Row>
+                    {this.state.news.map(ne => (
+                        ne.data.map(n => {
+                            return (
+                                <Container key={n.pictureName}>
+                                    <Row>
+                                        <Col sm={4}>
+                                            <Image src={"http://localhost:3900/" + n.pictureName} width="300"/>
+                                        </Col>
+                                        <Col sm={8}>
+                                            <Card>
+                                                <Card.Body>
+                                                    <Card.Title>{n.title}</Card.Title>
+                                                    <Card.Text>{n.text}</Card.Text>
+                                                    <Card.Link href={"http://"+n.linkTo}>{n.linkTo}</Card.Link>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    </Row>
                                 </Container>
-                        )
-                    })
-                        ))}
+                            )
+                        })
+                    ))}
                 </Row>
             </div>
         );

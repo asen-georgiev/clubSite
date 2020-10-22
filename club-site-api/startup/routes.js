@@ -5,6 +5,7 @@ const images = require('../routes/images');
 const email = require('../routes/email');
 const news = require('../routes/news');
 const schedules = require('../routes/schedules');
+const events = require('../routes/events');
 const authentication = require('../routes/authentication');
 
 //Файл за руутовете
@@ -19,5 +20,6 @@ const authentication = require('../routes/authentication');
         app.use('/api/auth',authentication);
         app.use('/api/email',email);
         app.use('/api/news',news);
-        app.use('/api/schedules',schedules)
+        app.use('/api/schedules',schedules);
+        app.use('/api/events',events);
     };
