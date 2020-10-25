@@ -27,7 +27,7 @@ function Navigation () {
                     <Navbar.Collapse id="navbar-toggle">
                         <Nav className="ml-auto pr-2">
                             <Link  className="i-navbar-links nav-link" to="/news">{t('Navigation.News')}</Link>
-                            <Link  className="i-navbar-links nav-link" to="/clubinfo">{t('Navigation.Club')}</Link>
+                            <Link  className="i-navbar-links nav-link" to="/clubbio">{t('Navigation.Club')}</Link>
                             <Link  className="i-navbar-links nav-link" to="/schedule">{t('Navigation.Training')}</Link>
                             <Link  className="i-navbar-links nav-link" to="/events">{t('Navigation.Events')}</Link>
                             <Link  className="i-navbar-links nav-link" to="/contacts">{t('Navigation.Contacts')}</Link>

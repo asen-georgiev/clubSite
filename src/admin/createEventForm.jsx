@@ -95,8 +95,6 @@ class CreateEventForm extends Component {
 
         this.setState({isDisabled: true});
 
-        this.setState({isDisabled: true});
-
         const obj={
             eventTitle: this.state.eventTitle,
             eventInfo: this.state.eventInfo,
@@ -110,7 +108,7 @@ class CreateEventForm extends Component {
 
 
     adminRedirect = () => {
-        this.props.history.push("/admin")
+        this.props.history.push("/admin");
     }
 
     render() {

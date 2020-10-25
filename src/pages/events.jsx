@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import {getEventCalendar} from "../services/eventService";
-import {Link} from "react-router-dom/Link";
+
 
 class Events extends Component {
     constructor(props) {

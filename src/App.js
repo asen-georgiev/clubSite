@@ -17,6 +17,8 @@ import Schedule from "./pages/schedule";
 import CreateScheduleForm from "./admin/createScheduleForm";
 import Events from "./pages/events";
 import CreateEventForm from "./admin/createEventForm";
+import Clubbio from "./pages/clubbio";
+import CreateClubBioForm from "./admin/createClubBioForm";
 
 
 class App extends Component {
@@ -45,6 +47,7 @@ class App extends Component {
                         <Route path="/contacts" component={Contacts}/>
                         <Route path="/schedule" component={Schedule}/>
                         <Route path="/events" component={Events}/>
+                        <Route path="/clubbio" component={Clubbio}/>
                         {this.state.user &&
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>
@@ -52,6 +55,7 @@ class App extends Component {
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin/createevent" component={CreateEventForm}/>
+                                <Route exact path="/admin/createclubbio" component={CreateClubBioForm}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>

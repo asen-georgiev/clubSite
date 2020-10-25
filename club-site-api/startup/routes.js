@@ -6,6 +6,7 @@ const email = require('../routes/email');
 const news = require('../routes/news');
 const schedules = require('../routes/schedules');
 const events = require('../routes/events');
+const clubbios = require('../routes/clubbios');
 const authentication = require('../routes/authentication');
 
 //Файл за руутовете
@@ -22,4 +23,5 @@ const authentication = require('../routes/authentication');
         app.use('/api/news',news);
         app.use('/api/schedules',schedules);
         app.use('/api/events',events);
+        app.use('/api/clubbio',clubbios);
     };

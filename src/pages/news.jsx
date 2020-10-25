@@ -82,6 +82,7 @@ class News extends Component {
                                                 <Card.Body>
                                                     <Card.Title>{n.title}</Card.Title>
                                                     <Card.Text>{n.text}</Card.Text>
+                                                    <Card.Footer>{n.eventDate}</Card.Footer>
                                                     <Card.Link href={"http://"+n.linkTo}>{n.linkTo}</Card.Link>
                                                 </Card.Body>
                                             </Card>
