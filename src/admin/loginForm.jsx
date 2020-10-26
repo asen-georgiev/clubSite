@@ -71,9 +71,12 @@ class LoginForm extends Component {
         console.log('Form submitted');
         const obj = { email:this.state.email, password:this.state.password };
         await loginUser(obj);
-        this.props.history.push("/admin");
+        window.setTimeout(()=>{
+            this.props.history.push("/admin");
+        },1000);
         toast.success('You are logged successfully!');
     };
+
 
 
     render()

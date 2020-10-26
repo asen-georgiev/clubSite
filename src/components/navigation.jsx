@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
@@ -6,7 +6,6 @@ import Navbar from "react-bootstrap/Navbar";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
 import {DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
-import News from "../pages/news";
 
 
 function Navigation () {

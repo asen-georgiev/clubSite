@@ -21,7 +21,7 @@ class RegisterUserForm extends Component {
             name:"",
             email:"",
             password:"",
-            isAdmin: true,
+            isAdmin: false,
             errors:{},
             isDisabled:false
         }
@@ -166,7 +166,6 @@ class RegisterUserForm extends Component {
                         </Row>
                     </Form>
                 </Container>
-
             </div>
         );
     }

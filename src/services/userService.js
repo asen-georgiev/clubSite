@@ -21,3 +21,11 @@ export function registerUser(user){
         }
     });
 }
+
+export function getLoggedUser(){
+    return httpService.get(apiEndpoint+"/me",{
+        headers: {
+            'x-auth-token': getCurrentUser()
+        }
+    })
+}

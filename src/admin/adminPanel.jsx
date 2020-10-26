@@ -3,16 +3,28 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import FormGroup from "react-bootstrap/FormGroup";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-import {toast} from "react-toastify";
 import {loginUser, logoutUser, getCurrentUser} from "../services/loginService";
+import {getLoggedUser} from "../services/userService";
 
 
 class AdminPanel extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state= {
+            loggedUser:[]
+        }
+    }
+
+
+    async componentDidMount() {
+        const user = await getLoggedUser();
+        const loggedUser = [user];
+        this.setState({loggedUser});
+        console.log(this.state);
+    }
 
 
     logoutAdmin = () => {
@@ -24,6 +36,16 @@ class AdminPanel extends Component {
         return (
             <div>
                 <Container>
+                    {this.state.loggedUser.map(user =>{
+                        return(
+                            <div>
+                            <h4>Logged as: {user.data.name}</h4>
+                        {user.data.isAdmin && <h5>Admin rights</h5>}
+                                {!user.data.isAdmin && <h5>No Admin rights</h5>}
+                            </div>
+                        )}
+                    )}
+
                     <Table>
                         <thead>
                         <tr>

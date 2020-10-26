@@ -14,7 +14,7 @@ class News extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: [],
+            users: [],
             images: [],
             news: []
         }
@@ -25,13 +25,13 @@ class News extends Component {
         const images = [gallery];
 
         const data = await getUsers();
-        const user = [data];
+        const users = [data];
 
         const events = await getNews();
         const news = [events];
 
         console.log('before setState')
-        this.setState({user, images, news});
+        this.setState({users, images, news});
         console.log(this.state);
 
     }
@@ -42,18 +42,18 @@ class News extends Component {
             <div>
                 <h1>Users Array</h1>
                 <ul>
-                    {this.state.user.map((user, index) => {
-                        return (
-                            <ul key={index}>
-                                <li>
-                                    <div>{user.data[0].name}</div>
-                                </li>
-                                <li>
-                                    <div>{user.data[0].email}</div>
-                                </li>
-                            </ul>
-                        );
-                    })}
+                    {this.state.users.map((user, index) => (
+                        user.data.map(us => {
+                            return(
+                                <ul key={us._id}>
+                                    <li key={us.name}>{us.name}</li>
+                                    <li key={us.email}>{us.email}</li>
+                                <br/>
+                                </ul>
+                            )
+                        })
+                        )
+                    )}
                 </ul>
                 <h1>Pictures Gallery</h1>
                 <Row>

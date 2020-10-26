@@ -4,6 +4,15 @@ const _ = require('lodash');
 const {User,validateUser} = require('../models/user');
 const bcrypt = require('bcrypt');
 const authorization = require('../middleware/authorization');
+const admin = require('../middleware/administration');
+
+
+
+//Показване на кърънт юзър
+router.get('/me',authorization,async(req, res) => {
+        const user = await User.findById(req.user._id).select('-password');
+        res.send(user);
+})
 
 
 //Асинхронна функция за показване на всички регистрирани в ДБ юзъри (изисква ауторизация от middleware)
@@ -13,7 +22,7 @@ router.get('/',authorization,async(req, res) => {
 })
 
 //Асинхронна функция за създаване на нов Юзър в ДБ
-router.post('/',authorization,async(req, res) => {
+router.post('/',[authorization,admin],async(req, res) => {
         //Валидация на данните подадени от Юзъра в рикуеста, дали отговарят на
         //изискванията на Joi schemata от (User model)
         const {error} = validateUser(req.body);

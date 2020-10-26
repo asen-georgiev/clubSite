@@ -12,14 +12,13 @@ import {FormLabel} from "react-bootstrap";
 import {createClubBio} from "../services/clubbioService";
 
 
-
 class CreateClubBioForm extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            bioTitle:'',
-            bioText:'',
-            errors:{},
+        this.state = {
+            bioTitle: '',
+            bioText: '',
+            errors: {},
             isDisabled: false
         }
     }
@@ -38,8 +37,7 @@ class CreateClubBioForm extends Component {
     })
 
 
-
-    handleChange = (event) =>{
+    handleChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -50,33 +48,32 @@ class CreateClubBioForm extends Component {
     }
 
 
-    validate = () =>{
+    validate = () => {
         const obj = {
             bioTitle: this.state.bioTitle,
             bioText: this.state.bioText
         }
-        const options = {abortEarly:false};
-        const result = this.schema.validate(obj,options);
+        const options = {abortEarly: false};
+        const result = this.schema.validate(obj, options);
         console.log(result);
 
-        if(!result.error) return null;
+        if (!result.error) return null;
 
         const errors = {};
-        for(let item of result.error.details)
+        for (let item of result.error.details)
             errors[item.path[0]] = item.message;
         return errors;
     }
 
 
-
-    handleSubmit = async(event) =>{
+    handleSubmit = async (event) => {
         event.preventDefault();
         const errors = this.validate();
-        this.setState({errors: errors ||{}});
+        this.setState({errors: errors || {}});
         console.log(errors);
-        if(errors)return;
+        if (errors) return;
 
-        this.setState({isDisabled:true});
+        this.setState({isDisabled: true});
 
         const obj = {
             bioTitle: this.state.bioTitle,
@@ -87,8 +84,7 @@ class CreateClubBioForm extends Component {
     }
 
 
-
-    adminRedirect = () =>{
+    adminRedirect = () => {
         this.props.history.push("/admin");
     }
 
@@ -100,14 +96,14 @@ class CreateClubBioForm extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <FormLabel>
-                               Club Bio Title
+                                Club Bio Title
                             </FormLabel>
                             <FormControl
-                            autoFocus={true}
-                            name="bioTitle"
-                            type="text"
-                            placeholder="Enter the title for the club biography"
-                            onChange={this.handleChange}/>
+                                autoFocus={true}
+                                name="bioTitle"
+                                type="text"
+                                placeholder="Enter the title for the club biography"
+                                onChange={this.handleChange}/>
                             {this.state.errors.bioTitle &&
                             <p className="text-danger pt-2">
                                 {this.state.errors.bioTitle}
@@ -116,11 +112,11 @@ class CreateClubBioForm extends Component {
                                 Club Bio Text
                             </FormLabel>
                             <FormControl
-                            name="bioText"
-                            as="textarea"
-                            rows="10"
-                            placeholder="Enter the text for the club biography"
-                            onChange={this.handleChange}/>
+                                name="bioText"
+                                as="textarea"
+                                rows="10"
+                                placeholder="Enter the text for the club biography"
+                                onChange={this.handleChange}/>
                             {this.state.errors.bioText &&
                             <p className="text-danger pt-2">
                                 {this.state.errors.bioText}
@@ -132,7 +128,7 @@ class CreateClubBioForm extends Component {
                                     Submit
                                 </Button>
                             </Col>
-                            <Col md={{span:4,offset:4}}>
+                            <Col md={{span: 4, offset: 4}}>
                                 <Button variant="primary" onClick={this.adminRedirect}>
                                     Back to Admin Panel
                                 </Button>

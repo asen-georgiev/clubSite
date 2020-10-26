@@ -10,7 +10,7 @@ import LoginForm from "./admin/loginForm";
 import AdminPanel from "./admin/adminPanel";
 import RegisterUserForm from "./admin/registerUserForm";
 import ImageUpload from "./admin/imageUpload";
-import {getCurrentUser} from "./services/loginService";
+import {getCurrentUser, logoutUser} from "./services/loginService";
 import Contacts from "./pages/contacts";
 import CreateNewsForm from "./admin/createNewsForm";
 import Schedule from "./pages/schedule";
@@ -34,6 +34,8 @@ class App extends Component {
         const user = getCurrentUser();
         this.setState({user});
     }
+
+
 
     render() {
         return (

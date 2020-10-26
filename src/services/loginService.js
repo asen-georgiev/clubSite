@@ -8,16 +8,16 @@ export function loginUser (data){
         .post(apiEndpoint,data)
         .then(response =>{
             if(response.data){
-            localStorage.setItem("user",response.data);
+            sessionStorage.setItem("user",response.data);
             }
             return response.data;
         });
 }
 
 export function logoutUser (){
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
 }
 
 export function getCurrentUser(){
-    return localStorage.getItem("user");
+    return sessionStorage.getItem("user");
 }
