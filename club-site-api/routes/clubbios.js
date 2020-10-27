@@ -23,7 +23,10 @@ router.post('/',async(req, res) => {
 
 
 router.get('/',async(req, res) => {
-    const clubBio = await ClubBio.find().sort('bioTitle');
+    const clubBio = await ClubBio
+        .find()
+        .select("-__v")
+        .sort('bioTitle');
     res.send(clubBio);
 })
 

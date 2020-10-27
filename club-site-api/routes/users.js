@@ -17,9 +17,22 @@ router.get('/me',authorization,async(req, res) => {
 
 //Асинхронна функция за показване на всички регистрирани в ДБ юзъри (изисква ауторизация от middleware)
 router.get('/',authorization,async(req, res) => {
-        const users = await User.find().sort('name');
+        const users = await User
+            .find()
+            .select("-__v")
+            .sort('name');
         res.send(users);
 })
+
+
+//Асинхронна функция за показване на Юзър по ИД
+router.get('/:id',async(req, res) => {
+
+        const user = await User.findById(req.params.id).select('-password');
+        if(!user) return res.status(404).send('User with the given ID was not found!');
+        res.send(user);
+})
+
 
 //Асинхронна функция за създаване на нов Юзър в ДБ
 router.post('/',[authorization,admin],async(req, res) => {

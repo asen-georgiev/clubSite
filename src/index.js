@@ -11,7 +11,7 @@ import './i18n';
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-          <Suspense fallback={(<div>Loading...</div>)}>
+          <Suspense fallback={(<div></div>)}>
     <App />
           </Suspense>
       </BrowserRouter>

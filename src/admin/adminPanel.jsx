@@ -13,8 +13,8 @@ class AdminPanel extends Component {
 
     constructor(props) {
         super(props);
-        this.state= {
-            loggedUser:[]
+        this.state = {
+            loggedUser: []
         }
     }
 
@@ -36,27 +36,29 @@ class AdminPanel extends Component {
         return (
             <div>
                 <Container>
-                    {this.state.loggedUser.map(user =>{
-                        return(
-                            <div>
-                            <h4>Logged as: {user.data.name}</h4>
-                        {user.data.isAdmin && <h5>Admin rights</h5>}
-                                {!user.data.isAdmin && <h5>No Admin rights</h5>}
-                            </div>
-                        )}
+                    {this.state.loggedUser.map(user => {
+                            return (
+                                <div>
+                                    <h4>Logged as: {user.data.name}</h4>
+                                    {user.data.isAdmin && <h5>Admin rights</h5>}
+                                    {!user.data.isAdmin && <h5>No Admin rights</h5>}
+                                </div>
+                            )
+                        }
                     )}
 
                     <Table>
                         <thead>
                         <tr>
                             <th>Admin Action</th>
-                            <th>Execute Button</th>
+                            <th>Execute Buttons</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Registering New User</td>
-                            <td><Link to="/admin/registeruser">Register</Link></td>
+                            <td>User Actions</td>
+                            <td><Link to="/admin/registeruser">Register new user</Link></td>
+                            <td><Link to="/admin/userslist">Users list</Link></td>
                         </tr>
                         <tr>
                             <td>Uploading image</td>
@@ -74,7 +76,7 @@ class AdminPanel extends Component {
                             <td>Creating sport event</td>
                             <td><Link to="/admin/createevent">Create</Link></td>
                         </tr>
-                            <td>Creating club bio</td>
+                        <td>Creating club bio</td>
                         <td><Link to="/admin/createclubbio">Create</Link></td>
                         </tbody>
                     </Table>

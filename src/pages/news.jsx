@@ -31,7 +31,7 @@ class News extends Component {
         const news = [events];
 
         console.log('before setState')
-        this.setState({users, images, news});
+        this.setState({ users,images, news});
         console.log(this.state);
 
     }

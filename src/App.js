@@ -19,6 +19,7 @@ import Events from "./pages/events";
 import CreateEventForm from "./admin/createEventForm";
 import Clubbio from "./pages/clubbio";
 import CreateClubBioForm from "./admin/createClubBioForm";
+import AllUsersList from "./admin/allUsersList";
 
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>
                                 <Route exact path="/admin/registeruser" component={RegisterUserForm}/>
+                                <Route exact path="/admin/userslist" component={AllUsersList}/>
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin/createevent" component={CreateEventForm}/>

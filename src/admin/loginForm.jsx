@@ -73,7 +73,7 @@ class LoginForm extends Component {
         await loginUser(obj);
         window.setTimeout(()=>{
             this.props.history.push("/admin");
-        },1000);
+        },2000);
         toast.success('You are logged successfully!');
     };
 

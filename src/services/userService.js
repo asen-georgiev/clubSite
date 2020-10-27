@@ -4,6 +4,21 @@ import {getCurrentUser} from "./loginService";
 
 const apiEndpoint = apiUrl + "/users";
 
+//function for retrieving single user by ID
+function userUrl(id){
+    return `${apiEndpoint}/${id}`;
+}
+
+//Показване на един юзър
+export function getUser(userId){
+    return httpService.get(userUrl(userId),{
+        headers: {
+            'x-auth-token': getCurrentUser()
+        }
+    })
+}
+
+
 //Показване на всички юзъри
 export function getUsers(){
     return httpService.get(apiEndpoint, {
