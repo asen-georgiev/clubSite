@@ -38,7 +38,7 @@ class AdminPanel extends Component {
                 <Container>
                     {this.state.loggedUser.map(user => {
                             return (
-                                <div>
+                                <div key={user.data.name}>
                                     <h4>Logged as: {user.data.name}</h4>
                                     {user.data.isAdmin && <h5>Admin rights</h5>}
                                     {!user.data.isAdmin && <h5>No Admin rights</h5>}
@@ -46,7 +46,6 @@ class AdminPanel extends Component {
                             )
                         }
                     )}
-
                     <Table>
                         <thead>
                         <tr>
@@ -82,7 +81,6 @@ class AdminPanel extends Component {
                     </Table>
                     <Button onClick={this.logoutAdmin}>Logout</Button>
                 </Container>
-
             </div>
         );
     }

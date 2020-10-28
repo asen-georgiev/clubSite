@@ -18,7 +18,6 @@ export function getUser(userId){
     })
 }
 
-
 //Показване на всички юзъри
 export function getUsers(){
     return httpService.get(apiEndpoint, {
@@ -43,4 +42,12 @@ export function getLoggedUser(){
             'x-auth-token': getCurrentUser()
         }
     })
+}
+
+export function deleteUser(userId){
+    return httpService.delete(userUrl(userId),{
+        headers: {
+            'x-auth-token': getCurrentUser()
+        }
+    });
 }

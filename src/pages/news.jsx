@@ -24,14 +24,14 @@ class News extends Component {
         const gallery = await getImages();
         const images = [gallery];
 
-        const data = await getUsers();
-        const users = [data];
+        // const data = await getUsers();
+        // const users = [data];
 
         const events = await getNews();
         const news = [events];
 
         console.log('before setState')
-        this.setState({ users,images, news});
+        this.setState({images, news});
         console.log(this.state);
 
     }
@@ -40,21 +40,21 @@ class News extends Component {
     render() {
         return (
             <div>
-                <h1>Users Array</h1>
-                <ul>
-                    {this.state.users.map((user, index) => (
-                        user.data.map(us => {
-                            return(
-                                <ul key={us._id}>
-                                    <li key={us.name}>{us.name}</li>
-                                    <li key={us.email}>{us.email}</li>
-                                <br/>
-                                </ul>
-                            )
-                        })
-                        )
-                    )}
-                </ul>
+                {/*<h1>Users Array</h1>*/}
+                {/*<ul>*/}
+                {/*    {this.state.users.map((user, index) => (*/}
+                {/*        user.data.map(us => {*/}
+                {/*            return(*/}
+                {/*                <ul key={us._id}>*/}
+                {/*                    <li key={us.name}>{us.name}</li>*/}
+                {/*                    <li key={us.email}>{us.email}</li>*/}
+                {/*                <br/>*/}
+                {/*                </ul>*/}
+                {/*            )*/}
+                {/*        })*/}
+                {/*        )*/}
+                {/*    )}*/}
+                {/*</ul>*/}
                 <h1>Pictures Gallery</h1>
                 <Row>
                     {this.state.images.map(image => (

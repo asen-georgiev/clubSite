@@ -35,7 +35,7 @@ router.get('/:id',async(req, res) => {
 
 
 //Асинхронна функция за създаване на нов Юзър в ДБ
-router.post('/',[authorization,admin],async(req, res) => {
+router.post('/',async(req, res) => {
         //Валидация на данните подадени от Юзъра в рикуеста, дали отговарят на
         //изискванията на Joi schemata от (User model)
         const {error} = validateUser(req.body);
@@ -64,4 +64,11 @@ router.post('/',[authorization,admin],async(req, res) => {
 
 })
 
+//Deleting user by ID
+router.delete('/:id',async(req, res) => {
+        const user = await User.findByIdAndDelete(req.params.id);
+        let reqId = req.params.id;
+        if(!user) return res.status(404).send(`User with ID: ${reqId} was not found!`);
+        res.send(user);
+})
 module.exports = router;
