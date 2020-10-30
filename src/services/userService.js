@@ -15,7 +15,7 @@ export function getUser(userId){
         headers: {
             'x-auth-token': getCurrentUser()
         }
-    })
+    });
 }
 
 //Показване на всички юзъри
@@ -36,14 +36,29 @@ export function registerUser(user){
     });
 }
 
+//Функция, която показва конкретно логнатия юзър
 export function getLoggedUser(){
     return httpService.get(apiEndpoint+"/me",{
         headers: {
             'x-auth-token': getCurrentUser()
         }
-    })
+    });
 }
 
+//Функция за ъпдейт на юзър, задължително трябва да се подаде и обекта и ИД то на юзъра!
+export function updateUser(user,userID) {
+    if (userID) {
+        const body = {...user};
+        delete body._id;
+        return httpService.put(userUrl(userID), body,{
+            headers: {
+                'x-auth-token': getCurrentUser()
+            }
+        });
+    }
+}
+
+//Функция за изтриване на Юзър
 export function deleteUser(userId){
     return httpService.delete(userUrl(userId),{
         headers: {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Joi from "joi";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,28 +7,28 @@ import Form from "react-bootstrap/Form";
 import FormGroup from "react-bootstrap/FormGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Joi from "joi";
 import {toast} from "react-toastify";
-import {registerUser} from "../services/userService";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
+import {getUser,updateUser} from "../services/userService";
 
-
-
-class RegisterUserForm extends Component {
+class UpdateUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:"",
-            email:"",
-            password:"",
-            isAdmin: false,
+            user:{
+                name:"",
+                email:"",
+                password:"",
+                isAdmin: false,
+            },
             errors:{},
             isDisabled:false
         }
-    };
+    }
 
     schema = Joi.object({
+        _id:Joi.string(),
         name: Joi.string()
             .required()
             .min(5)
@@ -49,22 +50,20 @@ class RegisterUserForm extends Component {
 
 
     handleChange = (event) => {
-
+        const user = {...this.state.user}
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+        user[name] = value;
+        this.setState({user});
     };
 
     validate = () =>{
         const obj = {
-            name: this.state.name,
-            email:this.state.email,
-            password:this.state.password,
-            isAdmin: this.state.isAdmin
+            name: this.state.user.name,
+            email:this.state.user.email,
+            password:this.state.user.password,
+            isAdmin: this.state.user.isAdmin
         };
         const options = {abortEarly:false};
         const result = this.schema.validate(obj,options);
@@ -77,27 +76,53 @@ class RegisterUserForm extends Component {
         return errors;
     }
 
+    async populateUser(){
+        try{
+            const userId = this.props.match.params.id;
+            const {data: user} = await getUser(userId);
+            this.setState({user:this.mapToViewModel(user)});
+        }
+        catch (e) {
+            if (e.response && e.response.status === 404)
+                console.log('Nema takov User');
+        }
+    }
 
-    handleSubmit = async(event) =>{
+   async componentDidMount() {
+        await this.populateUser();
+        console.log(this.state.user);
+    }
+
+    mapToViewModel(user) {
+        return {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            isAdmin: user.isAdmin
+        };
+    }
+
+    handleSubmit= async(event)=>{
         event.preventDefault();
         const errors = this.validate();
         this.setState({errors: errors || {}});
         if (errors) return;
+
         const obj = {
-            name:this.state.name,
-            email:this.state.email,
-            password:this.state.password,
-            isAdmin:this.state.isAdmin
+            name: this.state.user.name,
+            email:this.state.user.email,
+            password:this.state.user.password,
+            isAdmin: this.state.user.isAdmin
         };
-        await registerUser(obj);
+        await updateUser(obj,this.state.user._id);
         this.setState({isDisabled:true});
-        console.log(this.state.user);
-        this.props.history.push("/admin");
-        toast.success('User registration was successful!');
-    }
+        toast.success('User update was successfull!');
+
+}
 
     adminRedirect = () => {
-        this.props.history.push("/admin")
+        this.props.history.push("/admin/userslist")
     }
 
 
@@ -115,7 +140,7 @@ class RegisterUserForm extends Component {
                                 id="name"
                                 name="name"
                                 type="text"
-                                value={this.state.name}
+                                value={this.state.user.name}
                                 placeholder="Enter full name"
                                 onChange={this.handleChange}/>
                         </FormGroup>
@@ -127,7 +152,7 @@ class RegisterUserForm extends Component {
                                 id="email"
                                 name="email"
                                 type="email"
-                                value={this.state.email}
+                                value={this.state.user.email}
                                 placeholder="Enter email"
                                 onChange={this.handleChange}/>
                         </FormGroup>
@@ -139,7 +164,7 @@ class RegisterUserForm extends Component {
                                 id="password"
                                 name="password"
                                 type="password"
-                                value={this.state.password}
+                                value={this.state.user.password}
                                 placeholder="Enter password"
                                 onChange={this.handleChange}/>
                         </FormGroup>
@@ -148,15 +173,15 @@ class RegisterUserForm extends Component {
                                 id="isAdmin"
                                 name="isAdmin"
                                 type="checkbox"
-                                value={this.state.isAdmin}
+                                value={this.state.user.isAdmin}
                                 label="Admin rights"
                                 onChange={this.handleChange}/>
                         </FormGroup>
                         <Row>
                             <Col md={4}>
-                        <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                            Register
-                        </Button>
+                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
+                                    Update
+                                </Button>
                             </Col>
                             <Col md={{span:4,offset:4}}>
                                 <Button variant="primary" onClick={this.adminRedirect}>
@@ -171,4 +196,4 @@ class RegisterUserForm extends Component {
     }
 }
 
-export default RegisterUserForm;
+export default UpdateUserForm;

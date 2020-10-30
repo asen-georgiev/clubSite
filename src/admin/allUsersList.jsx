@@ -7,6 +7,7 @@ import {deleteUser, getUsers} from "../services/userService";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import Form from "react-bootstrap/Form";
+import {Link} from "react-router-dom";
 
 class AllUsersList extends Component {
     constructor(props) {
@@ -77,7 +78,7 @@ class AllUsersList extends Component {
                                         <td>{usr.email}</td>
                                         {usr.isAdmin && <td>admin</td>}
                                         {!usr.isAdmin && <td>not admin</td>}
-                                        <td><Button>Update user</Button></td>
+                                        <td><Link to={`/admin/userslist/${usr._id}`}>Update user</Link></td>
                                         <td><Button
                                             variant="danger"
                                             onClick={()=>this.handleDelete(usr)}>

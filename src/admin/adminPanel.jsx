@@ -14,14 +14,14 @@ class AdminPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedUser: []
+            loggedUser: ''
         }
     }
 
 
     async componentDidMount() {
-        const user = await getLoggedUser();
-        const loggedUser = [user];
+        const {data:loggedUser} = await getLoggedUser();
+        // const loggedUser = [user];
         this.setState({loggedUser});
         console.log(this.state);
     }
@@ -36,16 +36,19 @@ class AdminPanel extends Component {
         return (
             <div>
                 <Container>
-                    {this.state.loggedUser.map(user => {
-                            return (
-                                <div key={user.data.name}>
-                                    <h4>Logged as: {user.data.name}</h4>
-                                    {user.data.isAdmin && <h5>Admin rights</h5>}
-                                    {!user.data.isAdmin && <h5>No Admin rights</h5>}
-                                </div>
-                            )
-                        }
-                    )}
+                    {/*{this.state.loggedUser.map(user => {*/}
+                    {/*        return (*/}
+                    {/*            <div key={user.data.name}>*/}
+                    {/*                <h4>Logged as: {user.data.name}</h4>*/}
+                    {/*                {user.data.isAdmin && <h5>Admin rights</h5>}*/}
+                    {/*                {!user.data.isAdmin && <h5>No Admin rights</h5>}*/}
+                    {/*            </div>*/}
+                    {/*        )*/}
+                    {/*    }*/}
+                    {/*)}*/}
+                    <h4>Logged as: {this.state.loggedUser.name}</h4>
+                    {this.state.loggedUser.isAdmin && <h5>Admin rights</h5>}
+                    {!this.state.loggedUser.isAdmin && <h5>No Admin rights</h5>}
                     <Table>
                         <thead>
                         <tr>
@@ -75,8 +78,10 @@ class AdminPanel extends Component {
                             <td>Creating sport event</td>
                             <td><Link to="/admin/createevent">Create</Link></td>
                         </tr>
-                        <td>Creating club bio</td>
-                        <td><Link to="/admin/createclubbio">Create</Link></td>
+                        <tr>
+                            <td>Creating club bio</td>
+                            <td><Link to="/admin/createclubbio">Create</Link></td>
+                        </tr>
                         </tbody>
                     </Table>
                     <Button onClick={this.logoutAdmin}>Logout</Button>

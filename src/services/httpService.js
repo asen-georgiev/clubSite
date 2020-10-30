@@ -10,14 +10,13 @@ axios.interceptors.response.use(success=>{
         error.response.status >=400 &&
         error.response.status <500;
     if (expectedError){
-        console.log(error)
+        console.log(error);
         toast.error(error.response.statusText);
     }
     if(!expectedError){
         console.log(error);
         toast.error('An Unexpected error occured!');
     }
-
     return Promise.reject(error);
 });
 

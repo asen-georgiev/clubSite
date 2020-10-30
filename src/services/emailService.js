@@ -8,10 +8,10 @@ export function sendEmail(email){
         .post(apiEndpoint,email)
         .then(res => {
            if(res.status===200){
-                console.log('Everything ok!');
+                console.log('Email was sent through API successfully!');
            }
            else{
-               console.log('Not Ok');
+               console.log('Email was not sent through API!');
            }
         })
         .catch(err => {

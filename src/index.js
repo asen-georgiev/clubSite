@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
           <Suspense fallback={(<div></div>)}>
-    <App />
+    <App/>
           </Suspense>
       </BrowserRouter>
   </React.StrictMode>,

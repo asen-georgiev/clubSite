@@ -46,6 +46,6 @@ function validateEventCalendar(eventCalendar){
     return schema.validate(eventCalendar);
 }
 
-exports.EventCalendar=EventCalendar;
-exports.validateEventCalendar=validateEventCalendar;
-exports.eventSchema=eventSchema;
+exports.EventCalendar = EventCalendar;
+exports.validateEventCalendar = validateEventCalendar;
+exports.eventSchema = eventSchema;

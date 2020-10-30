@@ -87,7 +87,6 @@ function Contacts(props) {
         toast.success('Your message was sent successfully!');
         props.history.push("/news");
         await sendEmail(obj);
-
     }
 
     return (

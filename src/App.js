@@ -20,6 +20,7 @@ import CreateEventForm from "./admin/createEventForm";
 import Clubbio from "./pages/clubbio";
 import CreateClubBioForm from "./admin/createClubBioForm";
 import AllUsersList from "./admin/allUsersList";
+import UpdateUserForm from "./admin/updateUserForm";
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state={
-            user:""
+            user:''
         }
     }
 
@@ -55,6 +56,7 @@ class App extends Component {
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>
                                 <Route exact path="/admin/registeruser" component={RegisterUserForm}/>
+                                <Route exact path="/admin/userslist/:id" component={UpdateUserForm}/>
                                 <Route exact path="/admin/userslist" component={AllUsersList}/>
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
