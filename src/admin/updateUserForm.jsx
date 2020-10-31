@@ -10,25 +10,25 @@ import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
-import {getUser,updateUser} from "../services/userService";
+import {getUser, updateUser} from "../services/userService";
 
 class UpdateUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{
-                name:"",
-                email:"",
-                password:"",
+            user: {
+                name: "",
+                email: "",
+                password: "",
                 isAdmin: false,
             },
-            errors:{},
-            isDisabled:false
+            errors: {},
+            isDisabled: false
         }
     }
 
     schema = Joi.object({
-        _id:Joi.string(),
+        _id: Joi.string(),
         name: Joi.string()
             .required()
             .min(5)
@@ -58,37 +58,36 @@ class UpdateUserForm extends Component {
         this.setState({user});
     };
 
-    validate = () =>{
+    validate = () => {
         const obj = {
             name: this.state.user.name,
-            email:this.state.user.email,
-            password:this.state.user.password,
+            email: this.state.user.email,
+            password: this.state.user.password,
             isAdmin: this.state.user.isAdmin
         };
-        const options = {abortEarly:false};
-        const result = this.schema.validate(obj,options);
+        const options = {abortEarly: false};
+        const result = this.schema.validate(obj, options);
         console.log(result);
 
-        if(!result.error) return null;
+        if (!result.error) return null;
         const errors = {};
-        for(let item of result.error.details)
+        for (let item of result.error.details)
             errors[item.path[0]] = item.message;
         return errors;
     }
 
-    async populateUser(){
-        try{
+    async populateUser() {
+        try {
             const userId = this.props.match.params.id;
             const {data: user} = await getUser(userId);
-            this.setState({user:this.mapToViewModel(user)});
-        }
-        catch (e) {
+            this.setState({user: this.mapToViewModel(user)});
+        } catch (e) {
             if (e.response && e.response.status === 404)
                 console.log('Nema takov User');
         }
     }
 
-   async componentDidMount() {
+    async componentDidMount() {
         await this.populateUser();
         console.log(this.state.user);
     }
@@ -103,7 +102,7 @@ class UpdateUserForm extends Component {
         };
     }
 
-    handleSubmit= async(event)=>{
+    handleSubmit = async (event) => {
         event.preventDefault();
         const errors = this.validate();
         this.setState({errors: errors || {}});
@@ -111,15 +110,15 @@ class UpdateUserForm extends Component {
 
         const obj = {
             name: this.state.user.name,
-            email:this.state.user.email,
-            password:this.state.user.password,
+            email: this.state.user.email,
+            password: this.state.user.password,
             isAdmin: this.state.user.isAdmin
         };
-        await updateUser(obj,this.state.user._id);
-        this.setState({isDisabled:true});
+        await updateUser(obj, this.state.user._id);
+        this.setState({isDisabled: true});
         toast.success('User update was successfull!');
 
-}
+    }
 
     adminRedirect = () => {
         this.props.history.push("/admin/userslist")
@@ -143,6 +142,10 @@ class UpdateUserForm extends Component {
                                 value={this.state.user.name}
                                 placeholder="Enter full name"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.name &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.name}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -155,6 +158,10 @@ class UpdateUserForm extends Component {
                                 value={this.state.user.email}
                                 placeholder="Enter email"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.email &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.email}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -167,12 +174,17 @@ class UpdateUserForm extends Component {
                                 value={this.state.user.password}
                                 placeholder="Enter password"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.password &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.password}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormCheck
                                 id="isAdmin"
                                 name="isAdmin"
                                 type="checkbox"
+                                checked={this.state.user.isAdmin}
                                 value={this.state.user.isAdmin}
                                 label="Admin rights"
                                 onChange={this.handleChange}/>
@@ -183,9 +195,9 @@ class UpdateUserForm extends Component {
                                     Update
                                 </Button>
                             </Col>
-                            <Col md={{span:4,offset:4}}>
+                            <Col md={{span: 4, offset: 4}}>
                                 <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
+                                    Back to Users list
                                 </Button>
                             </Col>
                         </Row>

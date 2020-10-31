@@ -46,11 +46,11 @@ export function getLoggedUser(){
 }
 
 //Функция за ъпдейт на юзър, задължително трябва да се подаде и обекта и ИД то на юзъра!
-export function updateUser(user,userID) {
-    if (userID) {
+export function updateUser(user,userId) {
+    if (userId) {
         const body = {...user};
         delete body._id;
-        return httpService.put(userUrl(userID), body,{
+        return httpService.put(userUrl(userId), body,{
             headers: {
                 'x-auth-token': getCurrentUser()
             }

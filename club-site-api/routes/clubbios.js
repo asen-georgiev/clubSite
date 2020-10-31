@@ -20,13 +20,19 @@ router.post('/',async(req, res) => {
 })
 
 
-
-
+//All club Bios
 router.get('/',async(req, res) => {
     const clubBio = await ClubBio
         .find()
         .select("-__v")
         .sort('bioTitle');
+    res.send(clubBio);
+})
+
+router.delete('/:id', async(req, res) => {
+    const clubBio = await ClubBio.findByIdAndDelete(req.params.id);
+    let reqId = req.params.id;
+    if(!clubBio) return res.status(404).send(`Biography with Id: ${reqId} was not found`);
     res.send(clubBio);
 })
 

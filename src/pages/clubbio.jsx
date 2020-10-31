@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import {getClubBio} from "../services/clubbioService";
+import {getClubBios} from "../services/clubbioService";
 import {Image} from "react-bootstrap";
 
 
@@ -15,7 +15,7 @@ class Clubbio extends Component {
     }
 
     async componentDidMount() {
-        const bio = await getClubBio();
+        const bio = await getClubBios();
         const clubBio = [bio]
         this.setState({clubBio});
         console.log(this.state);

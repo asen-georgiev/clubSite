@@ -13,12 +13,12 @@ class AllUsersList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users:[],
+            users: []
         }
     }
 
     async componentDidMount() {
-        const { data: users } = await getUsers();
+        const {data: users} = await getUsers();
         // const data = await getUsers();
         // const users = [data];
         this.setState({users});
@@ -26,17 +26,15 @@ class AllUsersList extends Component {
 
     }
 
-    handleDelete = async(user) =>{
+    handleDelete = async (user) => {
         const allUsers = this.state.users;
         const users = allUsers.filter(u => u._id !== user._id);
         this.setState({users});
-        console.log(users);
 
-        try{
+        try {
             await deleteUser(user._id);
-        }
-        catch (e) {
-            if(e.response && e.response.status === 404) console.log("User with the given ID was not found!");
+        } catch (e) {
+            if (e.response && e.response.status === 404) console.log("User with the given ID was not found!");
             toast.error("This user has already been deleted.");
             this.setState({users: allUsers});
         }
@@ -59,7 +57,7 @@ class AllUsersList extends Component {
                             </Button>
                         </Col>
                     </Row>
-                <br/>
+                    <br/>
                     <Table striped bordered hover variant="dark">
                         <thead>
                         <tr>
@@ -72,18 +70,25 @@ class AllUsersList extends Component {
                         </thead>
                         <tbody>
                         {this.state.users.map(usr => {
-                                return(
+                                return (
                                     <tr key={usr._id}>
                                         <td>{usr.name}</td>
                                         <td>{usr.email}</td>
                                         {usr.isAdmin && <td>admin</td>}
                                         {!usr.isAdmin && <td>not admin</td>}
-                                        <td><Link to={`/admin/userslist/${usr._id}`}>Update user</Link></td>
-                                        <td><Button
-                                            variant="danger"
-                                            onClick={()=>this.handleDelete(usr)}>
-                                            Delete user
-                                        </Button></td>
+                                        <td>
+                                            <Link
+                                                to={`/admin/userslist/${usr._id}`}>
+                                                Update user
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Button
+                                                variant="danger"
+                                                onClick={() => this.handleDelete(usr)}>
+                                                Delete user
+                                            </Button>
+                                        </td>
                                     </tr>
                                 )
                             }

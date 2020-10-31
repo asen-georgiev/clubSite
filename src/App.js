@@ -21,6 +21,7 @@ import Clubbio from "./pages/clubbio";
 import CreateClubBioForm from "./admin/createClubBioForm";
 import AllUsersList from "./admin/allUsersList";
 import UpdateUserForm from "./admin/updateUserForm";
+import AllClubBioList from "./admin/allClubBioList";
 
 
 class App extends Component {
@@ -62,6 +63,7 @@ class App extends Component {
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin/createevent" component={CreateEventForm}/>
                                 <Route exact path="/admin/createclubbio" component={CreateClubBioForm}/>
+                                <Route exact path="/admin/bioslist" component={AllClubBioList}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>

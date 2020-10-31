@@ -54,6 +54,7 @@ class AdminPanel extends Component {
                         <tr>
                             <th>Admin Action</th>
                             <th>Execute Buttons</th>
+                            <th>To lists</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,6 +82,7 @@ class AdminPanel extends Component {
                         <tr>
                             <td>Creating club bio</td>
                             <td><Link to="/admin/createclubbio">Create</Link></td>
+                            <td><Link to="/admin/bioslist">Bios list</Link></td>
                         </tr>
                         </tbody>
                     </Table>
