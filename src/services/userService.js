@@ -47,15 +47,16 @@ export function getLoggedUser(){
 
 //Функция за ъпдейт на юзър, задължително трябва да се подаде и обекта и ИД то на юзъра!
 export function updateUser(user,userId) {
-    if (userId) {
+    //Ако във userUpdateForm в субмит метода подадем _id в обекта, тогава може да се мине към коментирания вариант.
+    // if (userId) {
         const body = {...user};
-        delete body._id;
+        // delete body._id;
         return httpService.put(userUrl(userId), body,{
             headers: {
                 'x-auth-token': getCurrentUser()
             }
         });
-    }
+    // }
 }
 
 //Функция за изтриване на Юзър

@@ -83,7 +83,7 @@ class UpdateUserForm extends Component {
             this.setState({user: this.mapToViewModel(user)});
         } catch (e) {
             if (e.response && e.response.status === 404)
-                console.log('Nema takov User');
+                console.log(`There is no User with this ID!`);
         }
     }
 
@@ -116,7 +116,7 @@ class UpdateUserForm extends Component {
         };
         await updateUser(obj, this.state.user._id);
         this.setState({isDisabled: true});
-        toast.success('User update was successfull!');
+        toast.success('User update was successful!');
 
     }
 

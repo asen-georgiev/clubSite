@@ -72,7 +72,7 @@ class AllClubBioList extends Component {
                                     <td>{bio.bioTitle}</td>
                                     <td>{bio.bioText}</td>
                                     <td>
-                                        <Link to="/admin">
+                                        <Link to={`/admin/bioslist/${bio._id}`}>
                                             Update
                                         </Link>
                                     </td>
