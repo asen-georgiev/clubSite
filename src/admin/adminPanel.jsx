@@ -78,11 +78,12 @@ class AdminPanel extends Component {
                         <tr>
                             <td>Creating sport event</td>
                             <td><Link to="/admin/createevent">Create</Link></td>
+                            <td><Link to="/admin/eventslist">Events list</Link></td>
                         </tr>
                         <tr>
                             <td>Creating club bio</td>
                             <td><Link to="/admin/createclubbio">Create</Link></td>
-                            <td><Link to="/admin/bioslist">Bios list</Link></td>
+                            <td><Link to="/admin/bioslist">Club Bios list</Link></td>
                         </tr>
                         </tbody>
                     </Table>

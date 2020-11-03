@@ -40,21 +40,6 @@ class News extends Component {
     render() {
         return (
             <div>
-                {/*<h1>Users Array</h1>*/}
-                {/*<ul>*/}
-                {/*    {this.state.users.map((user, index) => (*/}
-                {/*        user.data.map(us => {*/}
-                {/*            return(*/}
-                {/*                <ul key={us._id}>*/}
-                {/*                    <li key={us.name}>{us.name}</li>*/}
-                {/*                    <li key={us.email}>{us.email}</li>*/}
-                {/*                <br/>*/}
-                {/*                </ul>*/}
-                {/*            )*/}
-                {/*        })*/}
-                {/*        )*/}
-                {/*    )}*/}
-                {/*</ul>*/}
                 <h1>Pictures Gallery</h1>
                 <Row>
                     {this.state.images.map(image => (

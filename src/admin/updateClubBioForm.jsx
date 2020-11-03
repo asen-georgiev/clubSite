@@ -9,7 +9,6 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
-import FormCheck from "react-bootstrap/FormCheck";
 import {getClubBio, updateClubBio} from "../services/clubbioService";
 
 class UpdateClubBioForm extends Component {
@@ -109,9 +108,9 @@ class UpdateClubBioForm extends Component {
     }
 
 
-    adminRedirect = () => {
-        this.props.history.push("/admin/bioslist");
-    }
+        adminRedirect = () => {
+            this.props.history.push("/admin/bioslist");
+        }
 
     render() {
         return (

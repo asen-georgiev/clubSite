@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
-import {getEventCalendar} from "../services/eventService";
+import {getEventsCalendar} from "../services/eventService";
 
 
 class Events extends Component {
@@ -15,7 +15,7 @@ class Events extends Component {
     }
 
     async componentDidMount() {
-        const events = await getEventCalendar();
+        const events = await getEventsCalendar();
         const eventsCalendar = [events];
         this.setState({eventsCalendar});
         console.log(this.state);

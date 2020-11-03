@@ -23,6 +23,8 @@ import AllUsersList from "./admin/allUsersList";
 import UpdateUserForm from "./admin/updateUserForm";
 import AllClubBioList from "./admin/allClubBioList";
 import UpdateClubBioForm from "./admin/updateClubBioForm";
+import AllEventsList from "./admin/allEventsList";
+import UpdateEventForm from "./admin/updateEventForm";
 
 
 class App extends Component {
@@ -63,6 +65,8 @@ class App extends Component {
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin/createevent" component={CreateEventForm}/>
+                                <Route exact path="/admin/eventslist/:id" component={UpdateEventForm}/>
+                                <Route exact path="/admin/eventslist" component={AllEventsList}/>
                                 <Route exact path="/admin/createclubbio" component={CreateClubBioForm}/>
                                 <Route exact path="/admin/bioslist/:id" component={UpdateClubBioForm}/>
                                 <Route exact path="/admin/bioslist" component={AllClubBioList}/>
