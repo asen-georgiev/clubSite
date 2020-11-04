@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import {deleteClubBio, getClubBios} from "../services/clubbioService";
 
 
-class AllClubBioList extends Component {
+class AllClubBiosList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -95,4 +95,4 @@ class AllClubBioList extends Component {
     }
 }
 
-export default AllClubBioList;
+export default AllClubBiosList;

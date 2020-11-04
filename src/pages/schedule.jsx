@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
-import {getSchedule} from "../services/scheduleService";
+import {getSchedules} from "../services/scheduleService";
 
 
 class Schedule extends Component {
@@ -15,7 +15,7 @@ class Schedule extends Component {
     }
 
     async componentDidMount() {
-        const schedules = await getSchedule();
+        const schedules = await getSchedules();
         const schedule = [schedules];
         this.setState({schedule});
         console.log(this.state);

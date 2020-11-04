@@ -16,14 +16,14 @@ class UpdateEventForm extends Component {
         super(props);
         this.state = {
             event: {
-                eventTitle:'',
-                eventInfo:'',
-                eventLocation:'',
-                eventDate:'',
-                eventLink:''
+                eventTitle: '',
+                eventInfo: '',
+                eventLocation: '',
+                eventDate: '',
+                eventLink: ''
             },
-            errors:{},
-            isDisabled:false
+            errors: {},
+            isDisabled: false
         }
     }
 
@@ -57,27 +57,25 @@ class UpdateEventForm extends Component {
     })
 
 
-
     async componentDidMount() {
         await this.populateEvent();
         console.log(this.state.event);
     }
 
-    async populateEvent(){
-        try{
+
+    async populateEvent() {
+        try {
             const eventId = this.props.match.params.id;
             const {data: event} = await getEventCalendar(eventId);
             this.setState({event: this.mapToViewModel(event)});
-        }
-        catch (e) {
-            if(e.response && e.response.status === 404)
+        } catch (e) {
+            if (e.response && e.response.status === 404)
                 console.log('There is no Event with this ID!');
         }
     }
 
 
-
-    handleChange = (e) =>{
+    handleChange = (e) => {
         const event = {...this.state.event};
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -87,12 +85,11 @@ class UpdateEventForm extends Component {
     }
 
 
-
-    handleSubmit = async (e) =>{
+    handleSubmit = async (e) => {
         e.preventDefault();
         const errors = this.validate();
         this.setState({errors: errors || {}});
-        if(errors) return;
+        if (errors) return;
 
         const obj = {
             eventTitle: this.state.event.eventTitle,
@@ -104,7 +101,7 @@ class UpdateEventForm extends Component {
 
         this.setState({isDisabled: true});
         toast.success('Event update was successful!');
-        await updateEventCalendar(obj,this.state.event._id)
+        await updateEventCalendar(obj, this.state.event._id)
     }
 
 
@@ -128,9 +125,8 @@ class UpdateEventForm extends Component {
     }
 
 
-
-    mapToViewModel(event){
-        return{
+    mapToViewModel(event) {
+        return {
             _id: event._id,
             eventTitle: event.eventTitle,
             eventInfo: event.eventInfo,
@@ -139,7 +135,6 @@ class UpdateEventForm extends Component {
             eventLink: event.eventLink
         };
     }
-
 
 
     adminRedirect = () => {
@@ -157,12 +152,16 @@ class UpdateEventForm extends Component {
                                 Event Title
                             </FormLabel>
                             <FormControl
-                            autoFocus={true}
-                            name="eventTitle"
-                            type="text"
-                            value={this.state.event.eventTitle}
-                            placeholder="Enter the title of the event"
-                            onChange={this.handleChange}/>
+                                autoFocus={true}
+                                name="eventTitle"
+                                type="text"
+                                value={this.state.event.eventTitle}
+                                placeholder="Enter the title of the event"
+                                onChange={this.handleChange}/>
+                            {this.state.errors.eventTitle &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.eventTitle}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -175,6 +174,10 @@ class UpdateEventForm extends Component {
                                 value={this.state.event.eventInfo}
                                 placeholder="Enter information about the event"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.eventInfo &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.eventInfo}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -186,6 +189,10 @@ class UpdateEventForm extends Component {
                                 value={this.state.event.eventDate}
                                 placeholder="Enter the date of the event"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.eventDate &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.eventDate}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -197,6 +204,10 @@ class UpdateEventForm extends Component {
                                 value={this.state.event.eventLocation}
                                 placeholder="Enter the location of the event"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.eventLocation &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.eventLocation}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -208,6 +219,10 @@ class UpdateEventForm extends Component {
                                 value={this.state.event.eventLink}
                                 placeholder="Enter link to additional information"
                                 onChange={this.handleChange}/>
+                            {this.state.errors.eventLink &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.eventLink}
+                            </p>}
                         </FormGroup>
                         <Row>
                             <Col md={4}>

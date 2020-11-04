@@ -74,6 +74,7 @@ class AdminPanel extends Component {
                         <tr>
                             <td>Creating training schedule</td>
                             <td><Link to="/admin/createschedule">Create</Link></td>
+                            <td><Link to="/admin/scheduleslist">Schedules list</Link></td>
                         </tr>
                         <tr>
                             <td>Creating sport event</td>
