@@ -59,31 +59,32 @@ class AdminPanel extends Component {
                         </thead>
                         <tbody>
                         <tr>
-                            <td>User Actions</td>
-                            <td><Link to="/admin/registeruser">Register new user</Link></td>
+                            <td>Users</td>
+                            <td><Link to="/admin/registeruser">Register user</Link></td>
                             <td><Link to="/admin/userslist">Users list</Link></td>
                         </tr>
                         <tr>
-                            <td>Uploading image</td>
-                            <td><Link to="/admin/uploadimage">Upload</Link></td>
+                            <td>Images</td>
+                            <td><Link to="/admin/uploadimage">Upload image</Link></td>
                         </tr>
                         <tr>
-                            <td>Creating news</td>
-                            <td><Link to="/admin/createnews">Create</Link></td>
+                            <td>News</td>
+                            <td><Link to="/admin/createnews">Create news</Link></td>
+                            <td><Link to="/admin/newslist">News list</Link></td>
                         </tr>
                         <tr>
-                            <td>Creating training schedule</td>
-                            <td><Link to="/admin/createschedule">Create</Link></td>
+                            <td>Training Schedules</td>
+                            <td><Link to="/admin/createschedule">Create schedule</Link></td>
                             <td><Link to="/admin/scheduleslist">Schedules list</Link></td>
                         </tr>
                         <tr>
-                            <td>Creating sport event</td>
-                            <td><Link to="/admin/createevent">Create</Link></td>
+                            <td>Sport Events</td>
+                            <td><Link to="/admin/createevent">Create sport event</Link></td>
                             <td><Link to="/admin/eventslist">Events list</Link></td>
                         </tr>
                         <tr>
-                            <td>Creating club bio</td>
-                            <td><Link to="/admin/createclubbio">Create</Link></td>
+                            <td>Club Bios</td>
+                            <td><Link to="/admin/createclubbio">Create club bio</Link></td>
                             <td><Link to="/admin/bioslist">Club Bios list</Link></td>
                         </tr>
                         </tbody>

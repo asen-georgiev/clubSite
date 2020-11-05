@@ -27,6 +27,8 @@ import AllEventsList from "./admin/allEventsList";
 import UpdateEventForm from "./admin/updateEventForm";
 import AllSchedulesList from "./admin/allSchedulesList";
 import UpdateScheduleForm from "./admin/updateScheduleForm";
+import {getLoggedUser} from "./services/userService";
+import AllNewsList from "./admin/allNewsList";
 
 
 class App extends Component {
@@ -44,12 +46,11 @@ class App extends Component {
     }
 
 
-
     render() {
         return (
             <div>
                 <ToastContainer/>
-                <Container className="container bg-light p-0" fluid={true}>
+                <Container className="bg-dark p-0" fluid={true}>
                     <Navigation/>
                     <Switch>
                         <Route path="/login" component={LoginForm}/>
@@ -65,6 +66,7 @@ class App extends Component {
                                 <Route exact path="/admin/userslist/:id" component={UpdateUserForm}/>
                                 <Route exact path="/admin/userslist" component={AllUsersList}/>
                                 <Route exact path="/admin/createnews" component={CreateNewsForm}/>
+                                <Route exact path="/admin/newslist" component={AllNewsList}/>
                                 <Route exact path="/admin/createschedule" component={CreateScheduleForm}/>
                                 <Route exact path="/admin/scheduleslist/:id" component={UpdateScheduleForm}/>
                                 <Route exact path="/admin/scheduleslist" component={AllSchedulesList}/>

@@ -40,6 +40,7 @@ class News extends Component {
     render() {
         return (
             <div>
+                <Container className="container bg-light">
                 <h1>Pictures Gallery</h1>
                 <Row>
                     {this.state.images.map(image => (
@@ -78,6 +79,7 @@ class News extends Component {
                         })
                     ))}
                 </Row>
+                </Container>
             </div>
         );
     }

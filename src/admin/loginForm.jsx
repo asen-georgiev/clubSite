@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {loginUser, logout, getCurrentUser} from "../services/loginService";
-import {getLoggedUser} from "../services/userService";
+
 
 
 class LoginForm extends Component {
@@ -82,6 +82,8 @@ class LoginForm extends Component {
         this.setState({isDisabled: true});
 
     };
+
+
 
     adminRedirect = () => {
         this.props.history.push("/admin");

@@ -22,4 +22,19 @@ router.get('/',async(req, res) => {
         const news = await Anew.find().sort('eventDate');
         res.send(news);
 })
+
+
+router.get('/:id',async(req, res) => {
+        const anew = await Anew.findById(req.params.id);
+        if(!anew) return res.status(404).send('A New with the given ID was not found!');
+        res.send(anew);
+})
+
+
+router.delete('/:id', async(req, res) => {
+        const anew = await Anew.findByIdAndDelete(req.params.id);
+        let reqId = req.params.id;
+        if(!anew) return res.status(404).send(`A New with ID: ${reqId} was not found!`);
+        res.send(anew);
+})
 module.exports = router;
