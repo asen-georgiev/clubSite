@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
 import Joi from "joi";
 import {toast} from "react-toastify";
-import {loginUser, logout, getCurrentUser} from "../services/loginService";
+import {loginUser, logout, getCurrentUser} from "../../services/loginService";
 
 
 

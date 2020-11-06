@@ -9,8 +9,8 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel, Image} from "react-bootstrap";
-import {getNew, updateNew} from "../services/newsService";
-import {uploadImage} from "../services/imageService";
+import {getNew, updateNew} from "../../services/newsService";
+import {uploadImage} from "../../services/imageService";
 
 
 class UpdateNewForm extends Component {

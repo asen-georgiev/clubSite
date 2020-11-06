@@ -5,8 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-import {loginUser, logoutUser, getCurrentUser} from "../services/loginService";
-import {getLoggedUser} from "../services/userService";
+import {loginUser, logoutUser, getCurrentUser} from "../../services/loginService";
+import {getLoggedUser} from "../../services/userService";
 
 
 class AdminPanel extends Component {

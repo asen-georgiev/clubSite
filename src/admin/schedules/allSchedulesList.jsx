@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-import {deleteSchedule, getSchedules} from "../services/scheduleService";
+import {deleteSchedule, getSchedules} from "../../services/scheduleService";
 
 class AllSchedulesList extends Component {
     constructor(props) {

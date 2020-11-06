@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
-import {deleteUser, getUsers} from "../services/userService";
+import {deleteUser, getUsers} from "../../services/userService";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import Form from "react-bootstrap/Form";

@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-import {deleteClubBio, getClubBios} from "../services/clubbioService";
+import {deleteClubBio, getClubBios} from "../../services/clubbioService";
 
 
 class AllClubBiosList extends Component {

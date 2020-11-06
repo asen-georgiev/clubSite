@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FormGroup from "react-bootstrap/FormGroup";
 import Button from "react-bootstrap/Button";
-import {uploadImage} from "../services/imageService";
+import {uploadImage} from "../../services/imageService";
 import {toast} from "react-toastify";
 import {Image} from "react-bootstrap";
 

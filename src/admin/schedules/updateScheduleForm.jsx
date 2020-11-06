@@ -9,7 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
-import {getSchedule, updateSchedule} from "../services/scheduleService";
+import {getSchedule, updateSchedule} from "../../services/scheduleService";
 
 
 class UpdateScheduleForm extends Component {

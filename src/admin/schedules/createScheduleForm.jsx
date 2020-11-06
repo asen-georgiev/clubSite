@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
-import {createSchedule} from "../services/scheduleService";
+import {createSchedule} from "../../services/scheduleService";
 
 class CreateScheduleForm extends Component {
     constructor(props) {

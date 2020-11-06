@@ -8,7 +8,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
-import {registerUser} from "../services/userService";
+import {registerUser} from "../../services/userService";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
 

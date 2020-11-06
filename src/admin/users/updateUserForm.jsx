@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
-import {getUser, updateUser} from "../services/userService";
+import {getUser, updateUser} from "../../services/userService";
 
 class UpdateUserForm extends Component {
     constructor(props) {
