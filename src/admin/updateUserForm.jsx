@@ -128,7 +128,7 @@ class UpdateUserForm extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <FormLabel>

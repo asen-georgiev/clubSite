@@ -93,7 +93,7 @@ class LoginForm extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     {this.state.loggedUser === null &&
                     <Row className="justify-content-center">
                         <Col className="p-3" md={9}>

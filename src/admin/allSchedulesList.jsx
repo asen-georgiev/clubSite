@@ -49,7 +49,7 @@ class AllSchedulesList extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container className="container bg-secondary" fluid={true}>
                     <h1>All Schedules</h1>
                     <Row>
                         <Col md={4}>

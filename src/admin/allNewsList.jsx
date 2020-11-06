@@ -50,7 +50,7 @@ class AllNewsList extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     <h1>All News</h1>
                     <Row>
                         <Col md={4}>
@@ -87,7 +87,11 @@ class AllNewsList extends Component {
                                     <td>
                                         <Image src={"http://localhost:3900/" + n.pictureName} width="100"/>
                                     </td>
-                                    <td>Update</td>
+                                    <td>
+                                        <Link to={`/admin/newslist/${n._id}`}>
+                                            Update
+                                        </Link>
+                                    </td>
                                     <td>
                                         <Button
                                             variant="danger"

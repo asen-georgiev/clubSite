@@ -25,7 +25,7 @@ class Clubbio extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     <Row>
                     <h1>Warriors Karate Club</h1>
                     </Row>

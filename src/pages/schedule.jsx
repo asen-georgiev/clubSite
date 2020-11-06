@@ -24,7 +24,7 @@ class Schedule extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container className="container bg-secondary" fluid={true}>
                     <h1>Training schedule</h1>
                     <Table striped bordered hover variant="dark">
                         <thead>

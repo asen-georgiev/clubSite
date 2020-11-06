@@ -8,7 +8,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
-import {FormLabel} from "react-bootstrap";
+import {FormLabel, Image} from "react-bootstrap";
 import {createNews} from "../services/newsService";
 import {uploadImage} from "../services/imageService";
 
@@ -96,7 +96,7 @@ class CreateNewsForm extends Component {
         data.append('file', this.state.uploadedPicture);
         await uploadImage(data);
         if(this.state.uploadedPicture===null){
-            toast.error('You must select image to upload');
+            toast.error('You must select image to upload!');
             return;
         }
         toast.success('The image is uploaded successfully!');
@@ -131,7 +131,7 @@ class CreateNewsForm extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <FormLabel>
@@ -185,7 +185,7 @@ class CreateNewsForm extends Component {
                                 <Form.File
                                     id="image"
                                     name="image"
-                                    label="Upload image for the News event"
+                                    label="Upload an image for the News"
                                     onChange={this.onPictureHandler}
                                 />
                             </FormGroup>
@@ -202,6 +202,9 @@ class CreateNewsForm extends Component {
                                 </Col>
                             </Row>
                         </Form>
+                    <Row>
+                        <Image src={this.state.showedPicture} width="300" height="auto"/>
+                    </Row>
                 </Container>
             </div>
         );

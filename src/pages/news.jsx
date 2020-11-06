@@ -40,7 +40,7 @@ class News extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light">
+                <Container className="container bg-secondary">
                 <h1>Pictures Gallery</h1>
                 <Row>
                     {this.state.images.map(image => (

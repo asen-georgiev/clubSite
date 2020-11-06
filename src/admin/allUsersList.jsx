@@ -48,7 +48,7 @@ class AllUsersList extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     <h1>All Users</h1>
                     <Row>
                         <Col md={4}>

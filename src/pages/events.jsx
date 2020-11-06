@@ -24,7 +24,7 @@ class Events extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container className="container bg-secondary" fluid={true}>
                 <h1>Events Calendar</h1>
                     <Table striped bordered hover variant="dark">
                         <thead>

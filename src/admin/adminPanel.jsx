@@ -35,7 +35,7 @@ class AdminPanel extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container className="container bg-secondary" fluid={true}>
                     {/*{this.state.loggedUser.map(user => {*/}
                     {/*        return (*/}
                     {/*            <div key={user.data.name}>*/}

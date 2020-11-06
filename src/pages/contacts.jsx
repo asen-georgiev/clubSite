@@ -91,7 +91,7 @@ function Contacts(props) {
 
     return (
         <div>
-            <Container fluid={true}>
+            <Container className="container bg-secondary" fluid={true}>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <FormLabel>

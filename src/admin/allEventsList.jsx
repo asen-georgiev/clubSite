@@ -44,7 +44,7 @@ class AllEventsList extends Component {
     render() {
         return (
             <div>
-                <Container fluid={true}>
+                <Container className="container bg-secondary" fluid={true}>
                     <h1>All Events List</h1>
                     <Row>
                         <Col md={4}>

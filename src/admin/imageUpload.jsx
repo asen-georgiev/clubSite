@@ -51,6 +51,7 @@ class ImageUpload extends Component {
     render() {
         return (
             <div>
+                <Container className="container bg-secondary" fluid={true}>
                 <Form>
                     <FormGroup>
                         <Form.File
@@ -85,6 +86,7 @@ class ImageUpload extends Component {
                 <Row>
                 <Image src={this.state.showedFile} width="300" height="auto"/>
                 </Row>
+                </Container>
             </div>
         );
     }

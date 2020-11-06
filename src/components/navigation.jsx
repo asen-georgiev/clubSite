@@ -22,7 +22,7 @@ function Navigation () {
         return (
             <div>
                 <Container className="container bg-info p-0">
-                <Navbar className="i-navbar bg-dark p-0" expand="lg">
+                <Navbar className="i-navbar bg-info p-0" expand="lg">
                     <Link className="pb-0" to="/"><img  src={require('../assets/images/dhlogo.png')} width="170" height="auto" alt="DevhostBg"/></Link>
                     <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                     <Navbar.Collapse id="navbar-toggle">
