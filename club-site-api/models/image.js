@@ -17,6 +17,7 @@ const storage = multer.diskStorage({
 
 const Upload = multer({storage: storage}).single('file');
 
+
 //Get Array of Images from the directory folder
 function getImagesFromDirectory(dirPath) {
     let allImages = [];

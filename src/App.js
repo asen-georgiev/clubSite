@@ -30,6 +30,7 @@ import UpdateScheduleForm from "./admin/schedules/updateScheduleForm";
 import {getLoggedUser} from "./services/userService";
 import AllNewsList from "./admin/news/allNewsList";
 import UpdateNewForm from "./admin/news/updateNewForm";
+import ImagesList from "./admin/images/imagesList";
 
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state={
-            user:''
+            user:null
         }
     }
 
@@ -63,6 +64,7 @@ class App extends Component {
                         {this.state.user &&
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>
+                                <Route exact path="/admin/imageslist" component={ImagesList}/>
                                 <Route exact path="/admin/registeruser" component={RegisterUserForm}/>
                                 <Route exact path="/admin/userslist/:id" component={UpdateUserForm}/>
                                 <Route exact path="/admin/userslist" component={AllUsersList}/>

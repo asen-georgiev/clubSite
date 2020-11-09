@@ -5,7 +5,8 @@ import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import {Button, Image} from "react-bootstrap";
 import {toast} from "react-toastify";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import {picturesUrl} from "../../config.json";
 import {deleteNew, getNews} from "../../services/newsService";
 
 class AllNewsList extends Component {
@@ -85,7 +86,7 @@ class AllNewsList extends Component {
                                         </a>
                                     </td>
                                     <td>
-                                        <Image src={"http://localhost:3900/" + n.pictureName} width="100"/>
+                                        <Image src={picturesUrl + n.pictureName} width="100"/>
                                     </td>
                                     <td>
                                         <Link to={`/admin/newslist/${n._id}`}>

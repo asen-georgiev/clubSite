@@ -76,18 +76,16 @@ class LoginForm extends Component {
         this.setState({errors: errors || {}});
         if (errors) return;
         console.log('Form submitted');
+
         const obj = {email: this.state.email, password: this.state.password};
         await loginUser(obj);
+
         toast.success('You are logged successfully!');
         this.setState({isDisabled: true});
+        // this.props.history.push("/admin");
 
     };
 
-
-
-    adminRedirect = () => {
-        this.props.history.push("/admin");
-    }
 
 
     render() {
@@ -133,12 +131,8 @@ class LoginForm extends Component {
                                     <Col>
                                         <Row className="justify-content-end px-3">
                                             {this.state.isDisabled &&
-                                            <Button
-                                                className="d-inline-block"
-                                                variant="primary"
-                                                onClick={this.adminRedirect}>
-                                                GO TO ADMIN PANEL
-                                            </Button>}
+                                            <Button className="btn-danger p-2" href="/admin">Admin panel</Button>
+                                            }
                                         </Row>
                                     </Col>
                                     <Col>

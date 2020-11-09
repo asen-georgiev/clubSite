@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel, Image} from "react-bootstrap";
+import {picturesUrl} from "../../config.json";
 import {getNew, updateNew} from "../../services/newsService";
 import {uploadImage} from "../../services/imageService";
 
@@ -23,7 +24,7 @@ class UpdateNewForm extends Component {
                 linkTo: '',
                 pictureName: ''
             },
-            showedPicture: '',
+            showedPicture: null,
             uploadedPicture: '',
             errors: {},
             isDisabled: false
@@ -201,10 +202,18 @@ class UpdateNewForm extends Component {
                             />
                         </FormGroup>
                         <Row>
-                            {this.state.anew.pictureName &&
+                            {this.state.showedPicture === null &&
                             <Col>
                                 <h4>Current picture:</h4>
-                                <Image src={"http://localhost:3900/" + this.state.anew.pictureName}
+                                <Image src={picturesUrl + this.state.anew.pictureName}
+                                       width="200"
+                                       height="auto"/>
+                            </Col>
+                            }
+                            {this.state.showedPicture &&
+                            <Col>
+                                <h4>Updated picture:</h4>
+                                <Image src={this.state.showedPicture}
                                        width="200"
                                        height="auto"/>
                             </Col>

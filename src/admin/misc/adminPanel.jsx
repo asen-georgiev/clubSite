@@ -4,9 +4,10 @@ import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import {Link} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import {loginUser, logoutUser, getCurrentUser} from "../../services/loginService";
 import {getLoggedUser} from "../../services/userService";
+
 
 
 class AdminPanel extends Component {
@@ -47,8 +48,9 @@ class AdminPanel extends Component {
                     {/*    }*/}
                     {/*)}*/}
                     <h4>Logged as: {this.state.loggedUser.name}</h4>
-                    {this.state.loggedUser.isAdmin && <h5>Admin rights</h5>}
-                    {!this.state.loggedUser.isAdmin && <h5>No Admin rights</h5>}
+                    {this.state.loggedUser.isAdmin &&
+                        <div>
+                    <h5>Admin rights</h5>
                     <Table>
                         <thead>
                         <tr>
@@ -66,6 +68,7 @@ class AdminPanel extends Component {
                         <tr>
                             <td>Images</td>
                             <td><Link to="/admin/uploadimage">Upload image</Link></td>
+                            <td><Link to="/admin/imageslist">Images list</Link></td>
                         </tr>
                         <tr>
                             <td>News</td>
@@ -89,6 +92,8 @@ class AdminPanel extends Component {
                         </tr>
                         </tbody>
                     </Table>
+                        </div>}
+                    {!this.state.loggedUser.isAdmin && <h5>No Admin rights</h5>}
                     <Button onClick={this.logoutAdmin}>Logout</Button>
                 </Container>
             </div>

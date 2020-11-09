@@ -37,6 +37,16 @@ export function getNew(anewId) {
 }
 
 
+export function getLastNew(){
+    return httpService
+        .get(apiEndpoint+"/last",{
+            headers: {
+                'x-auth-token': getCurrentUser()
+            }
+        });
+}
+
+
 //Updating single New
 export function updateNew(anew, anewId) {
     const body = {...anew};

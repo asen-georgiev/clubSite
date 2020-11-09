@@ -19,10 +19,15 @@ router.post('/',authorization, async(req, res) => {
 })
 
 router.get('/',async(req, res) => {
-        const news = await Anew.find().sort('eventDate');
+        const news = await Anew.find().sort('-eventDate');
         res.send(news);
 })
 
+
+router.get('/last',async(req, res) => {
+        const anew = await Anew.findOne().sort('-eventDate');
+        res.send(anew);
+})
 
 router.get('/:id',async(req, res) => {
         const anew = await Anew.findById(req.params.id);

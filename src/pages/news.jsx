@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import Row from "react-bootstrap/Row";
 import {getUsers} from "../services/userService";
 import {getImages} from "../services/imageService";
-import {Image} from "react-bootstrap";
+import {CardImg, Image} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
-import {getNews} from "../services/newsService";
+import {getLastNew, getNews} from "../services/newsService";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import {picturesUrl} from "../config.json";
 
 
 class News extends Component {
@@ -14,24 +15,17 @@ class News extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // users: [],
-            images: [],
-            news: []
+            news: [],
+            anew:[]
         }
     }
 
     async componentDidMount() {
-        const gallery = await getImages();
-        const images = [gallery];
 
-        // const data = await getUsers();
-        // const users = [data];
-
-        const events = await getNews();
-        const news = [events];
-
+        const {data:news} = await getNews();
+        const {data: anew} = await getLastNew();
         console.log('before setState')
-        this.setState({images, news});
+        this.setState({news,anew});
         console.log(this.state);
 
     }
@@ -41,44 +35,38 @@ class News extends Component {
         return (
             <div>
                 <Container className="container bg-secondary">
-                <h1>Pictures Gallery</h1>
-                <Row>
-                    {this.state.images.map(image => (
-                        image.data.map(pic => {
-                            return (
-                                <Col key={pic}>
-                                    <Image src={"http://localhost:3900/" + pic} width="400" height="auto"/>
-                                </Col>
-                            )
-                        }))
-                    )}
-                </Row>
-                <h1>News Array</h1>
-                <Row>
-                    {this.state.news.map(ne => (
-                        ne.data.map(n => {
-                            return (
-                                <Container key={n.pictureName}>
-                                    <Row>
-                                        <Col sm={4}>
-                                            <Image src={"http://localhost:3900/" + n.pictureName} width="300"/>
-                                        </Col>
-                                        <Col sm={8}>
-                                            <Card>
-                                                <Card.Body>
-                                                    <Card.Title>{n.title}</Card.Title>
-                                                    <Card.Text>{n.text}</Card.Text>
-                                                    <Card.Footer>{n.eventDate}</Card.Footer>
-                                                    <Card.Link href={"http://"+n.linkTo}>{n.linkTo}</Card.Link>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            )
-                        })
-                    ))}
-                </Row>
+                    <h1>News Array</h1>
+                    <Row>
+                        <Col>
+                                    <Card style={{width: '22rem'}}>
+                                        <CardImg variant="top" src={picturesUrl + this.state.anew.pictureName}/>
+                                        <Card.Body>
+                                            <Card.Title>{this.state.anew.title}</Card.Title>
+                                            <Card.Text>{this.state.anew.text}</Card.Text>
+                                            <Card.Footer>{this.state.anew.eventDate}</Card.Footer>
+                                            <Card.Link href={"http://" + this.state.anew.linkTo}>{this.state.anew.linkTo}</Card.Link>
+                                        </Card.Body>
+                                    </Card>
+                        </Col>
+                        <Col>
+                        {this.state.news.map(n => {
+                                return (
+                                    <Col sm={4} key={n.pictureName}>
+                                        <Card style={{width: '22rem'}}>
+                                            <CardImg variant="top" src={picturesUrl + n.pictureName}/>
+                                            <Card.Body>
+                                                <Card.Title>{n.title}</Card.Title>
+                                                <Card.Text>{n.text}</Card.Text>
+                                                <Card.Footer>{n.eventDate}</Card.Footer>
+                                                <Card.Link href={"http://" + n.linkTo}>{n.linkTo}</Card.Link>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                )
+                            }
+                        )}
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );
