@@ -22,7 +22,8 @@ class UpdateNewForm extends Component {
                 title: '',
                 text: '',
                 linkTo: '',
-                pictureName: ''
+                pictureName: '',
+                newsDate: ''
             },
             showedPicture: null,
             uploadedPicture: '',
@@ -52,7 +53,11 @@ class UpdateNewForm extends Component {
             .required()
             .min(5)
             .max(50)
-            .label('PictureName')
+            .label('PictureName'),
+        newsDate: Joi.string()
+            .min(6)
+            .max(20)
+            .allow('')
 
     })
 
@@ -94,7 +99,8 @@ class UpdateNewForm extends Component {
             title: this.state.anew.title,
             text: this.state.anew.text,
             linkTo: this.state.anew.linkTo,
-            pictureName: this.state.anew.pictureName
+            pictureName: this.state.anew.pictureName,
+            newsDate: this.state.anew.newsDate
         };
 
         this.setState({isDisabled: true});
@@ -108,14 +114,21 @@ class UpdateNewForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         anew[name] = value;
-        anew["pictureName"] = event.target.files[0].name;
+        this.setState({anew});
+    }
+
+    handlePicture = (event) =>{
+        const anew = {...this.state.anew};
+        const target = event.target;
+        const value = event.target.files[0].name;
+        const name = target.name;
+        anew[name] = value;
         this.setState({
             anew,
             showedPicture: URL.createObjectURL(event.target.files[0]),
-            uploadedPicture: event.target.files[0],
-        })
+            uploadedPicture: event.target.files[0]
+        });
     }
-
 
     mapToViewModel(anew) {
         return {
@@ -123,7 +136,8 @@ class UpdateNewForm extends Component {
             title: anew.title,
             text: anew.text,
             linkTo: anew.linkTo,
-            pictureName: anew.pictureName
+            pictureName: anew.pictureName,
+            newsDate: anew.newsDate
         };
     }
 
@@ -133,7 +147,8 @@ class UpdateNewForm extends Component {
             title: this.state.anew.title,
             text: this.state.anew.text,
             linkTo: this.state.anew.linkTo,
-            pictureName: this.state.anew.pictureName
+            pictureName: this.state.anew.pictureName,
+            newsDate: this.state.anew.newsDate
         };
         const options = {abortEarly: false};
         const result = this.schema.validate(obj, options);
@@ -194,11 +209,26 @@ class UpdateNewForm extends Component {
                                 onChange={this.handleChange}/>
                         </FormGroup>
                         <FormGroup>
+                            <FormLabel>
+                                News Date
+                            </FormLabel>
+                            <FormControl
+                                name="newsDate"
+                                type="text"
+                                value={this.state.anew.newsDate}
+                                placeholder="Enter news date"
+                                onChange={this.handleChange}/>
+                            {this.state.errors.newsDate &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.newsDate}
+                            </p>}
+                        </FormGroup>
+                        <FormGroup>
                             <Form.File
                                 id="image"
-                                name="image"
+                                name="pictureName"
                                 label="Change the image for the News"
-                                onChange={this.handleChange}
+                                onChange={this.handlePicture}
                             />
                         </FormGroup>
                         <Row>

@@ -13,6 +13,13 @@
     "Subject": "Тема",
     "Message": "Съобщение",
     "Send": "Изпращане"
+  },
+  "Footer": {
+    "ClubName": "Карате Дожо Warriors",
+    "Country": "България, Сандански 2800",
+    "Street": "ул.Димитър Попгеоргиев 1",
+    "Tel": "тел:+359/897057275",
+    "Email": "имейл: warriors@gmail.com"
   }
 }
 

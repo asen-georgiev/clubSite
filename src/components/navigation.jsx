@@ -17,12 +17,10 @@ function Navigation (props) {
         await i18n.changeLanguage(language);
     }
 
-
-
         return (
             <div>
-                <Container className="container bg-dan p-0">
-                <Navbar className="i-navbar bg-info p-0" expand="lg">
+                <header>
+                <Navbar className="i-navbar bg-info p-3 px-5" expand="lg">
                     <Link className="pb-0" to="/"><img  src={require('../assets/images/dhlogo.png')} width="170" height="auto" alt="DevhostBg"/></Link>
                     <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                     <Navbar.Collapse id="navbar-toggle">
@@ -39,8 +37,7 @@ function Navigation (props) {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <p></p>
-                </Container>
+                </header>
             </div>
         );
 

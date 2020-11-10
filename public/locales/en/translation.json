@@ -13,5 +13,12 @@
     "Subject": "Subject",
     "Message": "Message",
     "Send": "Send Message"
+  },
+  "Footer": {
+    "ClubName": "Warriors Karate Dojo",
+    "Country": "Bulgaria, Sandanski 2800",
+    "Street": "Dimitar Popgeorgiev str.1",
+    "Tel": "gsm:+359/897057275",
+    "Email": "e-mail: warriors@gmail.com"
   }
 }

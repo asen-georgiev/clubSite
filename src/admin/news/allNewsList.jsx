@@ -67,6 +67,7 @@ class AllNewsList extends Component {
                             <th>Title</th>
                             <th>Text</th>
                             <th>Date</th>
+                            <th>News Date</th>
                             <th>Link</th>
                             <th>Thumbnail</th>
                             <th>Update</th>
@@ -80,6 +81,7 @@ class AllNewsList extends Component {
                                     <td>{n.title}</td>
                                     <td>{n.text}</td>
                                     <td>{n.eventDate}</td>
+                                    <td>{n.newsDate}</td>
                                     <td>
                                         <a href={"http://" + n.linkTo}>
                                             {n.linkTo}

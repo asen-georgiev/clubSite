@@ -7,8 +7,8 @@ const anewSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true,
-        minlength:5,
-        maxlength:50
+        minlength: 5,
+        maxlength: 50
     },
     text:{
         type: String,
@@ -19,7 +19,7 @@ const anewSchema = new mongoose.Schema({
     linkTo:{
         type: String,
         minlength: 0,
-        maxlength:255
+        maxlength: 255
     },
     eventDate:{
         type: Date,
@@ -30,7 +30,12 @@ const anewSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength:50
+        maxlength: 50
+    },
+    newsDate:{
+        type: String,
+        minlength: 6,
+        maxlength: 20
     }
 })
 
@@ -41,7 +46,8 @@ const anewSchema = new mongoose.Schema({
             title: Joi.string().required().min(5).max(50),
             text: Joi.string().required().min(10).max(1024),
             linkTo: Joi.string().min(0).max(255).allow(''),
-            pictureName: Joi.string().required().min(5).max(55)
+            pictureName: Joi.string().required().min(5).max(55),
+            newsDate: Joi.string().min(6).max(20).allow('')
         });
         return schema.validate(anew);
     }

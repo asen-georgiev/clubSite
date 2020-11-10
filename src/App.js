@@ -31,6 +31,7 @@ import {getLoggedUser} from "./services/userService";
 import AllNewsList from "./admin/news/allNewsList";
 import UpdateNewForm from "./admin/news/updateNewForm";
 import ImagesList from "./admin/images/imagesList";
+import Footer from "./components/footer";
 
 
 class App extends Component {
@@ -83,6 +84,7 @@ class App extends Component {
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>
+                    <Footer/>
                 </Container>
             </div>
         );

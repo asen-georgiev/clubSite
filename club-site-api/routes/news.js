@@ -13,7 +13,7 @@ router.post('/',authorization, async(req, res) => {
         const reqTitle = req.body.title;
         if(anew) return res.status(400).send(`A new with ${reqTitle} already exists.`);
 
-        anew = new Anew(_.pick(req.body,['title','text','linkTo','pictureName']));
+        anew = new Anew(_.pick(req.body,['title','text','linkTo','pictureName','newsDate']));
         await anew.save();
         res.send(anew);
 })
@@ -44,7 +44,8 @@ router.put('/:id',async(req, res) => {
                 title: req.body.title,
                 text: req.body.text,
                 linkTo: req.body.linkTo,
-                pictureName: req.body.pictureName
+                pictureName: req.body.pictureName,
+                newsDate: req.body.newsDate
         },{new: true});
         if(!anew) return res.status(404).send('A New with the given ID was not found!')
 })
