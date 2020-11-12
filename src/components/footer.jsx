@@ -5,6 +5,8 @@ import {Container, Navbar} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {faAddressBook, faBullhorn, faCalendarAlt, faThList, faToriiGate} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function Footer(props) {
 
@@ -34,11 +36,24 @@ function Footer(props) {
                     <Col>
                         <Navbar>
                             <Nav className="ml-auto flex-column">
-                                <Link  className="nav-link p-0" to="/news">{t('Navigation.News')}</Link>
-                                <Link  className="nav-link p-0" to="/clubbio">{t('Navigation.Club')}</Link>
-                                <Link  className="nav-link p-0" to="/schedule">{t('Navigation.Training')}</Link>
-                                <Link  className="nav-link p-0" to="/events">{t('Navigation.Events')}</Link>
-                                <Link  className="nav-link p-0" to="/contacts">{t('Navigation.Contacts')}</Link>
+                                <Link  className="nav-link p-0" to="/news">
+                                    <FontAwesomeIcon icon={faBullhorn}/> {t('Navigation.News')}</Link>
+                                <Link  className="nav-link p-0" to="/clubbio">
+                                    <FontAwesomeIcon icon={faToriiGate}/>
+                                    <span> {t('Navigation.Club')}</span>
+                                </Link>
+                                <Link  className="nav-link p-0" to="/schedule">
+                                    <FontAwesomeIcon icon={faThList}/>
+                                    <span> {t('Navigation.Training')}</span>
+                                </Link>
+                                <Link  className="nav-link p-0" to="/events">
+                                    <FontAwesomeIcon icon={faCalendarAlt}/>
+                                    <span> {t('Navigation.Events')}</span>
+                                </Link>
+                                <Link  className="nav-link p-0" to="/contacts">
+                                    <FontAwesomeIcon icon={faAddressBook}/>
+                                    <span> {t('Navigation.Contacts')}</span>
+                                </Link>
                             </Nav>
                         </Navbar>
                     </Col>

@@ -32,6 +32,11 @@ import AllNewsList from "./admin/news/allNewsList";
 import UpdateNewForm from "./admin/news/updateNewForm";
 import ImagesList from "./admin/images/imagesList";
 import Footer from "./components/footer";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook} from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook);
 
 
 class App extends Component {

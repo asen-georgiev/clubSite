@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     const clubBio = await ClubBio
         .find()
         .select("-__v")
-        .sort('bioTitle');
+        .sort('_id');
     res.send(clubBio);
 })
 

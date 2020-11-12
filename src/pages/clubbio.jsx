@@ -4,20 +4,20 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {getClubBios} from "../services/clubbioService";
 import {Image} from "react-bootstrap";
+import Biographs from "../components/biographs";
 
 
 class Clubbio extends Component {
     constructor(props) {
         super(props);
             this.state={
-                clubBio:[]
+                clubBios:[]
             }
     }
 
     async componentDidMount() {
-        const bio = await getClubBios();
-        const clubBio = [bio]
-        this.setState({clubBio});
+        const {data: clubBios} = await getClubBios();
+        this.setState({clubBios});
         console.log(this.state);
     }
 
@@ -26,22 +26,8 @@ class Clubbio extends Component {
         return (
             <div>
                 <Container className="container bg-secondary" fluid={true}>
-                    <Row>
-                    <h1>Warriors Karate Club</h1>
-                    </Row>
-                    <Row>
-                        {this.state.clubBio.map(item =>(
-                            item.data.map(bio=>{
-                                return(
-                                    <div className="clearfix" key={bio._id}>
-                                        <Image src={require('../assets/images/aaa2.JPG')} width="300" height="auto"/>
-                                    <h2>{bio.bioTitle}</h2>
-                                    <p>{bio.bioText}</p>
-                                    </div>
-                                )
-                            })
-                        ))}
-                    </Row>
+                    <Image src={require('../assets/images/aaa2.JPG')} width="300" height="auto"/>
+                  <Biographs clubBios={this.state.clubBios}/>
                 </Container>
             </div>
         );
