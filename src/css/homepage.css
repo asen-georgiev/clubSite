@@ -1,0 +1,5 @@
+.home-bckg{
+    width: 100%;
+    height: 710px;
+    background: radial-gradient(circle,gray -50%,black) no-repeat top;
+}

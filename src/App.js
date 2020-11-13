@@ -34,9 +34,10 @@ import ImagesList from "./admin/images/imagesList";
 import Footer from "./components/footer";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook} from '@fortawesome/free-solid-svg-icons'
+import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome} from '@fortawesome/free-solid-svg-icons'
+import Homepage from "./pages/homepage";
 
-library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook);
+library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome);
 
 
 class App extends Component {
@@ -67,6 +68,7 @@ class App extends Component {
                         <Route path="/schedule" component={Schedule}/>
                         <Route path="/events" component={Events}/>
                         <Route path="/clubbio" component={Clubbio}/>
+                        <Route path="/" component={Homepage}/>
                         {this.state.user &&
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>

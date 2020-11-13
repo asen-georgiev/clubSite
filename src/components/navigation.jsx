@@ -8,7 +8,7 @@ import {DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faAddressBook, faBullhorn, faCalendarAlt, faThList, faToriiGate} from "@fortawesome/free-solid-svg-icons";
+import {faAddressBook, faBullhorn, faCalendarAlt, faThList, faToriiGate,faHome} from "@fortawesome/free-solid-svg-icons";
 import '../css/navigation.css';
 
 
@@ -23,11 +23,15 @@ function Navigation (props) {
         return (
             <div>
                 <header>
-                <Navbar className="i-navbar bg-info p-3 px-5" expand="lg">
+                <Navbar className="i-navbar bg-info p-3 px-5" expand="xl">
                     <Link className="pb-0" to="/"><img  src={require('../assets/images/dhlogo.png')} width="170" height="auto" alt="DevhostBg"/></Link>
                     <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                     <Navbar.Collapse id="navbar-toggle">
                         <Nav className="ml-auto pr-2">
+                            <Link  className="nav-link" to="/">
+                                <FontAwesomeIcon icon={faHome} className="icon"/>
+                                <span> {t('Navigation.Home')}</span>
+                            </Link>
                             <Link  className="nav-link" to="/news">
                                 <FontAwesomeIcon icon={faBullhorn} className="icon"/>
                                     <span> {t('Navigation.News')}</span>
