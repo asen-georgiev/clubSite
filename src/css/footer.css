@@ -1,0 +1,13 @@
+.i-footer {
+    background: linear-gradient(to bottom,black 0%,orangered 100%);
+    color: burlywood;
+}
+
+.i-footer-link {
+    color: burlywood;
+}
+
+.i-footer-link:hover {
+    color: wheat;
+    text-decoration: none;
+}

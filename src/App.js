@@ -31,7 +31,7 @@ import {getLoggedUser} from "./services/userService";
 import AllNewsList from "./admin/news/allNewsList";
 import UpdateNewForm from "./admin/news/updateNewForm";
 import ImagesList from "./admin/images/imagesList";
-import Footer from "./components/footer";
+import Foot from "./components/foot";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome} from '@fortawesome/free-solid-svg-icons'
@@ -59,7 +59,7 @@ class App extends Component {
         return (
             <div>
                 <ToastContainer/>
-                <Container className="bg-dark p-0" fluid={true}>
+                <Container className="app-bckg p-0" fluid={true}>
                     <Navigation/>
                     <Switch>
                         <Route path="/login" component={LoginForm}/>
@@ -91,7 +91,7 @@ class App extends Component {
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>
-                    <Footer/>
+                    <Foot/>
                 </Container>
             </div>
         );

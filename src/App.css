@@ -1,1 +1,8 @@
+.app-bckg{
+    height: auto;
+    /*background: radial-gradient(circle,gray -50%,black) no-repeat top;*/
+    background-image: url("./assets/images/karate1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 
+}

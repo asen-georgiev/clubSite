@@ -10,6 +10,9 @@ import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAddressBook, faBullhorn, faCalendarAlt, faThList, faToriiGate,faHome} from "@fortawesome/free-solid-svg-icons";
 import '../css/navigation.css';
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import Button from "react-bootstrap/Button";
 
 
 function Navigation (props) {
@@ -23,38 +26,38 @@ function Navigation (props) {
         return (
             <div>
                 <header>
-                <Navbar className="i-navbar bg-info p-3 px-5" expand="xl">
+                <Navbar className="i-navbar p-3 px-5" expand="xl">
                     <Link className="pb-0" to="/"><img  src={require('../assets/images/dhlogo.png')} width="170" height="auto" alt="DevhostBg"/></Link>
                     <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                     <Navbar.Collapse id="navbar-toggle">
                         <Nav className="ml-auto pr-2">
-                            <Link  className="nav-link" to="/">
+                            <Link  className="i-navbar-link" to="/">
                                 <FontAwesomeIcon icon={faHome} className="icon"/>
                                 <span> {t('Navigation.Home')}</span>
                             </Link>
-                            <Link  className="nav-link" to="/news">
+                            <Link  className="i-navbar-link" to="/news">
                                 <FontAwesomeIcon icon={faBullhorn} className="icon"/>
                                     <span> {t('Navigation.News')}</span>
                             </Link>
-                            <Link  className="nav-link" to="/clubbio">
+                            <Link  className="i-navbar-link" to="/clubbio">
                                 <FontAwesomeIcon icon={faToriiGate}/>
                                 <span> {t('Navigation.Club')}</span>
                                 </Link>
-                            <Link  className="nav-link" to="/schedule">
+                            <Link  className="i-navbar-link" to="/schedule">
                                 <FontAwesomeIcon icon={faThList}/>
                                 <span> {t('Navigation.Training')}</span>
                             </Link>
-                            <Link  className="nav-link" to="/events">
+                            <Link  className="i-navbar-link" to="/events">
                                 <FontAwesomeIcon icon={faCalendarAlt}/>
                                 <span> {t('Navigation.Events')}</span>
                             </Link>
-                            <Link  className="nav-link" to="/contacts">
+                            <Link  className="i-navbar-link" to="/contacts">
                                 <FontAwesomeIcon icon={faAddressBook}/>
                                 <span> {t('Navigation.Contacts')}</span>
                             </Link>
-                            <DropdownButton variant="dark" title={t('Navigation.Language')}>
-                                <DropdownItem onClick={()=>handleLanguage('en')}>EN</DropdownItem>
-                                <DropdownItem onClick={()=>handleLanguage('bg')}>BG</DropdownItem>
+                            <DropdownButton className="btn btn-primary" title={t('Navigation.Language')}>
+                                    <DropdownItem onClick={()=>handleLanguage('en')}>EN</DropdownItem>
+                                    <DropdownItem onClick={()=>handleLanguage('bg')}>BG</DropdownItem>
                             </DropdownButton>
                         </Nav>
                     </Navbar.Collapse>

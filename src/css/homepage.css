@@ -1,5 +1,14 @@
-.home-bckg{
-    width: 100%;
-    height: 710px;
-    background: radial-gradient(circle,gray -50%,black) no-repeat top;
+
+.home-maincard{
+    background-color: rgba(0,0,0,0.7) !important; /* Black w/opacity/see-through */
+    color: white;
+    border-color: brown !important;
+}
+
+.home-cardlink{
+    color: burlywood;
+}
+
+.home-cardlink:hover{
+    color: wheat;
 }

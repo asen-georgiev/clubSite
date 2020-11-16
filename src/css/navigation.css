@@ -1,2 +1,31 @@
-.icon {
+.i-navbar {
+    background: linear-gradient(to bottom,orangered 0%,black 100%);
+}
+
+.i-navbar-link {
+    color: burlywood;
+    padding: 0.5rem 1rem;
+    font-size: x-large;
+}
+
+.i-navbar-link:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: transparent !important;
+    padding: 0.5rem 1rem;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background-color: transparent !important;
+    border:none !important;
+}
+
+.dropdown-menu {
+    background-color: red !important;
+    min-width: 7rem !important;
+    padding: 0 !important;
 }
