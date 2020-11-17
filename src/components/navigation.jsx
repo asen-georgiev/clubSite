@@ -55,9 +55,9 @@ function Navigation (props) {
                                 <FontAwesomeIcon icon={faAddressBook}/>
                                 <span> {t('Navigation.Contacts')}</span>
                             </Link>
-                            <DropdownButton className="btn btn-primary" title={t('Navigation.Language')}>
-                                    <DropdownItem onClick={()=>handleLanguage('en')}>EN</DropdownItem>
-                                    <DropdownItem onClick={()=>handleLanguage('bg')}>BG</DropdownItem>
+                            <DropdownButton className="btn" title={t('Navigation.Language')}>
+                                    <DropdownItem className="en" onClick={()=>handleLanguage('en')}>English</DropdownItem>
+                                    <DropdownItem className="bg" onClick={()=>handleLanguage('bg')}>Bulgarian</DropdownItem>
                             </DropdownButton>
                         </Nav>
                     </Navbar.Collapse>

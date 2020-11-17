@@ -2,13 +2,49 @@
 .home-maincard{
     background-color: rgba(0,0,0,0.7) !important; /* Black w/opacity/see-through */
     color: white;
-    border-color: brown !important;
+    border:none !important;
 }
 
+.home-eventcard{
+    background: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+    color: white;
+}
+
+.home-eventcard-img{
+    opacity: 0.7;
+}
 .home-cardlink{
-    color: burlywood;
+    color: cyan;
 }
 
 .home-cardlink:hover{
-    color: wheat;
+    color: red;
+}
+
+.home-container {
+    margin: 2rem;
+    max-height: 800px;
+}
+
+.home-row{
+    background-color: rgba(128,128,128,0.1);
+    box-shadow:
+            2px 0 0 0 red,
+            0 2px 0 0 cyan;
+    padding: 1.25rem;
+    margin: 1rem;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }

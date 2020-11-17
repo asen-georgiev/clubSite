@@ -30,7 +30,7 @@ router.get('/:id',async(req, res) => {
 
 //All eventCalendars!
 router.get('/',async(req, res) => {
-    const eventCalendar = await EventCalendar.find().sort('eventDate');
+    const eventCalendar = await EventCalendar.find().sort('-_id');
     res.send(eventCalendar);
 })
 

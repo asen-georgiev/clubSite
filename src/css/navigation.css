@@ -1,31 +1,66 @@
 .i-navbar {
-    background: linear-gradient(to bottom,orangered 0%,black 100%);
+    background-color: rgba(128,128,128,0.1);
+    box-shadow:
+            0 0 0 2px red,
+            0 0 0 4px cyan;
 }
 
 .i-navbar-link {
-    color: burlywood;
+    color: darkcyan;
     padding: 0.5rem 1rem;
     font-size: x-large;
 }
 
 .i-navbar-link:hover {
-    color: wheat;
+    color: darkred;
     text-decoration: none;
 }
 
-.btn-primary {
+.btn {
     background-color: transparent !important;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem !important;
     border: none !important;
+    color: darkred !important;
 }
 
-.btn-primary:hover {
-    background-color: transparent !important;
-    border:none !important;
+.btn:hover{
+    color: darkcyan !important;
+    box-shadow:
+            0 0 0 2px red,
+            0 0 0 4px cyan;
 }
 
 .dropdown-menu {
-    background-color: red !important;
-    min-width: 7rem !important;
+    background-color: transparent !important;
+    min-width: 5rem !important;
     padding: 0 !important;
+    right: 2px !important;
+    margin-top: 5px !important;
+}
+
+.dropdown-toggle{
+    box-shadow: none !important;
+}
+
+
+.en{
+    background-image: linear-gradient(red,white,blue);
+    text-align: center !important;
+    margin-bottom: 3px !important;
+    color: darkred !important;
+}
+
+.en:hover{
+    color: darkcyan !important;
+}
+
+.bg{
+    background-image: linear-gradient(green,white,red);
+    text-align: center !important;
+    padding: 0.25rem 1rem !important;
+    color: darkred !important;
+}
+
+.bg:hover{
+    color: darkcyan !important;
 }

@@ -68,7 +68,7 @@ class App extends Component {
                         <Route path="/schedule" component={Schedule}/>
                         <Route path="/events" component={Events}/>
                         <Route path="/clubbio" component={Clubbio}/>
-                        <Route path="/" component={Homepage}/>
+                        <Route exact path="/" component={Homepage}/>
                         {this.state.user &&
                             <Switch>
                                 <Route exact path="/admin/uploadimage" component={ImageUpload}/>

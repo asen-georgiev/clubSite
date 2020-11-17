@@ -1,13 +1,16 @@
 .i-footer {
-    background: linear-gradient(to bottom,black 0%,orangered 100%);
-    color: burlywood;
+    background-color: rgba(128,128,128,0.1);
+    box-shadow:
+            0 0 0 2px red,
+            0 0 0 4px cyan;
+    color: darkcyan;
 }
 
 .i-footer-link {
-    color: burlywood;
+    color: darkcyan;
 }
 
 .i-footer-link:hover {
-    color: wheat;
+    color: darkred;
     text-decoration: none;
 }
