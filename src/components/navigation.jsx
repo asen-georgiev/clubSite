@@ -27,7 +27,7 @@ function Navigation (props) {
             <div>
                 <header>
                 <Navbar className="i-navbar p-3 px-5" expand="xl">
-                    <Link className="pb-0" to="/"><img  src={require('../assets/images/dhlogo.png')} width="170" height="auto" alt="DevhostBg"/></Link>
+                    <Link className="pb-0" to="/"><img  src={require('../assets/images/w-logo.jpg')} width="170" height="auto" alt="DevhostBg"/></Link>
                     <Navbar.Toggle className="border-0" aria-controls="navbar-toggle"/>
                     <Navbar.Collapse id="navbar-toggle">
                         <Nav className="ml-auto pr-2">

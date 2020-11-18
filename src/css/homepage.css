@@ -23,7 +23,6 @@
 
 .home-container {
     margin: 2rem;
-    max-height: 800px;
 }
 
 .home-row{
@@ -47,4 +46,17 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+.mapouter {
+    height: 200px;
+    width: 300px;
+}
+
+
+.gmap_canvas {
+    background:none !important;
+    height:200px;
+    width:300px;
 }
