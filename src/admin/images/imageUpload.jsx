@@ -25,7 +25,6 @@ class ImageUpload extends Component {
         this.setState({
             showedFile:  URL.createObjectURL(event.target.files[0]),
             selectedFile: event.target.files[0],
-            loaded: 0,
             isDisabled: false
         })
     }

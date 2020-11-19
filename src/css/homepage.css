@@ -1,8 +1,7 @@
 
 .home-maincard{
-    background-color: rgba(0,0,0,0.7) !important; /* Black w/opacity/see-through */
-    color: white;
-    border:none !important;
+    background-color: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+    color: black;
 }
 
 .home-eventcard{
@@ -13,9 +12,12 @@
 .home-eventcard-img{
     opacity: 0.7;
 }
+
+
 .home-cardlink{
-    color: cyan;
+    color: darkcyan;
 }
+
 
 .home-cardlink:hover{
     color: red;
@@ -33,6 +35,12 @@
     padding: 1.25rem;
     margin: 1rem;
 }
+
+.home-listgroup{
+    background-color: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+    color: black;
+}
+
 
 ::-webkit-scrollbar {
     width: 12px;

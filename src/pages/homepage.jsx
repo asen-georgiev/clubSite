@@ -4,31 +4,39 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import '../css/homepage.css';
 import _ from "lodash";
-import {getClubBio} from "../services/clubbioService";
+import {getClubBio, getClubBios} from "../services/clubbioService";
 import Card from "react-bootstrap/Card";
 import {getEventsCalendar} from "../services/eventService";
 import {getNews} from "../services/newsService";
 import {picturesUrl} from "../config.json";
 import {useTranslation} from "react-i18next";
+import {getImages} from "../services/imageService";
+import Carousel from "react-bootstrap/Carousel";
+import ListGroup from "react-bootstrap/ListGroup";
+import ListGroupItem from "react-bootstrap/ListGroupItem";
 
 
 class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clubBio: '',
+            clubBio: [],
             eventCalendar: [],
-            anew: []
+            anew: [],
+            carousel: []
         }
     }
 
     async componentDidMount() {
-        const {data: clubBio} = await getClubBio('5fad32139de88d1c7e29fcb8');
+        const {data: clubBios} = await getClubBios();
         const {data: eventsCalendar} = await getEventsCalendar();
         const {data: news} = await getNews();
+        const {data: images} = await getImages();
+        let clubBio = _.first(clubBios);
         let eventCalendar = _.first(eventsCalendar);
         let anew = _.first(news);
-        this.setState({clubBio, eventCalendar, anew});
+        let carousel = images.filter(img => img.includes('cr'));
+        this.setState({clubBio, eventCalendar, anew, carousel});
         console.log(this.state);
     }
 
@@ -38,6 +46,7 @@ class Homepage extends Component {
         return (
             <div>
                 <Container className="home-container container d-flex flex-row" fluid={true}>
+
                     <Row className="m-0">
                         <Col xs={6} lg={8}>
 
@@ -145,25 +154,49 @@ class Homepage extends Component {
 
                         <Col xs={8} md={4} lg={3} className="ml-3">
 
+                            <Carousel
+                                style={{width: '21.5rem'}}
+                                className="mt-3">
+                                {this.state.carousel.map(cr => {
+                                    return (
+                                        <Carousel.Item>
+                                            <Image
+                                                className="d-block w-100 rounded-lg"
+                                                height='260rem'
+                                                src={picturesUrl + cr}/>
+                                        </Carousel.Item>
+                                    )
+                                })}
+                            </Carousel>
+
                             <iframe
                                 className="mt-3"
                                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FIseido-Shotokan-Karate-club-142528162447145%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                                 style={{border: "none", overflow: "hidden", width: '30rem', height: '32rem'}}
-                                scrolling="no" frameBorder="0"
+                                scrolling="no"
+                                frameBorder="0"
                                 allowFullScreen={true}
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                            </iframe>
 
-                            <Card style={{width: '21.5rem'}} className="home-maincard mr-auto">
+                            <Card
+                                style={{width: '21.5rem'}}
+                                className="home-maincard mr-auto">
                                 <Card.Header>gsm: +359/897 05 73 75</Card.Header>
                                 <Card.Body>
-                                    <Card.Title>Warriors karate dojo</Card.Title>
-                                    <Card.Subtitle>e-mail: warriors@abv.bg</Card.Subtitle>
+                                    <Card.Title className="text-center">Warriors karate dojo</Card.Title>
+                                    <Card.Subtitle className="text-center">e-mail: warriors@abv.bg</Card.Subtitle>
                                     <br/>
                                     <div className="mapouter">
                                         <div className="gmap_canvas">
-                                            <iframe width="304" height="200" id="gmap_canvas"
-                                                    src="https://maps.google.com/maps?q=Sandanski&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                                                    frameBorder="0" scrolling="no"></iframe>
+                                            <iframe
+                                                width="304"
+                                                height="200"
+                                                id="gmap_canvas"
+                                                src="https://maps.google.com/maps?q=Sandanski&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                                                frameBorder="0"
+                                                scrolling="no">
+                                            </iframe>
                                             <a href="https://www.whatismyip-address.com/divi-discount/"></a></div>
                                     </div>
                                     <br/>
@@ -178,13 +211,51 @@ class Homepage extends Component {
                                 </Card.Footer>
                             </Card>
 
-                        </Col>
+                            <Card
+                                style={{width: '21.5rem'}}
+                                className="home-maincard mr-auto mt-3">
+                                <Card.Header>
+                                    How to begin?
+                                </Card.Header>
+                                <Card.Body>
+                                    <Card.Title className="text-center">Welcome to our classes!</Card.Title>
+                                    <Card.Subtitle className="text-center">You can choose the class that fits you the most,
+                                        and follow the below link for more information.
+                                    </Card.Subtitle>
+                                </Card.Body>
+                                <ListGroup className="list-group-flush">
+                                    <ListGroupItem className="home-listgroup">Karate for children: little
+                                        warriors</ListGroupItem>
+                                    <ListGroupItem className="home-listgroup">Karate class: Beginner</ListGroupItem>
+                                    <ListGroupItem className="home-listgroup">Karate class: Competitor</ListGroupItem>
+                                    <ListGroupItem className="home-listgroup">Karate class: Champion</ListGroupItem>
+                                    <ListGroupItem className="home-listgroup">Karate for adults: Parents be
+                                        welcome! </ListGroupItem>
+                                    <ListGroupItem className="home-listgroup">Individual karate classes</ListGroupItem>
+                                </ListGroup>
+                                <Card.Footer>
+                                    <Card.Link
+                                        className="home-cardlink"
+                                        href="/schedule">
+                                        See our training schedule
+                                    </Card.Link>
+                                </Card.Footer>
+                            </Card>
 
+                            <iframe
+                                className="mt-3"
+                                frameBorder="0"
+                                scrolling="no"
+                                marginHeight="0"
+                                marginWidth="0"
+                                width="344rem"
+                                height="300rem"
+                                type="text/html"
+                                src="https://www.youtube.com/embed/PGsJqmVLT7Y?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=1&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com">
+                            </iframe>
+
+                        </Col>
                     </Row>
-                    {/*<div>*/}
-                    {/*    <script src="https://apps.elfsight.com/p/platform.js" defer></script>*/}
-                    {/*    <div className="elfsight-app-b2a7e0dc-e66f-4854-ba09-4ae54c0cca60"></div>*/}
-                    {/*</div>*/}
                 </Container>
             </div>
         );
