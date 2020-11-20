@@ -25,7 +25,7 @@ const scheduleSchema = new mongoose.Schema({
         required: true,
         minlength: 1,
         maxlength: 50
-    },
+    }
 })
 
     const Schedule = mongoose.model('Schedule',scheduleSchema);

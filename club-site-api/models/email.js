@@ -2,25 +2,25 @@ const mongoose = require('mongoose');
 const Joi = require("joi");
 
 const emailSchema = new mongoose.Schema({
-    fullname:{
+    fullname: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    email:{
+    email: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    subject:{
+    subject: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 255
     },
-    message:{
+    message: {
         type: String,
         required: true,
         minlength: 5,
@@ -28,9 +28,9 @@ const emailSchema = new mongoose.Schema({
     }
 })
 
-    const Email = mongoose.model('Email',emailSchema);
+const Email = mongoose.model('Email', emailSchema);
 
-function validateEmail(email){
+function validateEmail(email) {
     const schema = Joi.object({
         fullname: Joi.string().required().min(5).max(50),
         email: Joi.string().required().min(5).max(50),

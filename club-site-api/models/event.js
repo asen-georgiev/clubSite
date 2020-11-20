@@ -2,40 +2,40 @@ const mongoose = require('mongoose');
 const Joi = require("joi");
 
 const eventSchema = new mongoose.Schema({
-    eventTitle:{
+    eventTitle: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    eventInfo:{
+    eventInfo: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 255
     },
-    eventDate:{
+    eventDate: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    eventLocation:{
+    eventLocation: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    eventLink:{
+    eventLink: {
         type: String,
         minlength: 5,
         maxlength: 50
     }
 })
 
-    const EventCalendar = mongoose.model('EventCalendar',eventSchema);
+const EventCalendar = mongoose.model('EventCalendar', eventSchema);
 
-function validateEventCalendar(eventCalendar){
+function validateEventCalendar(eventCalendar) {
     const schema = Joi.object({
         eventTitle: Joi.string().required().min(5).max(50),
         eventInfo: Joi.string().required().min(5).max(255),

@@ -8,6 +8,9 @@ const schedules = require('../routes/schedules');
 const events = require('../routes/events');
 const clubbios = require('../routes/clubbios');
 const authentication = require('../routes/authentication');
+const courses = require('../routes/courses');
+const timedhs = require('../routes/timedhs');
+const timetables = require('../routes/timetables');
 
 //Файл за руутовете
     module.exports = function(app){
@@ -24,4 +27,7 @@ const authentication = require('../routes/authentication');
         app.use('/api/schedules',schedules);
         app.use('/api/events',events);
         app.use('/api/clubbio',clubbios);
+        app.use('/api/courses',courses);
+        app.use('/api/timedhs',timedhs);
+        app.use('/api/timetables',timetables);
     };

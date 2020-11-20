@@ -25,31 +25,31 @@ class Schedule extends Component {
         return (
             <div>
                 <Container className="container bg-secondary" fluid={true}>
-                    <h1>Training schedule</h1>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Age group</th>
-                            <th>Class</th>
-                            <th>Hours</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.schedule.map(item => (
-                            item.data.map(sch => {
-                                return (
-                                    <tr key={sch._id}>
-                                        <td>{sch.classDay}</td>
-                                        <td>{sch.classAge}</td>
-                                        <td>{sch.classClass}</td>
-                                        <td>{sch.classHour}</td>
-                                    </tr>
-                                )
-                            })
-                        ))}
-                        </tbody>
-                    </Table>
+                    {/*<h1>Training schedule</h1>*/}
+                    {/*<Table striped bordered hover variant="dark">*/}
+                    {/*    <thead>*/}
+                    {/*    <tr>*/}
+                    {/*        <th>Day</th>*/}
+                    {/*        <th>Age group</th>*/}
+                    {/*        <th>Class</th>*/}
+                    {/*        <th>Hours</th>*/}
+                    {/*    </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*    {this.state.schedule.map(item => (*/}
+                    {/*        item.data.map(sch => {*/}
+                    {/*            return (*/}
+                    {/*                <tr key={sch._id}>*/}
+                    {/*                    <td>{sch.classDay}</td>*/}
+                    {/*                    <td>{sch.classAge}</td>*/}
+                    {/*                    <td>{sch.classClass}</td>*/}
+                    {/*                    <td>{sch.classHour}</td>*/}
+                    {/*                </tr>*/}
+                    {/*            )*/}
+                    {/*        })*/}
+                    {/*    ))}*/}
+                    {/*    </tbody>*/}
+                    {/*</Table>*/}
                 </Container>
             </div>
         );
