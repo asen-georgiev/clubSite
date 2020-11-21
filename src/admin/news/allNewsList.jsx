@@ -38,7 +38,7 @@ class AllNewsList extends Component {
             if(e.response && e.response.status === 404)
                 console.log('The New with the given ID was not found!');
             toast.error('The New has already been deleted!');
-            this.setState({allNews});
+            this.setState({news: allNews});
         }
     }
 

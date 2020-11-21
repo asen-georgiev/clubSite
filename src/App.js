@@ -36,6 +36,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome} from '@fortawesome/free-solid-svg-icons'
 import Homepage from "./pages/homepage";
+import CreateCourseForm from "./admin/courses/createCourseForm";
+import AllCoursesList from "./admin/courses/allCoursesList";
 
 library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome);
 
@@ -88,6 +90,8 @@ class App extends Component {
                                 <Route exact path="/admin/createclubbio" component={CreateClubBioForm}/>
                                 <Route exact path="/admin/bioslist/:id" component={UpdateClubBioForm}/>
                                 <Route exact path="/admin/bioslist" component={AllClubBiosList}/>
+                                <Route exact path="/admin/createcourse" component={CreateCourseForm}/>
+                                <Route exact path="/admin/courseslist" component={AllCoursesList}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>

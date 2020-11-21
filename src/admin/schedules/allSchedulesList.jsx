@@ -36,7 +36,7 @@ class AllSchedulesList extends Component {
             if(e.response && e.response.status === 404)
                 console.log("Schedule with the given ID was not found!");
             toast.error('This Schedule has already been deleted');
-            this.setState({allSchedules});
+            this.setState({schedules: allSchedules});
         }
     }
 

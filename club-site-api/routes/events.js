@@ -47,6 +47,7 @@ router.put('/:id', async(req, res) => {
         eventLocation: req.body.eventLocation,
         eventLink: req.body.eventLink
     },{new:true});
+
     if(!eventCalendar) return res.status(404).send('Event with the given ID was not found!');
 });
 
@@ -58,4 +59,5 @@ router.delete('/:id', async (req, res) => {
     if(!eventCalendar) return res.status(404).send(`Event with ID: ${reqId} was not found!`);
     res.send(eventCalendar);
 })
+
 module.exports = router;

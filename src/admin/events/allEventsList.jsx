@@ -32,8 +32,8 @@ class AllEventsList extends Component {
         } catch (e) {
             if (e.response && e.response.status === 404)
                 console.log("Event Calendar with the given ID was not found!");
-            toast.error("This Even has already been deleted!");
-            this.setState({allEventsCalendar});
+            toast.error("This Event has already been deleted!");
+            this.setState({events: allEventsCalendar});
         }
     }
 

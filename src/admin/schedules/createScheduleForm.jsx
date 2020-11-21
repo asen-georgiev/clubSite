@@ -98,7 +98,7 @@ class CreateScheduleForm extends Component {
     }
 
     adminRedirect = () => {
-        this.props.history.push("/admin")
+        this.props.history.push("/admin");
     }
 
     render() {

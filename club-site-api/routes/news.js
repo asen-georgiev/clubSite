@@ -47,6 +47,7 @@ router.put('/:id',async(req, res) => {
                 pictureName: req.body.pictureName,
                 newsDate: req.body.newsDate
         },{new: true});
+
         if(!anew) return res.status(404).send('A New with the given ID was not found!')
 })
 
@@ -56,4 +57,5 @@ router.delete('/:id', async(req, res) => {
         if(!anew) return res.status(404).send(`A New with ID: ${reqId} was not found!`);
         res.send(anew);
 })
+
 module.exports = router;
