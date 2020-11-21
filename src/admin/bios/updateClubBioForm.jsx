@@ -91,7 +91,7 @@ class UpdateClubBioForm extends Component {
         try {
             const bioId = this.props.match.params.id;
             const {data: bio} = await getClubBio(bioId);
-            this.setState({bio: this.mapToViewModel(bio)})
+            this.setState({bio: this.mapToViewModel(bio)});
         } catch (e) {
             if (e.response && e.response.status === 404)
                 console.log('There is no Club Bio with this ID!');

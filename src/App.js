@@ -38,6 +38,7 @@ import {faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome} from
 import Homepage from "./pages/homepage";
 import CreateCourseForm from "./admin/courses/createCourseForm";
 import AllCoursesList from "./admin/courses/allCoursesList";
+import UpdateCourseForm from "./admin/courses/updateCourseForm";
 
 library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome);
 
@@ -91,6 +92,7 @@ class App extends Component {
                                 <Route exact path="/admin/bioslist/:id" component={UpdateClubBioForm}/>
                                 <Route exact path="/admin/bioslist" component={AllClubBiosList}/>
                                 <Route exact path="/admin/createcourse" component={CreateCourseForm}/>
+                                <Route exact path="/admin/courseslist/:id" component={UpdateCourseForm}/>
                                 <Route exact path="/admin/courseslist" component={AllCoursesList}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}

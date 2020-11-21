@@ -60,9 +60,11 @@ class Homepage extends Component {
                                     className="home-maincard ml-auto mr-auto">
                                     <Card.Header>{this.state.clubBio.bioTitle}</Card.Header>
                                     <Card.Body>
+                                        <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
                                             src={require('../assets/images/asen-team.jpg')}/>
+                                        </div>
                                         <br/><br/>
                                         <Card.Text>{this.state.clubBio.bioText}</Card.Text>
                                     </Card.Body>
@@ -84,6 +86,7 @@ class Homepage extends Component {
                                 <Card
                                     style={{width: '50rem'}}
                                     className="home-eventcard ml-auto mr-auto">
+                                    <div className="card-img-wrap">
                                     <Card.Img
                                         className="home-eventcard-img"
                                         src={require('../assets/images/karate1.jpg')}
@@ -113,6 +116,7 @@ class Homepage extends Component {
                                             </Card.Link>
                                         </Card.Text>
                                     </Card.ImgOverlay>
+                                    </div>
                                 </Card>
                             </Row>
 
@@ -135,9 +139,11 @@ class Homepage extends Component {
                                             </Card.Link>
                                         </Card.Subtitle>
                                         <br/>
+                                        <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
                                             src={picturesUrl + this.state.anew.pictureName}/>
+                                        </div>
                                         <br/><br/>
                                         <Card.Text>{this.state.anew.text}</Card.Text>
                                     </Card.Body>
@@ -160,10 +166,12 @@ class Homepage extends Component {
                                 {this.state.carousel.map(cr => {
                                     return (
                                         <Carousel.Item>
+                                            <div className="card-img-wrap">
                                             <Image
                                                 className="d-block w-100 rounded-lg"
                                                 height='260rem'
                                                 src={picturesUrl + cr}/>
+                                            </div>
                                         </Carousel.Item>
                                     )
                                 })}
@@ -219,7 +227,7 @@ class Homepage extends Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Card.Title className="text-center">Welcome to our classes!</Card.Title>
-                                    <Card.Subtitle className="text-center">You can choose the class that fits you the most,
+                                    <Card.Subtitle className="text-center"      >You can choose the class that fits you the most,
                                         and follow the below link for more information.
                                     </Card.Subtitle>
                                 </Card.Body>

@@ -76,7 +76,7 @@ class AllCoursesList extends Component {
                                     <td>{crs.coursePrice}</td>
                                     <td>{crs.courseAge}</td>
                                     <td>
-                                        <Link>Update</Link>
+                                        <Link to={`/admin/courseslist/${crs._id}`}>Update</Link>
                                     </td>
                                     <td>
                                         <Button
