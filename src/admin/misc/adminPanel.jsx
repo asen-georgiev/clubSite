@@ -36,17 +36,7 @@ class AdminPanel extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    {/*{this.state.loggedUser.map(user => {*/}
-                    {/*        return (*/}
-                    {/*            <div key={user.data.name}>*/}
-                    {/*                <h4>Logged as: {user.data.name}</h4>*/}
-                    {/*                {user.data.isAdmin && <h5>Admin rights</h5>}*/}
-                    {/*                {!user.data.isAdmin && <h5>No Admin rights</h5>}*/}
-                    {/*            </div>*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*)}*/}
+                <Container className="container bg-light" fluid={true}>
                     <h4>Logged as: {this.state.loggedUser.name}</h4>
                     {this.state.loggedUser.isAdmin &&
                         <div>
@@ -54,8 +44,8 @@ class AdminPanel extends Component {
                     <Table>
                         <thead>
                         <tr>
-                            <th>Admin Action</th>
-                            <th>Execute Buttons</th>
+                            <th>Components</th>
+                            <th>Create new</th>
                             <th>To lists</th>
                         </tr>
                         </thead>
@@ -84,6 +74,16 @@ class AdminPanel extends Component {
                             <td>Courses</td>
                             <td><Link to="/admin/createcourse">Create course</Link></td>
                             <td><Link to="/admin/courseslist">Courses list</Link></td>
+                        </tr>
+                        <tr>
+                            <td>Time:days/hours</td>
+                            <td><Link to="/admin/createtimedh">Create time:day/hour</Link></td>
+                            <td><Link to="/admin/timedhslist">Time:days/hours list</Link></td>
+                        </tr>
+                        <tr>
+                            <td>Time Tables</td>
+                            <td><Link to="/admin/createtimetable">Create time table</Link></td>
+                            <td><Link to="/admin/timetableslist">Time tables list</Link></td>
                         </tr>
                         <tr>
                             <td>Sport Events</td>

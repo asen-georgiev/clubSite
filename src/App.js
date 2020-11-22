@@ -39,6 +39,10 @@ import Homepage from "./pages/homepage";
 import CreateCourseForm from "./admin/courses/createCourseForm";
 import AllCoursesList from "./admin/courses/allCoursesList";
 import UpdateCourseForm from "./admin/courses/updateCourseForm";
+import CreateTimeDhForm from "./admin/timedhs/createTimeDhForm";
+import AllTimeDhsList from "./admin/timedhs/allTimeDhsList";
+import UpdateTimeDhForm from "./admin/timedhs/updateTimeDhForm";
+import CreateTimeTableForm from "./admin/timetables/createTimeTableForm";
 
 library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome);
 
@@ -94,6 +98,10 @@ class App extends Component {
                                 <Route exact path="/admin/createcourse" component={CreateCourseForm}/>
                                 <Route exact path="/admin/courseslist/:id" component={UpdateCourseForm}/>
                                 <Route exact path="/admin/courseslist" component={AllCoursesList}/>
+                                <Route exact path="/admin/createtimedh" component={CreateTimeDhForm}/>
+                                <Route exact path="/admin/timedhslist/:id" component={UpdateTimeDhForm}/>
+                                <Route exact path="/admin/timedhslist" component={AllTimeDhsList}/>
+                                <Route exact path="/admin/createtimetable" component={CreateTimeTableForm}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>

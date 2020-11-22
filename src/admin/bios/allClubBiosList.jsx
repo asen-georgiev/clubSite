@@ -57,7 +57,7 @@ class AllClubBiosList extends Component {
                         </Col>
                     </Row>
                     <br/>
-                    <Table striped bordered hover variant="dark">
+                    <Table striped bordered hover variant="light">
                         <thead>
                         <tr>
                             <th>Title</th>

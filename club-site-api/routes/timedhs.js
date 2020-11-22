@@ -5,6 +5,7 @@ const authorization = require('../middleware/authorization');
 const {TimeDH,validateTimeDH} = require('../models/timedh');
 
 
+//Post TimeDH
 router.post('/',async (req, res) => {
     const{error} = validateTimeDH(req.body);
     if(error) return res.status(400).send(error.details[0].message);
@@ -14,9 +15,49 @@ router.post('/',async (req, res) => {
     res.send(timedh);
 })
 
+
+//Get all TimeDhs
 router.get('/',async(req, res) => {
     const timedhs = await TimeDH.find().sort('_id');
     res.send(timedhs);
 })
+
+
+
+//Get single TimeDh by ID
+router.get('/:id', async (req, res) => {
+    const timedh = await TimeDH.findById(req.params.id);
+    let reqId = req.params.id;
+    if(!timedh) return res.status(404).send(`TimeDh with ID: ${reqId} was not found!`);
+    res.send(timedh);
+})
+
+
+//Update single TimeDH
+router.put('/:id', async (req, res) => {
+    const {error} = validateTimeDH(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    const timedh = await TimeDH.findByIdAndUpdate(req.params.id,{
+        day: req.body.day,
+        hour: req.body.hour
+    },{new:true});
+
+    let reqId = req.params.id;
+    if(!timedh) return res.status(404).send(`TimeDh with ID: ${reqId} was not found!`);
+    res.send(timedh);
+
+})
+
+
+//Delete single TimeDh
+router.delete('/:id', async (req, res) => {
+    const timedh = await TimeDH.findByIdAndDelete(req.params.id);
+    let reqId = req.params.id;
+    if(!timedh) return res.status(404).send(`TimeDh with ID: ${reqId} was not found!`);
+    res.send(timedh);
+})
+
+
 
 module.exports = router;
