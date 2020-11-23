@@ -66,11 +66,6 @@ class AdminPanel extends Component {
                             <td><Link to="/admin/newslist">News list</Link></td>
                         </tr>
                         <tr>
-                            <td>Training Schedules</td>
-                            <td><Link to="/admin/createschedule">Create schedule</Link></td>
-                            <td><Link to="/admin/scheduleslist">Schedules list</Link></td>
-                        </tr>
-                        <tr>
                             <td>Courses</td>
                             <td><Link to="/admin/createcourse">Create course</Link></td>
                             <td><Link to="/admin/courseslist">Courses list</Link></td>

@@ -14,6 +14,7 @@ import {getImages} from "../services/imageService";
 import Carousel from "react-bootstrap/Carousel";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import {getCourses} from "../services/courseService";
 
 
 class Homepage extends Component {
@@ -23,7 +24,8 @@ class Homepage extends Component {
             clubBio: [],
             eventCalendar: [],
             anew: [],
-            carousel: []
+            carousel: [],
+            courses:[]
         }
     }
 
@@ -32,11 +34,12 @@ class Homepage extends Component {
         const {data: eventsCalendar} = await getEventsCalendar();
         const {data: news} = await getNews();
         const {data: images} = await getImages();
+        const {data: courses} = await getCourses();
         let clubBio = _.first(clubBios);
         let eventCalendar = _.first(eventsCalendar);
         let anew = _.first(news);
         let carousel = images.filter(img => img.includes('cr'));
-        this.setState({clubBio, eventCalendar, anew, carousel});
+        this.setState({clubBio, eventCalendar, anew, carousel,courses});
         console.log(this.state);
     }
 
@@ -227,19 +230,18 @@ class Homepage extends Component {
                                 </Card.Header>
                                 <Card.Body>
                                     <Card.Title className="text-center">Welcome to our classes!</Card.Title>
-                                    <Card.Subtitle className="text-center"      >You can choose the class that fits you the most,
+                                    <Card.Subtitle className="text-center">You can choose the class that fits you the most,
                                         and follow the below link for more information.
                                     </Card.Subtitle>
                                 </Card.Body>
                                 <ListGroup className="list-group-flush">
-                                    <ListGroupItem className="home-listgroup">Karate for children: little
-                                        warriors</ListGroupItem>
-                                    <ListGroupItem className="home-listgroup">Karate class: Beginner</ListGroupItem>
-                                    <ListGroupItem className="home-listgroup">Karate class: Competitor</ListGroupItem>
-                                    <ListGroupItem className="home-listgroup">Karate class: Champion</ListGroupItem>
-                                    <ListGroupItem className="home-listgroup">Karate for adults: Parents be
-                                        welcome! </ListGroupItem>
-                                    <ListGroupItem className="home-listgroup">Individual karate classes</ListGroupItem>
+                                    {this.state.courses.map(crs =>{
+                                        return(
+                                            <ListGroupItem className="home-listgroup">
+                                                {crs.courseName}
+                                            </ListGroupItem>
+                                        )
+                                    })}
                                 </ListGroup>
                                 <Card.Footer>
                                     <Card.Link

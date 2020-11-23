@@ -88,7 +88,7 @@ class UpdateTimeDhForm extends Component {
         timedh[name] = value;
         this.setState({
             timedh
-        })
+        });
     }
 
 

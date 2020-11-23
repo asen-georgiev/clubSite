@@ -49,7 +49,7 @@ class CreateNewsForm extends Component {
         pictureName: Joi.string()
             .required()
             .min(5)
-            .max(50)
+            .max(100)
             .label('PictureName'),
         newsDate: Joi.string()
             .min(6)
@@ -64,7 +64,8 @@ class CreateNewsForm extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            isDisabled: false
         });
     }
 
@@ -210,6 +211,10 @@ class CreateNewsForm extends Component {
                                 label="Upload an image for the News"
                                 onChange={this.onPictureHandler}
                             />
+                            {this.state.errors.pictureName &&
+                            <p className="text-danger pt-2">
+                                {this.state.errors.pictureName}
+                            </p>}
                         </FormGroup>
                         <Row>
                             <Col md={4}>

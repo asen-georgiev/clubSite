@@ -11,22 +11,26 @@ import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import {getCourses} from "../../services/courseService";
 import {getTimeDHs} from "../../services/timedhService";
-import {createTimeTable} from "../../services/timetableService";
+import {getTimeTable, updateTimeTable} from "../../services/timetableService";
 
-class CreateTimeTableForm extends Component {
+
+class UpdateTimeTableForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            courseId: '',
-            timedhId: '',
-            errors: {},
-            isDisabled: false,
+            timetable: {
+                course: '',
+                timedh: ''
+            },
             courses: [],
-            timedhs: []
+            timedhs: [],
+            errors: {},
+            isDisabled: false
         }
     }
 
     schema = Joi.object({
+        _id: Joi.string(),
         courseId: Joi.string()
             .required()
             .label('Course'),
@@ -36,23 +40,82 @@ class CreateTimeTableForm extends Component {
     });
 
 
+    async componentDidMount() {
+        const {data: courses} = await getCourses();
+        const {data: timedhs} = await getTimeDHs();
+        await this.populateTimeTable();
+        this.setState({courses, timedhs});
+        console.log(this.state);
+    }
+
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const errors = this.validate();
+        this.setState({errors: errors || {}});
+        if (errors) return;
+
+        const obj = {
+            courseId: this.state.timetable.courseId,
+            timedhId: this.state.timetable.timedhId
+        };
+
+        this.setState({isDisabled: true});
+        toast.success('Time table update was successfull!');
+        await updateTimeTable(obj, this.state.timetable._id);
+    }
+
+
     handleChange = (event) => {
+        const timetable = {...this.state.timetable};
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
+        timetable[name] = value;
         this.setState({
-            [name]: value,
-            isDisabled: false
+            timetable
         });
+    }
+
+
+    async populateTimeTable() {
+        try {
+            const timetableId = this.props.match.params.id;
+            const {data: timetable} = await getTimeTable(timetableId);
+            this.setState({timetable: this.mapToViewModel(timetable)})
+        } catch (e) {
+            if (e.response && e.response === 404)
+                console.log('There is no Time table with the given ID');
+        }
+    }
+
+
+    mapToViewModel(timetable) {
+        return {
+            _id: timetable._id,
+            courseId: timetable.course._id,
+            timedhId: timetable.timedh._id,
+            course: {
+                _id: timetable.course._id,
+                courseName: timetable.course.courseName,
+                courseInfo: timetable.course.courseInfo,
+                coursePrice: timetable.course.coursePrice
+            },
+            timedh: {
+                _id: timetable.timedh._id,
+                day: timetable.timedh.day,
+                hour: timetable.timedh.hour
+            }
+        }
     }
 
 
     validate = () => {
         const obj = {
-            courseId: this.state.courseId,
-            timedhId: this.state.timedhId
-        }
+            courseId: this.state.timetable.courseId,
+            hour: this.state.timetable.timedhId
+        };
+
         const options = {abortEarly: false};
         const result = this.schema.validate(obj, options);
         console.log(result);
@@ -66,37 +129,8 @@ class CreateTimeTableForm extends Component {
     }
 
 
-    handleSubmit = async(event) => {
-        event.preventDefault();
-        const errors = this.validate();
-        this.setState({errors:errors || {}});
-        console.log(errors);
-
-        this.setState({isDisabled: true});
-
-        const obj = {
-            courseId: this.state.courseId,
-            timedhId: this.state.timedhId
-        }
-
-        await createTimeTable(obj);
-        toast.success('Time table was created successfully!');
-    }
-
-
-    async componentDidMount() {
-        const {data: courses} = await getCourses();
-        const {data: timedhs} = await getTimeDHs();
-        this.setState({
-            courses,
-            timedhs
-        });
-        console.log(this.state);
-    }
-
-
     adminRedirect = () => {
-        this.props.history.push("/admin");
+        this.props.history.push("/admin/timetableslist");
     }
 
 
@@ -115,7 +149,9 @@ class CreateTimeTableForm extends Component {
                                     id="courseControl"
                                     name="courseId"
                                     onChange={this.handleChange}>
-                                    <option>Choose a course...</option>
+                                    <option>
+                                        current : {this.state.timetable.course.courseName}
+                                    </option>
                                     {this.state.courses.map(crs => {
                                         return (
                                             <option key={crs._id} value={crs._id}>
@@ -134,7 +170,9 @@ class CreateTimeTableForm extends Component {
                                     id="timedhControl"
                                     name="timedhId"
                                     onChange={this.handleChange}>
-                                    <option>Choose day and hour...</option>
+                                    <option>
+                                        current : {this.state.timetable.timedh.day} : {this.state.timetable.timedh.hour}
+                                    </option>
                                     {this.state.timedhs.map(tdh => {
                                         return (
                                             <option key={tdh._id} value={tdh._id}>
@@ -148,12 +186,12 @@ class CreateTimeTableForm extends Component {
                         <Row>
                             <Col md={4}>
                                 <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Submit
+                                    Update
                                 </Button>
                             </Col>
                             <Col md={{span: 4, offset: 4}}>
                                 <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
+                                    Back to Time table list
                                 </Button>
                             </Col>
                         </Row>
@@ -164,4 +202,4 @@ class CreateTimeTableForm extends Component {
     }
 }
 
-export default CreateTimeTableForm;
+export default UpdateTimeTableForm;

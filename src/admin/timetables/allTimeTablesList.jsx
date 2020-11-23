@@ -6,36 +6,36 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-import {deleteTimeDH, getTimeDHs} from "../../services/timedhService";
+import {deleteTimeTable, getTimeTables} from "../../services/timetableService";
 
-
-class AllTimeDhsList extends Component {
+class AllTimeTablesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timedhs: []
+            timetables: []
         }
     }
 
     async componentDidMount() {
-        const {data: timedhs} = await getTimeDHs();
-        this.setState({timedhs});
-        console.log(this.state.timedhs);
+        const {data: timetables} = await getTimeTables();
+        this.setState({timetables});
+        console.log(this.state.timetables);
     }
 
 
-    handleDelete = async (timedh) => {
-        const allTimeDhs = this.state.timedhs;
-        const timedhs = allTimeDhs.filter(tim => tim._id !== timedh._id);
-        this.setState({timedhs});
+    handleDelete = async(timetable) =>{
+        const allTimeTables = this.state.timetables;
+        const timetables = allTimeTables.filter(tim => tim._id !== timetable._id);
+        this.setState({timetables});
 
-        try {
-            await deleteTimeDH(timedh._id);
-        } catch (e) {
-            if (e.response && e.response.status === 404)
-                console.log('TimeDh with the given ID was not found');
-            toast.error('This Time:day/hour has been deleted already!');
-            this.setState({timedhs: allTimeDhs});
+        try{
+            await deleteTimeTable(timetable._id);
+        }
+        catch (e) {
+            if(e.response && e.response.status === 404)
+                console.log('Timetable with the given ID was not found!');
+            toast.error('This time table has already been deleted!');
+            this.setState({timetables: allTimeTables});
         }
     }
 
@@ -49,7 +49,7 @@ class AllTimeDhsList extends Component {
         return (
             <div>
                 <Container className="container bg-light" fluid={true}>
-                    <h1>All Time:days/hours list</h1>
+                    <h1>All Time Tables List</h1>
                     <Row>
                         <Col md={4}>
                             <Button variant="primary" onClick={this.adminRedirect}>
@@ -60,6 +60,7 @@ class AllTimeDhsList extends Component {
                     <Table striped bordered hover variant="light">
                         <thead>
                         <tr>
+                            <th>Course name</th>
                             <th>Course day</th>
                             <th>Course hour</th>
                             <th>Update</th>
@@ -67,19 +68,20 @@ class AllTimeDhsList extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.timedhs.map(tim => {
+                        {this.state.timetables.map((timetab, i) => {
                             return (
-                                <tr key={tim._id}>
-                                    <td>{tim.day}</td>
-                                    <td>{tim.hour}</td>
+                                <tr key={timetab._id}>
+                                    <td>{timetab.course.courseName}</td>
+                                    <td>{timetab.timedh.day}</td>
+                                    <td>{timetab.timedh.hour}</td>
                                     <td>
-                                        <Link to={`/admin/timedhslist/${tim._id}`}>
+                                        <Link to={`/admin/timetablelist/${timetab._id}`}>
                                             Update
                                         </Link>
                                     </td>
                                     <td>
                                         <Button
-                                            onClick={() => this.handleDelete(tim)}>
+                                            onClick={() => this.handleDelete(timetab)}>
                                             Delete
                                         </Button>
                                     </td>
@@ -87,7 +89,6 @@ class AllTimeDhsList extends Component {
                             )
                         })}
                         </tbody>
-
                     </Table>
                 </Container>
             </div>
@@ -95,4 +96,4 @@ class AllTimeDhsList extends Component {
     }
 }
 
-export default AllTimeDhsList;
+export default AllTimeTablesList;

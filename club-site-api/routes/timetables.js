@@ -40,7 +40,7 @@ router.post('/',async (req, res) => {
 
 
 router.get('/',async (req, res) => {
-    const timetables = await TimeTable.find().sort('_id');
+    const timetables = await TimeTable.find().sort('course');
     res.send(timetables);
 })
 

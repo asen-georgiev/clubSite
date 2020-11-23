@@ -73,7 +73,8 @@ class CreateCourseForm extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            isDisabled: false
         });
     }
 
@@ -110,7 +111,7 @@ class CreateCourseForm extends Component {
                                 Course name
                             </FormLabel>
                             <FormControl
-                                autofocus={true}
+                                autoFocus={true}
                                 name="courseName"
                                 type="text"
                                 value={this.state.courseName}
