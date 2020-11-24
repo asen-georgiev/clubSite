@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 255
+        maxlength: 500
     },
     eventDate: {
         type: String,
@@ -38,7 +38,7 @@ const EventCalendar = mongoose.model('EventCalendar', eventSchema);
 function validateEventCalendar(eventCalendar) {
     const schema = Joi.object({
         eventTitle: Joi.string().required().min(5).max(50),
-        eventInfo: Joi.string().required().min(5).max(255),
+        eventInfo: Joi.string().required().min(5).max(500),
         eventDate: Joi.string().required().min(5).max(50),
         eventLocation: Joi.string().required().min(5).max(50),
         eventLink: Joi.string().min(5).max(50).allow('')

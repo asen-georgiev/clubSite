@@ -12,6 +12,8 @@ import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import {sendEmail} from "../services/emailService";
 import {useTranslation} from "react-i18next";
+import '../css/contacts.css';
+import Card from "react-bootstrap/Card";
 
 
 function Contacts(props) {
@@ -91,13 +93,19 @@ function Contacts(props) {
 
     return (
         <div>
-            <Container className="container bg-secondary" fluid={true}>
+            <Container className="contacts-container container" fluid={true}>
+                <Row className="m-0">
+                    <Col md={6}>
+                        <Row className="contacts-row d-flex justify-content-start ml-auto mr-auto">
+                            <h3>Feel free to write us :</h3>
+                        </Row>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <FormLabel>
-                            {t('Contacts.Fullname')}
+                            {/*{t('Contacts.Fullname')}*/}
                         </FormLabel>
                         <FormControl
+                            className="contacts-form-control"
                             id="fullname"
                             name="fullname"
                             value={fullname}
@@ -109,9 +117,10 @@ function Contacts(props) {
                             {errors.fullname}
                         </div>}
                         <FormLabel>
-                            {t('Contacts.Email')}
+                            {/*{t('Contacts.Email')}*/}
                         </FormLabel>
                         <FormControl
+                            className="contacts-form-control"
                             id="email"
                             name="email"
                             value={email}
@@ -123,9 +132,10 @@ function Contacts(props) {
                             {errors.email}
                         </div>}
                         <FormLabel>
-                            {t('Contacts.Subject')}
+                            {/*{t('Contacts.Subject')}*/}
                         </FormLabel>
                         <FormControl
+                            className="contacts-form-control"
                             id="subject"
                             name="subject"
                             value={subject}
@@ -137,30 +147,62 @@ function Contacts(props) {
                             {errors.subject}
                         </div>}
                         <FormLabel>
-                            {t('Contacts.Message')}
+                            {/*{t('Contacts.Message')}*/}
                         </FormLabel>
                         <FormControl
+                            className="contacts-form-control"
                             id="message"
                             name="message"
                             value={message}
                             as="textarea"
                             placeholder={t('Contacts.Message')}
-                            rows="3"
+                            rows="5"
                             onChange={event => setMessage(event.target.value)}/>
                         {errors.message &&
                         <div className="alert alert-danger">
                             {errors.message}
                         </div>}
                     </FormGroup>
-                    <Row>
+                    <Row className="justify-content-end">
                         <Button
-                            variant="success"
+                            className="mr-3"
                             type="submit"
                             disabled={isDisabled}>
                             {t('Contacts.Send')}
                         </Button>
                     </Row>
                 </Form>
+                    </Col>
+                    <Col md={6}>
+                        <Row className="contacts-row d-flex justify-content-start mr-auto ml-auto">
+                            <h3>Coordinates for contact :</h3>
+                        </Row>
+                        <Row className="m-0">
+                            <Card
+                                style={{width: '33rem',height:'35rem'}}
+                                className="contacts-maincard mr-auto">
+                                <Card.Header className="text-center">For more information call us on gsm: +359/897 05 73 75</Card.Header>
+                                <Card.Body>
+                                    <Card.Title className="text-center">Warriors karate dojo</Card.Title>
+                                    <Card.Subtitle className="text-center">e-mail: warriors@abv.bg</Card.Subtitle>
+                                    <br/>
+                                    <div className="mapouter-contacts">
+                                        <div className="gmap_canvas-contacts">
+                                            <iframe
+                                                className="contacts-map-frame"
+                                                src="https://maps.google.com/maps?q=Sandanski&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                                                frameBorder="1">
+                                            </iframe>
+                                            </div>
+                                    </div>
+                                </Card.Body>
+                                <Card.Footer className="text-center">
+                                    Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1
+                                </Card.Footer>
+                            </Card>
+                        </Row>
+                    </Col>
+                </Row>
             </Container>
         </div>
     );

@@ -1,0 +1,58 @@
+.contacts-container {
+    margin: 2rem;
+}
+
+.contacts-row{
+    background-color: rgba(128,128,128,0.1);
+    box-shadow:
+            2px 0 0 0 red,
+            0 2px 0 0 cyan;
+    padding: 1.25rem;
+    margin: 1rem;
+}
+
+
+.contacts-maincard{
+    background-color: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+    color: black;
+}
+
+
+.contacts-form-control {
+    border-radius: 0 !important;
+    /*font-style: italic !important;*/
+    font-size: large !important;
+    background: transparent !important;
+    border-top: transparent !important;
+    border-left-color: red !important;
+    border-right: transparent !important;
+    border-bottom-color: cyan !important;
+    /*color:  #ffffff !important;*/
+    border-bottom-width: 2px !important;
+}
+
+
+.contacts-form-control:focus {
+    box-shadow: none !important;
+}
+
+
+
+.contacts-map-frame{
+    height: 21rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.mapouter-contacts {
+    height: 21rem;
+    width: available;
+}
+
+
+.gmap_canvas-contacts {
+    height:21rem;
+    width:available;
+}

@@ -1,0 +1,24 @@
+.bio-container {
+    margin: 2rem;
+}
+
+
+.bio-row{
+    background-color: rgba(128,128,128,0.1);
+    box-shadow:
+            2px 0 0 0 red,
+            0 2px 0 0 cyan;
+    padding: 1.25rem;
+    margin: 1rem;
+}
+
+
+.bio-biocard{
+    background: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+    color: white;
+}
+
+
+.bio-biocard-img{
+    opacity: 0.8;
+}

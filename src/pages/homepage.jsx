@@ -54,7 +54,7 @@ class Homepage extends Component {
                         <Col xs={6} lg={8}>
 
                             <Row className="home-row d-flex justify-content-start">
-                                <h3>About Warriors Karate Dojo:</h3>
+                                <h3>About Warriors Karate Dojo :</h3>
                             </Row>
 
                             <Row>
@@ -82,7 +82,7 @@ class Homepage extends Component {
                             </Row>
 
                             <Row className="home-row d-flex justify-content-start">
-                                <h3>Sport Calendar Events:</h3>
+                                <h3>Sport Calendar Events :</h3>
                             </Row>
 
                             <Row>
@@ -94,7 +94,7 @@ class Homepage extends Component {
                                         className="home-eventcard-img"
                                         src={require('../assets/images/karate1.jpg')}
                                         alt="Card image"/>
-                                    <Card.ImgOverlay>
+                                    <Card.ImgOverlay className="overflow-auto">
                                         <Card.Title className="text-center">
                                             {this.state.eventCalendar.eventTitle}
                                         </Card.Title>
@@ -124,7 +124,7 @@ class Homepage extends Component {
                             </Row>
 
                             <Row className="home-row d-flex justify-content-start">
-                                <h3>Recent News:</h3>
+                                <h3>Recent News :</h3>
                             </Row>
 
                             <Row>
@@ -201,14 +201,14 @@ class Homepage extends Component {
                                     <div className="mapouter">
                                         <div className="gmap_canvas">
                                             <iframe
-                                                width="304"
+                                                width="100%"
                                                 height="200"
                                                 id="gmap_canvas"
                                                 src="https://maps.google.com/maps?q=Sandanski&t=&z=17&ie=UTF8&iwloc=&output=embed"
                                                 frameBorder="0"
                                                 scrolling="no">
                                             </iframe>
-                                            <a href="https://www.whatismyip-address.com/divi-discount/"></a></div>
+                                           </div>
                                     </div>
                                     <br/>
                                     <Card.Text>Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1</Card.Text>

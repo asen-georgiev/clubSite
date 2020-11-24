@@ -4,13 +4,14 @@ import {getUsers} from "../services/userService";
 import {getImages} from "../services/imageService";
 import {CardImg, Image} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
-import {getLastNew, getNews} from "../services/newsService";
+import {getLastNew, getNew, getNews} from "../services/newsService";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import {picturesUrl} from "../config.json";
 import Newscards from "../components/newscards";
 import _ from "lodash";
 import '../css/news.css';
+import Button from "react-bootstrap/Button";
 
 
 class News extends Component {
@@ -32,8 +33,9 @@ class News extends Component {
 
     }
 
-    handleNews(){
-        console.log('laina');
+    handleNews = async (anewId) =>{
+        const {data: anew} = await getNew(anewId);
+        this.setState({anew: anew});
     }
 
 
@@ -44,7 +46,7 @@ class News extends Component {
                     <Row className="m-0">
                         <Col md={6}>
                             <Row className="news-row d-flex justify-content-start">
-                                <h3>Karate news:</h3>
+                                <h3>News from Karate world :</h3>
                             </Row>
                             <Card className="news-maincard" style={{width: '33rem'}}>
                                 <Card.Header>Date: {this.state.anew.newsDate}</Card.Header>
@@ -69,9 +71,24 @@ class News extends Component {
                         </Col>
                         <Col md={6}>
                             <Row className="news-row d-flex justify-content-start">
-                                <h3>More karate news:</h3>
+                                <h3>You may also want to read about :</h3>
                             </Row>
-                            <Newscards news={this.state.news} onNewSelect={this.handleNews}/>
+                            <Container fluid={true} className="p-0 news-newscontainer">
+                            {this.state.news.map(ns => {
+                                return(
+                                    <Card style={{width: '32rem'}} className="news-maincard flex-row p-2 mb-3 my-0">
+                                        <CardImg variant="top" src={picturesUrl + ns.pictureName} style={{width: '10rem', height:'10rem'}}/>
+                                        <Card.Body>
+                                            <Card.Title>{ns.title}</Card.Title>
+                                            <Card.Subtitle>{ns.newsDate}</Card.Subtitle>
+                                            <br/>
+                                            <Button onClick={()=>this.handleNews(ns._id)}>Read the whole article</Button>
+                                        </Card.Body>
+                                    </Card>
+                                )
+                            })}
+                            </Container>
+                            {/*<Newscards news={this.state.news} onNewSelect={this.handleNews}/>*/}
                         </Col>
                     </Row>
                 </Container>

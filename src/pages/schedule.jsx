@@ -36,7 +36,7 @@ class Schedule extends Component {
                     <Row className="m-0">
                         <Col md={6}>
                             <Row className="schedule-row d-flex justify-content-start">
-                                <h3>Warriors Karate Dojo courses:</h3>
+                                <h3>Warriors Karate Dojo courses :</h3>
                             </Row>
                             <Row>
                                 <CardDeck className="schedule-deck flex-column">
@@ -57,7 +57,7 @@ class Schedule extends Component {
                         </Col>
                         <Col md={6}>
                             <Row className="schedule-row d-flex justify-content-start">
-                                <h3>Training schedule:</h3>
+                                <h3>Training schedule :</h3>
                             </Row>
                             <Table striped bordered hover className="schedule-maincard">
                                 <thead>

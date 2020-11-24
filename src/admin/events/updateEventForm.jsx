@@ -37,7 +37,7 @@ class UpdateEventForm extends Component {
         eventInfo: Joi.string()
             .required()
             .min(5)
-            .max(255)
+            .max(500)
             .label("EventInfo"),
         eventDate: Joi.string()
             .required()
