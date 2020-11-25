@@ -8,6 +8,10 @@ import Button from "react-bootstrap/Button";
 import {uploadImage} from "../../services/imageService";
 import {toast} from "react-toastify";
 import {Image} from "react-bootstrap";
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
+import CardImg from "react-bootstrap/CardImg";
+import FormLabel from "react-bootstrap/FormLabel";
 
 
 
@@ -50,41 +54,59 @@ class ImageUpload extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 180}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Upload image to Gallery :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Header>
+                                    {this.state.selectedFile === null &&
+                                    <span>There is no selected image</span>}
+                                    {this.state.selectedFile !== null &&
+                                    <span>Picture name : {this.state.selectedFile.name}</span>}
+                                </Card.Header>
+                                <Card.Body>
                 <Form>
                     <FormGroup>
+                        <FormLabel htmlFor="image">
+                            Upload from your compurer:
+                        </FormLabel>
                         <Form.File
+                            type="file"
                             id="image"
                             name="image"
-                            label="Upload images from Computer"
+                            // label="Upload from your computer : "
                             onChange={this.onChangeHandler}
                         />
                     </FormGroup>
-                    <Row>
+                    <CardImg
+                        src={this.state.showedFile}
+                    />
+                    <Row className="mt-3">
                         <Col md={4}>
                             <Button
-                                className="d-inline-block"
-                                variant="success"
                                 type="button"
+                                className="admin-button-update"
                                 disabled={this.state.isDisabled}
                                 onClick={this.onClickHandler}>
-                                Upload
+                                UPLOAD
                             </Button>
                         </Col>
-                        <Col md={{span: 4, offset: 4}}>
+                        <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
                             <Button
-                                className="d-inline-block"
-                                variant="success"
-                                type="button"
+                                className="admin-button-update"
                                 onClick={this.adminRedirect}>
-                                Back to Admin Panel
+                                BACK TO ADMIN PANEL
                             </Button>
                         </Col>
                     </Row>
                 </Form>
-                <Row>
-                <Image src={this.state.showedFile} width="300" height="auto"/>
-                </Row>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

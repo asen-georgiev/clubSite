@@ -10,7 +10,8 @@ import {Link} from "react-router-dom";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {loginUser, logout, getCurrentUser} from "../../services/loginService";
-
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 
 
 class LoginForm extends Component {
@@ -87,67 +88,79 @@ class LoginForm extends Component {
     };
 
 
-
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
                     {this.state.loggedUser === null &&
-                    <Row className="justify-content-center">
-                        <Col className="p-3" md={9}>
-                            <Form onSubmit={this.handleSubmit}>
-                                <FormGroup className="pt-4 pb-4">
-                                    <Row>
-                                        <Col>
-                                            <FormControl
-                                                autoFocus={true}
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                placeholder={"Email"}
-                                                value={this.state.email}
-                                                onChange={this.handleChange}/>
-                                            {this.state.errors.email &&
-                                            <div className="alert alert-danger">
-                                                {this.state.errors.email}
-                                            </div>}
-                                        </Col>
-                                        <Col>
-                                            <FormControl
-                                                id="password"
-                                                name="password"
-                                                type="password"
-                                                placeholder={"Password"}
-                                                value={this.state.password}
-                                                onChange={this.handleChange}/>
-                                            {this.state.errors.password &&
-                                            <div className="alert alert-danger">
-                                                {this.state.errors.password}
-                                            </div>}
-                                        </Col>
-                                    </Row>
-                                </FormGroup>
-                                <Row className="pt-2">
-                                    <Col>
-                                        <Row className="justify-content-end px-3">
-                                            {this.state.isDisabled &&
-                                            <Button className="btn-danger p-2" href="/admin">Admin panel</Button>
-                                            }
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 90}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 150}}>
+                                <h3>Login for the Admin panel :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup className="pt-5 pb-5">
+                                            <Row>
+                                                <Col>
+                                                    <FormControl
+                                                        autoFocus={true}
+                                                        className="admin-form-control"
+                                                        id="email"
+                                                        name="email"
+                                                        type="email"
+                                                        placeholder={"Email"}
+                                                        value={this.state.email}
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.email &&
+                                                    <div className="alert alert-danger">
+                                                        {this.state.errors.email}
+                                                    </div>}
+                                                </Col>
+                                                <Col>
+                                                    <FormControl
+                                                        className="admin-form-control"
+                                                        id="password"
+                                                        name="password"
+                                                        type="password"
+                                                        placeholder={"Password"}
+                                                        value={this.state.password}
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.password &&
+                                                    <div className="alert alert-danger">
+                                                        {this.state.errors.password}
+                                                    </div>}
+                                                </Col>
+                                            </Row>
+                                        </FormGroup>
+                                        <Row className="pt-2">
+                                            <Col>
+                                                <Row className="justify-content-end px-3">
+                                                    {this.state.isDisabled &&
+                                                    <Button
+                                                        className="admin-button-update"
+                                                        href="/admin">
+                                                        ADMIN PANEL
+                                                    </Button>
+                                                    }
+                                                </Row>
+                                            </Col>
+                                            <Col>
+                                                <Row className="justify-content-end px-3">
+                                                    <Button
+                                                        className="d-inline-block"
+                                                        variant="success"
+                                                        disabled={this.state.isDisabled}
+                                                        type="submit">
+                                                        SUBMIT
+                                                    </Button>
+                                                </Row>
+                                            </Col>
                                         </Row>
-                                    </Col>
-                                    <Col>
-                                        <Row className="justify-content-end px-3">
-                                            <Button
-                                                className="d-inline-block"
-                                                variant="success"
-                                                disabled={this.state.isDisabled}
-                                                type="submit">
-                                                SUBMIT
-                                            </Button>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Form>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </Row>
                     }

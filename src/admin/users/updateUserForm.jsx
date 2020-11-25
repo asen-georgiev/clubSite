@@ -11,6 +11,8 @@ import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
 import {getUser, updateUser} from "../../services/userService";
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 
 class UpdateUserForm extends Component {
     constructor(props) {
@@ -55,7 +57,10 @@ class UpdateUserForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         user[name] = value;
-        this.setState({user});
+        this.setState({
+            user,
+            isDisabled: false
+        });
     };
 
     validate = () => {
@@ -128,80 +133,100 @@ class UpdateUserForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Full Name
-                            </FormLabel>
-                            <FormControl
-                                autoFocus={true}
-                                id="name"
-                                name="name"
-                                type="text"
-                                value={this.state.user.name}
-                                placeholder="Enter full name"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.name &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.name}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Email
-                            </FormLabel>
-                            <FormControl
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={this.state.user.email}
-                                placeholder="Enter email"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.email &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.email}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Password
-                            </FormLabel>
-                            <FormControl
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={this.state.user.password}
-                                placeholder="Enter password"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.password &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.password}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormCheck
-                                id="isAdmin"
-                                name="isAdmin"
-                                type="checkbox"
-                                checked={this.state.user.isAdmin}
-                                value={this.state.user.isAdmin}
-                                label="Admin rights"
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Update
-                                </Button>
-                            </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Users list
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Update existing User form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                Full Name
+                                            </FormLabel>
+                                            <FormControl
+                                                autoFocus={true}
+                                                className="admin-form-control"
+                                                id="name"
+                                                name="name"
+                                                type="text"
+                                                value={this.state.user.name}
+                                                placeholder="Enter full name"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.name &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.name}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                Email
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                value={this.state.user.email}
+                                                placeholder="Enter email"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.email &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.email}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                Password
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                id="password"
+                                                name="password"
+                                                type="password"
+                                                value={this.state.user.password}
+                                                placeholder="Enter password"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.password &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.password}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormCheck
+                                                className="admin-form-control"
+                                                id="isAdmin"
+                                                name="isAdmin"
+                                                type="checkbox"
+                                                checked={this.state.user.isAdmin}
+                                                value={this.state.user.isAdmin}
+                                                label="User has admin rights"
+                                                onChange={this.handleChange}/>
+                                        </FormGroup>
+                                        <Row>
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-update"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    UPDATE
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO USERS LIST
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

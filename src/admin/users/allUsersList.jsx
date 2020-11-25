@@ -8,6 +8,8 @@ import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import Form from "react-bootstrap/Form";
 import {Link} from "react-router-dom";
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 
 class AllUsersList extends Component {
     constructor(props) {
@@ -48,53 +50,61 @@ class AllUsersList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <h1>All Users</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
-                            </Button>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 60}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All registered Users table :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                            <Card.Header>
+                                    <Button onClick={this.adminRedirect}>
+                                        BACK TO ADMIN PANEL
+                                    </Button>
+                            </Card.Header>
+                                <Card.Body>
+                            <Table striped bordered hover className="admin-maincard">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Admin rights</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {this.state.users.map(usr => {
+                                        return (
+                                            <tr key={usr._id}>
+                                                <td>{usr.name}</td>
+                                                <td>{usr.email}</td>
+                                                {usr.isAdmin && <td>admin</td>}
+                                                {!usr.isAdmin && <td>not admin</td>}
+                                                <td>
+                                                    <Link
+                                                        className="admin-button-update btn"
+                                                        to={`/admin/userslist/${usr._id}`}>
+                                                        Update user
+                                                    </Link>
+                                                </td>
+                                                <td>
+                                                    <Button
+                                                        className="admin-button-delete"
+                                                        onClick={() => this.handleDelete(usr)}>
+                                                        Delete user
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    }
+                                )}
+                                </tbody>
+                            </Table>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </Row>
-                    <br/>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Admin rights</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.users.map(usr => {
-                                return (
-                                    <tr key={usr._id}>
-                                        <td>{usr.name}</td>
-                                        <td>{usr.email}</td>
-                                        {usr.isAdmin && <td>admin</td>}
-                                        {!usr.isAdmin && <td>not admin</td>}
-                                        <td>
-                                            <Link
-                                                to={`/admin/userslist/${usr._id}`}>
-                                                Update user
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <Button
-                                                variant="danger"
-                                                onClick={() => this.handleDelete(usr)}>
-                                                Delete user
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        )}
-                        </tbody>
-                    </Table>
                 </Container>
             </div>
         );

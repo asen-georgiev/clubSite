@@ -11,19 +11,20 @@ import {toast} from "react-toastify";
 import {registerUser} from "../../services/userService";
 import {FormLabel} from "react-bootstrap";
 import FormCheck from "react-bootstrap/FormCheck";
-
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 
 
 class RegisterUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:"",
-            email:"",
-            password:"",
+            name: "",
+            email: "",
+            password: "",
             isAdmin: false,
-            errors:{},
-            isDisabled:false
+            errors: {},
+            isDisabled: false
         }
     };
 
@@ -60,38 +61,38 @@ class RegisterUserForm extends Component {
         });
     };
 
-    validate = () =>{
+    validate = () => {
         const obj = {
             name: this.state.name,
-            email:this.state.email,
-            password:this.state.password,
+            email: this.state.email,
+            password: this.state.password,
             isAdmin: this.state.isAdmin
         };
-        const options = {abortEarly:false};
-        const result = this.schema.validate(obj,options);
+        const options = {abortEarly: false};
+        const result = this.schema.validate(obj, options);
         console.log(result);
 
-        if(!result.error) return null;
+        if (!result.error) return null;
         const errors = {};
-        for(let item of result.error.details)
+        for (let item of result.error.details)
             errors[item.path[0]] = item.message;
         return errors;
     }
 
 
-    handleSubmit = async(event) =>{
+    handleSubmit = async (event) => {
         event.preventDefault();
         const errors = this.validate();
         this.setState({errors: errors || {}});
         if (errors) return;
         const obj = {
-            name:this.state.name,
-            email:this.state.email,
-            password:this.state.password,
-            isAdmin:this.state.isAdmin
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            isAdmin: this.state.isAdmin
         };
         await registerUser(obj);
-        this.setState({isDisabled:true});
+        this.setState({isDisabled: true});
         console.log(this.state.user);
         this.props.history.push("/admin");
         toast.success('User registration was successful!');
@@ -105,67 +106,86 @@ class RegisterUserForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Full Name
-                            </FormLabel>
-                            <FormControl
-                                autoFocus={true}
-                                id="name"
-                                name="name"
-                                type="text"
-                                value={this.state.name}
-                                placeholder="Enter full name"
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Email
-                            </FormLabel>
-                            <FormControl
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={this.state.email}
-                                placeholder="Enter email"
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Password
-                            </FormLabel>
-                            <FormControl
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={this.state.password}
-                                placeholder="Enter password"
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormCheck
-                                id="isAdmin"
-                                name="isAdmin"
-                                type="checkbox"
-                                value={this.state.isAdmin}
-                                label="Admin rights"
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                        <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                            Register
-                        </Button>
-                            </Col>
-                            <Col md={{span:4,offset:4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Register new User form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                {/*Full Name*/}
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                autoFocus={true}
+                                                id="name"
+                                                name="name"
+                                                type="text"
+                                                value={this.state.name}
+                                                placeholder="Enter user's name"
+                                                onChange={this.handleChange}/>
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                {/*Email*/}
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                value={this.state.email}
+                                                placeholder="Enter user's email"
+                                                onChange={this.handleChange}/>
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormLabel>
+                                                {/*Password*/}
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                id="password"
+                                                name="password"
+                                                type="password"
+                                                value={this.state.password}
+                                                placeholder="Enter user's password"
+                                                onChange={this.handleChange}/>
+                                        </FormGroup>
+                                        <FormGroup className="pt-3">
+                                            <FormCheck
+                                                className="admin-form-control"
+                                                id="isAdmin"
+                                                name="isAdmin"
+                                                type="checkbox"
+                                                value={this.state.isAdmin}
+                                                label="User will have admin rights"
+                                                onChange={this.handleChange}/>
+                                        </FormGroup>
+                                        <Row>
+                                            <Col md={4}>
+                                                <Button type="submit"
+                                                        className="admin-button-update"
+                                                        disabled={this.state.isDisabled}>
+                                                    REGISTER
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO ADMIN PANEL
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );
