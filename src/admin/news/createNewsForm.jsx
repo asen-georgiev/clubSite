@@ -11,6 +11,9 @@ import {toast} from "react-toastify";
 import {FormLabel, Image} from "react-bootstrap";
 import {createNews} from "../../services/newsService";
 import {uploadImage} from "../../services/imageService";
+import Card from "react-bootstrap/Card";
+import CardImg from "react-bootstrap/CardImg";
+import '../../css/admin.css';
 
 
 class CreateNewsForm extends Component {
@@ -139,13 +142,21 @@ class CreateNewsForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Create News Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <FormLabel>
-                                Title
+                                {/*Title*/}
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 autoFocus={true}
                                 name="title"
                                 type="text"
@@ -160,9 +171,10 @@ class CreateNewsForm extends Component {
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
-                                Text
+                                {/*Text*/}
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="text"
                                 as="textarea"
                                 rows="5"
@@ -174,11 +186,14 @@ class CreateNewsForm extends Component {
                                 {this.state.errors.text}
                             </p>}
                         </FormGroup>
+                        <Row className="mb-5">
+                        <Col>
                         <FormGroup>
                             <FormLabel>
-                                Link
+                                {/*Link*/}
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="linkTo"
                                 type="text"
                                 value={this.state.linkTo}
@@ -189,11 +204,14 @@ class CreateNewsForm extends Component {
                                 {this.state.errors.linkTo}
                             </p>}
                         </FormGroup>
+                        </Col>
+                        <Col>
                         <FormGroup>
                             <FormLabel>
-                                News Date
+                                {/*News Date*/}
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="newsDate"
                                 type="text"
                                 value={this.state.newsDate}
@@ -204,11 +222,16 @@ class CreateNewsForm extends Component {
                                 {this.state.errors.newsDate}
                             </p>}
                         </FormGroup>
+                        </Col>
+                        </Row>
                         <FormGroup>
+                            <FormLabel htmlFor="image">
+                                Upload an image for the news:
+                            </FormLabel>
                             <Form.File
+                                className="admin-form-control"
                                 id="image"
                                 name="image"
-                                label="Upload an image for the News"
                                 onChange={this.onPictureHandler}
                             />
                             {this.state.errors.pictureName &&
@@ -216,21 +239,31 @@ class CreateNewsForm extends Component {
                                 {this.state.errors.pictureName}
                             </p>}
                         </FormGroup>
-                        <Row>
+                        <CardImg
+                            src={this.state.showedPicture}
+                            style={{width:300}}
+                        />
+                        <Row className="mt-3">
                             <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Submit
+                                <Button
+                                    className="admin-button-update"
+                                    type="submit"
+                                    disabled={this.state.isDisabled}>
+                                    SUBMIT
                                 </Button>
                             </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
+                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                <Button
+                                    className="admin-button-update"
+                                    onClick={this.adminRedirect}>
+                                   BACK TO ADMIN PANEL
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
-                    <Row>
-                        <Image src={this.state.showedPicture} width="300" height="auto"/>
+                                </Card.Body>
+                            </Card>
+                        </Col>
                     </Row>
                 </Container>
             </div>

@@ -6,6 +6,8 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {deleteCourse, getCourses} from "../../services/courseService";
 
 class AllCoursesList extends Component {
@@ -46,49 +48,63 @@ class AllCoursesList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <h1>All Courses List</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
-                            </Button>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All Courses list :</h3>
+                            </Row>
+                            <Card className="admin-maincard overflow-auto">
+                                <Card.Header>
+                                    <Button
+                                        className='admin-button-update'
+                                        onClick={this.adminRedirect}>
+                                        BACK TO ADMIN PANEL
+                                    </Button>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Table striped bordered hover className="admin-maincard">
+                                        <thead>
+                                        <tr>
+                                            <th>Course name</th>
+                                            <th>Information</th>
+                                            <th>Price</th>
+                                            <th>Age range</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {this.state.courses.map(crs => {
+                                            return (
+                                                <tr key={crs._id}>
+                                                    <td>{crs.courseName}</td>
+                                                    <td>{crs.courseInfo}</td>
+                                                    <td>{crs.coursePrice}</td>
+                                                    <td>{crs.courseAge}</td>
+                                                    <td>
+                                                        <Link
+                                                            className="admin-button-update btn"
+                                                            to={`/admin/courseslist/${crs._id}`}>
+                                                            Update
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <Button
+                                                            className="admin-button-delete"
+                                                            onClick={() => this.handleDelete(crs)}>
+                                                            Delete
+                                                        </Button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                        </tbody>
+                                    </Table>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </Row>
-                    <br/>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                        <tr>
-                            <th>Course name</th>
-                            <th>Course info</th>
-                            <th>Course price</th>
-                            <th>Course age range</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.courses.map(crs => {
-                            return (
-                                <tr key={crs._id}>
-                                    <td>{crs.courseName}</td>
-                                    <td>{crs.courseInfo}</td>
-                                    <td>{crs.coursePrice}</td>
-                                    <td>{crs.courseAge}</td>
-                                    <td>
-                                        <Link to={`/admin/courseslist/${crs._id}`}>Update</Link>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            onClick={() => this.handleDelete(crs)}>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-                    </Table>
                 </Container>
             </div>
         );

@@ -53,12 +53,36 @@
 
 .admin-button-update{
     font-size: large !important;
+    background-color: cadetblue !important;
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    color: navajowhite !important;
 }
 
+
+.admin-button-update:hover{
+    color: white !important;
+    box-shadow:
+            0 0 0 2px darkslategrey;
+    border-radius: 5px;
+}
 
 .admin-button-delete{
     font-size: large !important;
+    background-color: lightcoral !important;
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    color: navajowhite !important;
 }
+
+
+.admin-button-delete:hover{
+    color: white !important;
+    box-shadow:
+            0 0 0 2px red;
+    border-radius: 5px;
+}
+
 
 ::-webkit-file-upload-button {
     background-color: transparent !important;

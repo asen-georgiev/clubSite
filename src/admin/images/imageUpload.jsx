@@ -56,7 +56,7 @@ class ImageUpload extends Component {
             <div>
                 <Container className="admin-container container" fluid={true}>
                     <Row className="m-0">
-                        <Col style={{marginBottom: 180}}>
+                        <Col style={{marginBottom: 160}}>
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
                                 <h3>Upload image to Gallery :</h3>
                             </Row>

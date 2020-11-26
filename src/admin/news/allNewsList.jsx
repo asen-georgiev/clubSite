@@ -6,8 +6,15 @@ import Table from "react-bootstrap/Table";
 import {Button, Image} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 import {picturesUrl} from "../../config.json";
 import {deleteNew, getNews} from "../../services/newsService";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DropdownItem from "react-bootstrap/DropdownItem";
+import Accordion from 'react-bootstrap/Accordion'
+import AccordionToggle, {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
+import AccordionCollapse from "react-bootstrap/AccordionCollapse";
 
 class AllNewsList extends Component {
     constructor(props) {
@@ -25,23 +32,20 @@ class AllNewsList extends Component {
     }
 
 
-
-    handleDelete = async(anew) =>{
+    handleDelete = async (anew) => {
         const allNews = this.state.news;
         const news = allNews.filter(n => n._id !== anew._id);
         this.setState({news});
 
-        try{
+        try {
             await deleteNew(anew._id);
-        }
-        catch (e) {
-            if(e.response && e.response.status === 404)
+        } catch (e) {
+            if (e.response && e.response.status === 404)
                 console.log('The New with the given ID was not found!');
             toast.error('The New has already been deleted!');
             this.setState({news: allNews});
         }
     }
-
 
 
     adminRedirect = () => {
@@ -51,62 +55,78 @@ class AllNewsList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <h1>All News</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
-                            </Button>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All News list :</h3>
+                            </Row>
+                            <Accordion>
+                                <Card className="admin-maincard overflow-auto">
+                                    <Card.Header>
+                                        <Button
+                                            className="admin-button-update"
+                                            onClick={this.adminRedirect}>
+                                            BACK TO ADMIN PANEL
+                                        </Button>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <Table striped bordered hover className="admin-maincard">
+                                            <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Text</th>
+                                                <th>Date</th>
+                                                <th>Link</th>
+                                                <th>Thumbnail</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {this.state.news.map(n => {
+                                                return (
+                                                    <tr key={n._id}>
+                                                        <td>{n.title}</td>
+                                                        <td>
+                                                            <div
+                                                                className="overflow-auto"
+                                                                style={{height: 130}}>
+                                                                {n.text}
+                                                            </div>
+                                                        </td>
+                                                        <td>{n.newsDate}</td>
+                                                        <td>
+                                                            <a className="admin-cardlink" href={"http://" + n.linkTo}>
+                                                                {n.linkTo}
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <Image src={picturesUrl + n.pictureName} width="100"/>
+                                                        </td>
+                                                        <td>
+                                                            <Link className="admin-button-update btn"
+                                                                  to={`/admin/newslist/${n._id}`}>
+                                                                Update
+                                                            </Link>
+                                                        </td>
+                                                        <td>
+                                                            <Button
+                                                                className="admin-button-delete"
+                                                                onClick={() => this.handleDelete(n)}>
+                                                                Delete
+                                                            </Button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })}
+                                            </tbody>
+                                        </Table>
+                                    </Card.Body>
+                                </Card>
+                            </Accordion>
                         </Col>
                     </Row>
-                    <br/>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Text</th>
-                            <th>Date</th>
-                            <th>News Date</th>
-                            <th>Link</th>
-                            <th>Thumbnail</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.news.map(n => {
-                            return (
-                                <tr key={n._id}>
-                                    <td>{n.title}</td>
-                                    <td>{n.text}</td>
-                                    <td>{n.eventDate}</td>
-                                    <td>{n.newsDate}</td>
-                                    <td>
-                                        <a href={"http://" + n.linkTo}>
-                                            {n.linkTo}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <Image src={picturesUrl + n.pictureName} width="100"/>
-                                    </td>
-                                    <td>
-                                        <Link to={`/admin/newslist/${n._id}`}>
-                                            Update
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            variant="danger"
-                                            onClick={() => this.handleDelete(n)}>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-                    </Table>
                 </Container>
             </div>
         );

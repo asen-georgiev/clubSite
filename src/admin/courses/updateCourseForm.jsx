@@ -10,7 +10,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
-import {updateClubBio} from "../../services/clubbioService";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 
 class UpdateCourseForm extends Component {
     constructor(props) {
@@ -140,13 +141,21 @@ class UpdateCourseForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 11}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Update Course Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <FormLabel>
                                 Course name
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 autofocus={true}
                                 name="courseName"
                                 type="text"
@@ -164,6 +173,7 @@ class UpdateCourseForm extends Component {
                                 Course info
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="courseInfo"
                                 as="textarea"
                                 rows="3"
@@ -176,11 +186,14 @@ class UpdateCourseForm extends Component {
                                 {this.state.errors.courseInfo}
                             </div>}
                         </FormGroup>
+                        <Row className="mb-2">
+                            <Col>
                         <FormGroup>
                             <FormLabel>
                                 Course price
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="coursePrice"
                                 type="text"
                                 value={this.state.course.coursePrice}
@@ -192,11 +205,14 @@ class UpdateCourseForm extends Component {
                                 {this.state.errors.coursePrice}
                             </div>}
                         </FormGroup>
+                            </Col>
+                            <Col>
                         <FormGroup>
                             <FormLabel>
                                 Course age range
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="courseAge"
                                 type="text"
                                 value={this.state.course.courseAge}
@@ -208,19 +224,30 @@ class UpdateCourseForm extends Component {
                                 {this.state.errors.courseAge}
                             </div>}
                         </FormGroup>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                   Update
+                                <Button
+                                    className="admin-button-update"
+                                    type="submit"
+                                    disabled={this.state.isDisabled}>
+                                   UPDATE
                                 </Button>
                             </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Courses list
+                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                <Button
+                                    className="admin-button-update"
+                                    onClick={this.adminRedirect}>
+                                    BACK TO COURSES LIST
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

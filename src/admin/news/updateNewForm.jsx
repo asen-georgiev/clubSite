@@ -12,6 +12,8 @@ import {FormLabel, Image} from "react-bootstrap";
 import {picturesUrl} from "../../config.json";
 import {getNew, updateNew} from "../../services/newsService";
 import {uploadImage} from "../../services/imageService";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 
 
 class UpdateNewForm extends Component {
@@ -171,13 +173,21 @@ class UpdateNewForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                    <Col>
+                        <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                            <h3>Update News Form :</h3>
+                        </Row>
+                        <Card className="admin-maincard">
+                            <Card.Body>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <FormLabel>
                                 Title
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 autoFocus={true}
                                 name="title"
                                 type="text"
@@ -190,6 +200,7 @@ class UpdateNewForm extends Component {
                                 Text
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="text"
                                 as="textarea"
                                 rows="5"
@@ -197,22 +208,28 @@ class UpdateNewForm extends Component {
                                 placeholder="Enter news text"
                                 onChange={this.handleChange}/>
                         </FormGroup>
+                        <Row className="mb-5">
+                            <Col>
                         <FormGroup>
                             <FormLabel>
                                 Link
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="linkTo"
                                 type="text"
                                 value={this.state.anew.linkTo}
                                 placeholder="Enter news link"
                                 onChange={this.handleChange}/>
                         </FormGroup>
+                            </Col>
+                            <Col>
                         <FormGroup>
                             <FormLabel>
                                 News Date
                             </FormLabel>
                             <FormControl
+                                className="admin-form-control"
                                 name="newsDate"
                                 type="text"
                                 value={this.state.anew.newsDate}
@@ -223,46 +240,55 @@ class UpdateNewForm extends Component {
                                 {this.state.errors.newsDate}
                             </p>}
                         </FormGroup>
+                            </Col>
+                        </Row>
                         <FormGroup>
                             <Form.File
+                                className="admin-form-control"
                                 id="image"
                                 name="pictureName"
                                 label="Change the image for the News"
                                 onChange={this.handlePicture}
                             />
                         </FormGroup>
-                        <Row>
                             {this.state.showedPicture === null &&
                             <Col>
-                                <h4>Current picture:</h4>
+                                <h5>Current picture:</h5>
                                 <Image src={picturesUrl + this.state.anew.pictureName}
-                                       width="200"
+                                       width="300"
                                        height="auto"/>
                             </Col>
                             }
                             {this.state.showedPicture &&
                             <Col>
-                                <h4>Updated picture:</h4>
+                                <h5>Updated picture:</h5>
                                 <Image src={this.state.showedPicture}
-                                       width="200"
+                                       width="300"
                                        height="auto"/>
                             </Col>
                             }
-                        </Row>
-                        <br/>
-                        <Row>
+                        <Row className="mt-3">
                             <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Update
+                                <Button
+                                    className="admin-button-update"
+                                    type="submit"
+                                    disabled={this.state.isDisabled}>
+                                   UPDATE
                                 </Button>
                             </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to News list
+                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                <Button
+                                    className="admin-button-update"
+                                    onClick={this.adminRedirect}>
+                                   BACK TO NEWS LIST
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    </Row>
                 </Container>
             </div>
         );

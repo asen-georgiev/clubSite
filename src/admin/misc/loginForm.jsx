@@ -150,7 +150,6 @@ class LoginForm extends Component {
                                                 <Row className="justify-content-end px-3">
                                                     <Button
                                                         className="d-inline-block"
-                                                        variant="success"
                                                         disabled={this.state.isDisabled}
                                                         type="submit">
                                                         SUBMIT

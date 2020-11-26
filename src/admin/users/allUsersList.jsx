@@ -58,7 +58,9 @@ class AllUsersList extends Component {
                             </Row>
                             <Card className="admin-maincard">
                             <Card.Header>
-                                    <Button onClick={this.adminRedirect}>
+                                    <Button
+                                        className="admin-button-update"
+                                        onClick={this.adminRedirect}>
                                         BACK TO ADMIN PANEL
                                     </Button>
                             </Card.Header>
