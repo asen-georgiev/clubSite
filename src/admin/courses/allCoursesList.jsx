@@ -84,7 +84,7 @@ class AllCoursesList extends Component {
                                                     <td>{crs.courseAge}</td>
                                                     <td>
                                                         <Link
-                                                            className="admin-button-update btn"
+                                                            className="admin-button-submit btn"
                                                             to={`/admin/courseslist/${crs._id}`}>
                                                             Update
                                                         </Link>

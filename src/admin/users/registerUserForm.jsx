@@ -24,7 +24,7 @@ class RegisterUserForm extends Component {
             password: "",
             isAdmin: false,
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     };
 
@@ -85,6 +85,7 @@ class RegisterUserForm extends Component {
         const errors = this.validate();
         this.setState({errors: errors || {}});
         if (errors) return;
+        this.setState({isDisabled: true});
         const obj = {
             name: this.state.name,
             email: this.state.email,
@@ -92,9 +93,8 @@ class RegisterUserForm extends Component {
             isAdmin: this.state.isAdmin
         };
         await registerUser(obj);
-        this.setState({isDisabled: true});
         console.log(this.state.user);
-        this.props.history.push("/admin");
+        // this.props.history.push("/admin");
         toast.success('User registration was successful!');
     }
 
@@ -128,6 +128,10 @@ class RegisterUserForm extends Component {
                                                 value={this.state.name}
                                                 placeholder="Enter user's name"
                                                 onChange={this.handleChange}/>
+                                            {this.state.errors.name &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.name}
+                                            </p>}
                                         </FormGroup>
                                         <FormGroup className="pt-3">
                                             <FormLabel>
@@ -141,6 +145,10 @@ class RegisterUserForm extends Component {
                                                 value={this.state.email}
                                                 placeholder="Enter user's email"
                                                 onChange={this.handleChange}/>
+                                            {this.state.errors.email &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.email}
+                                            </p>}
                                         </FormGroup>
                                         <FormGroup className="pt-3">
                                             <FormLabel>
@@ -154,6 +162,10 @@ class RegisterUserForm extends Component {
                                                 value={this.state.password}
                                                 placeholder="Enter user's password"
                                                 onChange={this.handleChange}/>
+                                            {this.state.errors.password &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.password}
+                                            </p>}
                                         </FormGroup>
                                         <FormGroup className="pt-3">
                                             <FormCheck
@@ -168,7 +180,7 @@ class RegisterUserForm extends Component {
                                         <Row>
                                             <Col md={4}>
                                                 <Button type="submit"
-                                                        className="admin-button-update"
+                                                        className="admin-button-submit"
                                                         disabled={this.state.isDisabled}>
                                                     REGISTER
                                                 </Button>

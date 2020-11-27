@@ -9,6 +9,8 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {getEventCalendar, updateEventCalendar} from "../../services/eventService";
 
 class UpdateEventForm extends Component {
@@ -23,7 +25,7 @@ class UpdateEventForm extends Component {
                 eventLink: ''
             },
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -81,7 +83,10 @@ class UpdateEventForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         event[name] = value;
-        this.setState({event});
+        this.setState({
+            event,
+            isDisabled: false
+        });
     }
 
 
@@ -145,98 +150,125 @@ class UpdateEventForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Event Title
-                            </FormLabel>
-                            <FormControl
-                                autoFocus={true}
-                                name="eventTitle"
-                                type="text"
-                                value={this.state.event.eventTitle}
-                                placeholder="Enter the title of the event"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.eventTitle &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.eventTitle}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Event Info
-                            </FormLabel>
-                            <FormControl
-                                name="eventInfo"
-                                as="textarea"
-                                rows="3"
-                                value={this.state.event.eventInfo}
-                                placeholder="Enter information about the event"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.eventInfo &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.eventInfo}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Event Date
-                            </FormLabel>
-                            <FormControl
-                                name="eventDate"
-                                type="text"
-                                value={this.state.event.eventDate}
-                                placeholder="Enter the date of the event"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.eventDate &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.eventDate}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Event Location
-                            </FormLabel>
-                            <FormControl
-                                name="eventLocation"
-                                type="text"
-                                value={this.state.event.eventLocation}
-                                placeholder="Enter the location of the event"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.eventLocation &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.eventLocation}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Event Link
-                            </FormLabel>
-                            <FormControl
-                                name="eventLink"
-                                type="text"
-                                value={this.state.event.eventLink}
-                                placeholder="Enter link to additional information"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.eventLink &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.eventLink}
-                            </p>}
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Update
-                                </Button>
-                            </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Events list
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Update Sport event Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                Event Title
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                autoFocus={true}
+                                                name="eventTitle"
+                                                type="text"
+                                                value={this.state.event.eventTitle}
+                                                placeholder="Enter the title of the event"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.eventTitle &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.eventTitle}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                Event Info
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                name="eventInfo"
+                                                as="textarea"
+                                                rows="3"
+                                                value={this.state.event.eventInfo}
+                                                placeholder="Enter information about the event"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.eventInfo &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.eventInfo}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                Event Location
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                name="eventLocation"
+                                                type="text"
+                                                value={this.state.event.eventLocation}
+                                                placeholder="Enter the location of the event"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.eventLocation &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.eventLocation}
+                                            </p>}
+                                        </FormGroup>
+                                        <Row className="mb-4">
+                                            <Col>
+                                                <FormGroup>
+                                                    <FormLabel>
+                                                        Event Date
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        className="admin-form-control"
+                                                        name="eventDate"
+                                                        type="text"
+                                                        value={this.state.event.eventDate}
+                                                        placeholder="Enter the date of the event"
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.eventDate &&
+                                                    <p className="text-danger pt-2">
+                                                        {this.state.errors.eventDate}
+                                                    </p>}
+                                                </FormGroup>
+                                            </Col>
+                                            <Col>
+                                                <FormGroup>
+                                                    <FormLabel>
+                                                        Event Link
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        className="admin-form-control"
+                                                        name="eventLink"
+                                                        type="text"
+                                                        value={this.state.event.eventLink}
+                                                        placeholder="Enter link to additional information"
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.eventLink &&
+                                                    <p className="text-danger pt-2">
+                                                        {this.state.errors.eventLink}
+                                                    </p>}
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-submit"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    UPDATE
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO EVENTS LIST
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

@@ -24,7 +24,7 @@ class UpdateCourseForm extends Component {
                 courseAge:""
             },
             errors:{},
-            isDisabled:false
+            isDisabled:true
         }
     }
 
@@ -64,7 +64,10 @@ class UpdateCourseForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         course[name] = value;
-        this.setState({course});
+        this.setState({
+            course,
+            isDisabled:false
+        });
     }
 
 
@@ -186,7 +189,7 @@ class UpdateCourseForm extends Component {
                                 {this.state.errors.courseInfo}
                             </div>}
                         </FormGroup>
-                        <Row className="mb-2">
+                        <Row className="mb-4">
                             <Col>
                         <FormGroup>
                             <FormLabel>
@@ -229,7 +232,7 @@ class UpdateCourseForm extends Component {
                         <Row>
                             <Col md={4}>
                                 <Button
-                                    className="admin-button-update"
+                                    className="admin-button-submit"
                                     type="submit"
                                     disabled={this.state.isDisabled}>
                                    UPDATE

@@ -88,7 +88,7 @@ class ImageUpload extends Component {
                         <Col md={4}>
                             <Button
                                 type="button"
-                                className="admin-button-update"
+                                className="admin-button-submit"
                                 disabled={this.state.isDisabled}
                                 onClick={this.onClickHandler}>
                                 UPLOAD

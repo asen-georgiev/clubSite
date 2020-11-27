@@ -10,22 +10,23 @@ import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
 import {createTimeDH} from "../../services/timedhService";
-
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 
 
 class CreateTimeDhForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            day:'',
-            hour:'',
-            errors:{},
-            isDisabled:false
+            day: '',
+            hour: '',
+            errors: {},
+            isDisabled: true
         }
     }
 
 
-     schema = Joi.object({
+    schema = Joi.object({
         day: Joi.string()
             .required()
             .min(5)
@@ -37,7 +38,7 @@ class CreateTimeDhForm extends Component {
     });
 
 
-    handleChange = (event) =>{
+    handleChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -49,29 +50,28 @@ class CreateTimeDhForm extends Component {
     }
 
 
-    validate = () =>{
+    validate = () => {
         const obj = {
             day: this.state.day,
             hour: this.state.hour
         }
-        const options = {abortEarly:false};
-        const result = this.schema.validate(obj,options);
+        const options = {abortEarly: false};
+        const result = this.schema.validate(obj, options);
         console.log(result);
 
-        if(!result.error) return null;
+        if (!result.error) return null;
 
         const errors = {};
-        for(let item of result.error.details)
+        for (let item of result.error.details)
             errors[item.path[0]] = item.message;
         return errors;
     }
 
 
-
-    handleSubmit = async(event) =>{
+    handleSubmit = async (event) => {
         event.preventDefault();
         const errors = this.validate();
-        this.setState({errors:errors || {}});
+        this.setState({errors: errors || {}});
         console.log(errors);
 
         this.setState({isDisabled: true});
@@ -86,7 +86,6 @@ class CreateTimeDhForm extends Component {
     }
 
 
-
     adminRedirect = () => {
         this.props.history.push("/admin");
     }
@@ -94,52 +93,76 @@ class CreateTimeDhForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Course Day
-                            </FormLabel>
-                            <FormControl
-                            autoFocus={true}
-                            name="day"
-                            type="text"
-                            value={this.state.day}
-                            placeholder="Enter the day for the course"
-                            onChange={this.handleChange}/>
-                            {this.state.errors.day &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.day}
-                            </p>}
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>
-                                Course Hour
-                            </FormLabel>
-                            <FormControl
-                                name="hour"
-                                type="text"
-                                value={this.state.hour}
-                                placeholder="Enter the hour for the course"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.hour &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.hour}
-                            </p>}
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Submit
-                                </Button>
-                            </Col>
-                            <Col md={{span:4,offset:4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 200}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 85}}>
+                                <h3>Create Day / Hour Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <Row className="mb-3">
+                                            <Col>
+                                                <FormGroup>
+                                                    <FormLabel>
+                                                        {/*Course Day*/}
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        className="admin-form-control"
+                                                        autoFocus={true}
+                                                        name="day"
+                                                        type="text"
+                                                        value={this.state.day}
+                                                        placeholder="Enter the day for the course"
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.day &&
+                                                    <p className="text-danger pt-2">
+                                                        {this.state.errors.day}
+                                                    </p>}
+                                                </FormGroup>
+                                            </Col>
+                                            <Col>
+                                                <FormGroup>
+                                                    <FormLabel>
+                                                        {/*Course Hour*/}
+                                                    </FormLabel>
+                                                    <FormControl
+                                                        className="admin-form-control"
+                                                        name="hour"
+                                                        type="text"
+                                                        value={this.state.hour}
+                                                        placeholder="Enter the hour for the course"
+                                                        onChange={this.handleChange}/>
+                                                    {this.state.errors.hour &&
+                                                    <p className="text-danger pt-2">
+                                                        {this.state.errors.hour}
+                                                    </p>}
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                        <Row className="mb-3">
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-submit"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    SUBMIT
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO ADMIN PANEL
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

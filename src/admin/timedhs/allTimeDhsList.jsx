@@ -6,6 +6,8 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {deleteTimeDH, getTimeDHs} from "../../services/timedhService";
 
 
@@ -48,47 +50,57 @@ class AllTimeDhsList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light" fluid={true}>
-                    <h1>All Time:days/hours list</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
-                            </Button>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All Days / Hours list:</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Header>
+                                    <Button className="admin-button-update" onClick={this.adminRedirect}>
+                                        BACK TO ADMIN PANEL
+                                    </Button>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Table striped bordered hover className="admin-maincard">
+                                        <thead>
+                                        <tr>
+                                            <th>Course day</th>
+                                            <th>Course hour</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {this.state.timedhs.map(tim => {
+                                            return (
+                                                <tr key={tim._id}>
+                                                    <td>{tim.day}</td>
+                                                    <td>{tim.hour}</td>
+                                                    <td>
+                                                        <Link
+                                                            className="admin-button-submit btn"
+                                                            to={`/admin/timedhslist/${tim._id}`}>
+                                                            Update
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <Button
+                                                            className="admin-button-delete"
+                                                            onClick={() => this.handleDelete(tim)}>
+                                                            Delete
+                                                        </Button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                        </tbody>
+                                    </Table>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </Row>
-                    <Table striped bordered hover variant="light">
-                        <thead>
-                        <tr>
-                            <th>Course day</th>
-                            <th>Course hour</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.timedhs.map(tim => {
-                            return (
-                                <tr key={tim._id}>
-                                    <td>{tim.day}</td>
-                                    <td>{tim.hour}</td>
-                                    <td>
-                                        <Link to={`/admin/timedhslist/${tim._id}`}>
-                                            Update
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            onClick={() => this.handleDelete(tim)}>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-
-                    </Table>
                 </Container>
             </div>
         );

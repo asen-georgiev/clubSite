@@ -29,7 +29,7 @@ class CreateNewsForm extends Component {
             showedPicture: '',
             uploadedPicture: '',
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     };
 
@@ -246,7 +246,7 @@ class CreateNewsForm extends Component {
                         <Row className="mt-3">
                             <Col md={4}>
                                 <Button
-                                    className="admin-button-update"
+                                    className="admin-button-submit"
                                     type="submit"
                                     disabled={this.state.isDisabled}>
                                     SUBMIT

@@ -9,6 +9,8 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {getClubBio, updateClubBio} from "../../services/clubbioService";
 
 class UpdateClubBioForm extends Component {
@@ -20,7 +22,7 @@ class UpdateClubBioForm extends Component {
                 bioText: ""
             },
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -49,7 +51,10 @@ class UpdateClubBioForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         bio[name] = value;
-        this.setState({bio});
+        this.setState({
+            bio,
+            isDisabled: true
+        });
     }
 
 
@@ -108,58 +113,78 @@ class UpdateClubBioForm extends Component {
     }
 
 
-        adminRedirect = () => {
-            this.props.history.push("/admin/bioslist");
-        }
+    adminRedirect = () => {
+        this.props.history.push("/admin/bioslist");
+    }
 
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Club Bio Title
-                            </FormLabel>
-                            <FormControl
-                                autoFocus={true}
-                                name="bioTitle"
-                                type="text"
-                                value={this.state.bio.bioTitle}
-                                placeholder="Enter the title for the club biography"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.bioTitle &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.bioTitle}
-                            </p>}
-                            <FormLabel>
-                                Club Bio Text
-                            </FormLabel>
-                            <FormControl
-                                name="bioText"
-                                as="textarea"
-                                rows="10"
-                                value={this.state.bio.bioText}
-                                placeholder="Enter the text for the club biography"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.bioText &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.bioText}
-                            </p>}
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Update
-                                </Button>
-                            </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Club Bios list
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Update Club biography Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                Club Biography Title
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                autoFocus={true}
+                                                name="bioTitle"
+                                                type="text"
+                                                value={this.state.bio.bioTitle}
+                                                placeholder="Enter the title for the club biography"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.bioTitle &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.bioTitle}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                Club Biography Text
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                name="bioText"
+                                                as="textarea"
+                                                rows="8"
+                                                value={this.state.bio.bioText}
+                                                placeholder="Enter the text for the club biography"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.bioText &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.bioText}
+                                            </p>}
+                                        </FormGroup>
+                                        <Row className="mt-5">
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-submit"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    UPDATE
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO CLUB BIOS LIST
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

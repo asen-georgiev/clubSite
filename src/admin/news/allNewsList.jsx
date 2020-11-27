@@ -10,8 +10,6 @@ import '../../css/admin.css';
 import Card from "react-bootstrap/Card";
 import {picturesUrl} from "../../config.json";
 import {deleteNew, getNews} from "../../services/newsService";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import DropdownItem from "react-bootstrap/DropdownItem";
 import Accordion from 'react-bootstrap/Accordion'
 import AccordionToggle, {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
 import AccordionCollapse from "react-bootstrap/AccordionCollapse";
@@ -105,7 +103,7 @@ class AllNewsList extends Component {
                                                             <Image src={picturesUrl + n.pictureName} width="100"/>
                                                         </td>
                                                         <td>
-                                                            <Link className="admin-button-update btn"
+                                                            <Link className="admin-button-submit btn"
                                                                   to={`/admin/newslist/${n._id}`}>
                                                                 Update
                                                             </Link>

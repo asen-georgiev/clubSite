@@ -9,6 +9,8 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {getCourses} from "../../services/courseService";
 import {getTimeDHs} from "../../services/timedhService";
 import {createTimeTable} from "../../services/timetableService";
@@ -20,7 +22,7 @@ class CreateTimeTableForm extends Component {
             courseId: '',
             timedhId: '',
             errors: {},
-            isDisabled: false,
+            isDisabled: true,
             courses: [],
             timedhs: []
         }
@@ -66,10 +68,10 @@ class CreateTimeTableForm extends Component {
     }
 
 
-    handleSubmit = async(event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         const errors = this.validate();
-        this.setState({errors:errors || {}});
+        this.setState({errors: errors || {}});
         console.log(errors);
 
         this.setState({isDisabled: true});
@@ -103,61 +105,87 @@ class CreateTimeTableForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Row>
-                            <FormGroup as={Col}>
-                                <FormLabel htmlFor="courseControl">
-                                    Course
-                                </FormLabel>
-                                <FormControl
-                                    as="select"
-                                    id="courseControl"
-                                    name="courseId"
-                                    onChange={this.handleChange}>
-                                    <option>Choose a course...</option>
-                                    {this.state.courses.map(crs => {
-                                        return (
-                                            <option key={crs._id} value={crs._id}>
-                                                {crs.courseName}
-                                            </option>
-                                        )
-                                    })}
-                                </FormControl>
-                            </FormGroup>
-                            <FormGroup as={Col}>
-                                <FormLabel htmlFor="timedhControl">
-                                    Time:day/hour
-                                </FormLabel>
-                                <FormControl
-                                    as="select"
-                                    id="timedhControl"
-                                    name="timedhId"
-                                    onChange={this.handleChange}>
-                                    <option>Choose day and hour...</option>
-                                    {this.state.timedhs.map(tdh => {
-                                        return (
-                                            <option key={tdh._id} value={tdh._id}>
-                                                {tdh.day} : {tdh.hour}
-                                            </option>
-                                        )
-                                    })}
-                                </FormControl>
-                            </FormGroup>
-                        </Form.Row>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Submit
-                                </Button>
-                            </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 140}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 85}}>
+                                <h3>Create Timetable Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <Form.Row className="mb-3">
+                                            <FormGroup as={Col}>
+                                                <FormLabel htmlFor="courseControl">
+                                                    {/*Course*/}
+                                                </FormLabel>
+                                                <FormControl
+                                                    className="admin-form-control"
+                                                    as="select"
+                                                    id="courseControl"
+                                                    name="courseId"
+                                                    onChange={this.handleChange}>
+                                                    <option>Choose a course...</option>
+                                                    {this.state.courses.map(crs => {
+                                                        return (
+                                                            <option key={crs._id} value={crs._id}>
+                                                                {crs.courseName}
+                                                            </option>
+                                                        )
+                                                    })}
+                                                </FormControl>
+                                                {this.state.errors.courseId &&
+                                                <p className="text-danger pt-2">
+                                                    {this.state.errors.courseId}
+                                                </p>}
+                                            </FormGroup>
+                                            <FormGroup as={Col}>
+                                                <FormLabel htmlFor="timedhControl">
+                                                    {/*Time:day/hour*/}
+                                                </FormLabel>
+                                                <FormControl
+                                                    className="admin-form-control"
+                                                    as="select"
+                                                    id="timedhControl"
+                                                    name="timedhId"
+                                                    onChange={this.handleChange}>
+                                                    <option>Choose day and hour...</option>
+                                                    {this.state.timedhs.map(tdh => {
+                                                        return (
+                                                            <option key={tdh._id} value={tdh._id}>
+                                                                {tdh.day} : {tdh.hour}
+                                                            </option>
+                                                        )
+                                                    })}
+                                                </FormControl>
+                                                {this.state.errors.timedhId &&
+                                                <p className="text-danger pt-2">
+                                                    {this.state.errors.timedhId}
+                                                </p>}
+                                            </FormGroup>
+                                        </Form.Row>
+                                        <Row className="mb-3">
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-submit"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    SUBMIT
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO ADMIN PANEL
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

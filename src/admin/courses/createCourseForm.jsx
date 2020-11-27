@@ -22,7 +22,7 @@ class CreateCourseForm extends Component {
             coursePrice: '',
             courseAge: '',
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -151,7 +151,7 @@ class CreateCourseForm extends Component {
                                                 {this.state.errors.courseInfo}
                                             </div>}
                                         </FormGroup>
-                                        <Row className="mb-3">
+                                        <Row className="mb-4">
                                             <Col>
                                                 <FormGroup>
                                                     <FormLabel>
@@ -194,7 +194,7 @@ class CreateCourseForm extends Component {
                                         <Row>
                                             <Col md={4}>
                                                 <Button
-                                                    className="admin-button-update"
+                                                    className="admin-button-submit"
                                                     type="submit"
                                                     disabled={this.state.isDisabled}>
                                                     SUBMIT

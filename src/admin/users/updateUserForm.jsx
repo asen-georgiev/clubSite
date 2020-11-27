@@ -25,7 +25,7 @@ class UpdateUserForm extends Component {
                 isAdmin: false,
             },
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -208,7 +208,7 @@ class UpdateUserForm extends Component {
                                         <Row>
                                             <Col md={4}>
                                                 <Button
-                                                    className="admin-button-update"
+                                                    className="admin-button-submit"
                                                     type="submit"
                                                     disabled={this.state.isDisabled}>
                                                     UPDATE

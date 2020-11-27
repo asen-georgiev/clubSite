@@ -9,6 +9,8 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {createClubBio} from "../../services/clubbioService";
 
 
@@ -19,7 +21,7 @@ class CreateClubBioForm extends Component {
             bioTitle: '',
             bioText: '',
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -93,49 +95,69 @@ class CreateClubBioForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <FormLabel>
-                                Club Bio Title
-                            </FormLabel>
-                            <FormControl
-                                autoFocus={true}
-                                name="bioTitle"
-                                type="text"
-                                placeholder="Enter the title for the club biography"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.bioTitle &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.bioTitle}
-                            </p>}
-                            <FormLabel>
-                                Club Bio Text
-                            </FormLabel>
-                            <FormControl
-                                name="bioText"
-                                as="textarea"
-                                rows="10"
-                                placeholder="Enter the text for the club biography"
-                                onChange={this.handleChange}/>
-                            {this.state.errors.bioText &&
-                            <p className="text-danger pt-2">
-                                {this.state.errors.bioText}
-                            </p>}
-                        </FormGroup>
-                        <Row>
-                            <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Submit
-                                </Button>
-                            </Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Admin Panel
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>Create Club biography Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                {/*Club Bio Title*/}
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                autoFocus={true}
+                                                name="bioTitle"
+                                                type="text"
+                                                placeholder="Enter the title for the club biography"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.bioTitle &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.bioTitle}
+                                            </p>}
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <FormLabel>
+                                                {/*Club Bio Text*/}
+                                            </FormLabel>
+                                            <FormControl
+                                                className="admin-form-control"
+                                                name="bioText"
+                                                as="textarea"
+                                                rows="8"
+                                                placeholder="Enter the text for the club biography"
+                                                onChange={this.handleChange}/>
+                                            {this.state.errors.bioText &&
+                                            <p className="text-danger pt-2">
+                                                {this.state.errors.bioText}
+                                            </p>}
+                                        </FormGroup>
+                                        <Row className="mt-5">
+                                            <Col md={4}>
+                                                <Button
+                                                    className="admin-button-submit"
+                                                    type="submit"
+                                                    disabled={this.state.isDisabled}>
+                                                    SUBMIT
+                                                </Button>
+                                            </Col>
+                                            <Col md={{span: 4, offset: 4}} className="d-flex flex-row-reverse">
+                                                <Button
+                                                    className="admin-button-update"
+                                                    onClick={this.adminRedirect}>
+                                                    BACK TO ADMIN PANEL
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

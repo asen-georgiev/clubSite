@@ -9,6 +9,8 @@ import Button from "react-bootstrap/Button";
 import Joi from "joi";
 import {toast} from "react-toastify";
 import {FormLabel} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {getCourses} from "../../services/courseService";
 import {getTimeDHs} from "../../services/timedhService";
 import {getTimeTable, updateTimeTable} from "../../services/timetableService";
@@ -25,7 +27,7 @@ class UpdateTimeTableForm extends Component {
             courses: [],
             timedhs: [],
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -73,7 +75,8 @@ class UpdateTimeTableForm extends Component {
         const name = target.name;
         timetable[name] = value;
         this.setState({
-            timetable
+            timetable,
+            isDisabled:false
         });
     }
 
@@ -137,14 +140,22 @@ class UpdateTimeTableForm extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light" fluid={true}>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col style={{marginBottom: 135}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 85}}>
+                                <h3>Update Timetable Form :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Body>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Row>
+                        <Form.Row className="mb-3">
                             <FormGroup as={Col}>
                                 <FormLabel htmlFor="courseControl">
                                     Course
                                 </FormLabel>
                                 <FormControl
+                                    className="admin-form-control"
                                     as="select"
                                     id="courseControl"
                                     name="courseId"
@@ -160,12 +171,17 @@ class UpdateTimeTableForm extends Component {
                                         )
                                     })}
                                 </FormControl>
+                                {this.state.errors.courseId &&
+                                <p className="text-danger pt-2">
+                                    {this.state.errors.courseId}
+                                </p>}
                             </FormGroup>
                             <FormGroup as={Col}>
                                 <FormLabel htmlFor="timedhControl">
-                                    Time:day/hour
+                                    Day / Hour
                                 </FormLabel>
                                 <FormControl
+                                    className="admin-form-control"
                                     as="select"
                                     id="timedhControl"
                                     name="timedhId"
@@ -181,21 +197,34 @@ class UpdateTimeTableForm extends Component {
                                         )
                                     })}
                                 </FormControl>
+                                {this.state.errors.timedhId &&
+                                <p className="text-danger pt-2">
+                                    {this.state.errors.timedhId}
+                                </p>}
                             </FormGroup>
                         </Form.Row>
-                        <Row>
+                        <Row className="mb-3">
                             <Col md={4}>
-                                <Button variant="primary" type="submit" disabled={this.state.isDisabled}>
-                                    Update
+                                <Button
+                                    className="admin-button-submit"
+                                        type="submit"
+                                        disabled={this.state.isDisabled}>
+                                    UPDATE
                                 </Button>
                             </Col>
                             <Col md={{span: 4, offset: 4}}>
-                                <Button variant="primary" onClick={this.adminRedirect}>
-                                    Back to Time table list
+                                <Button
+                                    className="admin-button-update"
+                                        onClick={this.adminRedirect}>
+                                    BACK TO TIMETABLES LIST
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

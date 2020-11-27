@@ -134,7 +134,7 @@ class LoginForm extends Component {
                                                 </Col>
                                             </Row>
                                         </FormGroup>
-                                        <Row className="pt-2">
+                                        <Row className="py-2">
                                             <Col>
                                                 <Row className="justify-content-end px-3">
                                                     {this.state.isDisabled &&
@@ -149,7 +149,7 @@ class LoginForm extends Component {
                                             <Col>
                                                 <Row className="justify-content-end px-3">
                                                     <Button
-                                                        className="d-inline-block"
+                                                        className="admin-button-submit"
                                                         disabled={this.state.isDisabled}
                                                         type="submit">
                                                         SUBMIT

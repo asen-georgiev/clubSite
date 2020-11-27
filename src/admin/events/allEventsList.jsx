@@ -6,6 +6,8 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import '../../css/admin.css';
 import {deleteEventCalendar, getEventsCalendar} from "../../services/eventService";
 
 class AllEventsList extends Component {
@@ -44,54 +46,75 @@ class AllEventsList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-secondary" fluid={true}>
-                    <h1>All Events List</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
-                            </Button>
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All Sport events list :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Header>
+                                    <Button className="admin-button-update" onClick={this.adminRedirect}>
+                                        BACK TO ADMIN PANEL
+                                    </Button>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Table striped bordered hover className="admin-maincard">
+                                        <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Information</th>
+                                            <th>Date</th>
+                                            <th>Location</th>
+                                            <th>Additional Info</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {this.state.events.map(evt => {
+                                            return (
+                                                <tr key={evt._id}>
+                                                    <td>{evt.eventTitle}</td>
+                                                    <td>
+                                                        <div
+                                                            className="overflow-auto"
+                                                            style={{height: 130}}>
+                                                            {evt.eventInfo}
+                                                        </div>
+                                                    </td>
+                                                    <td>{evt.eventDate}</td>
+                                                    <td>{evt.eventLocation}</td>
+                                                    <td>
+                                                        <Card.Link
+                                                            className="admin-cardlink"
+                                                            href={"http://" + evt.eventLink}>
+                                                            {evt.eventLink}
+                                                        </Card.Link>
+                                                    </td>
+                                                    <td>
+                                                        <Link
+                                                            className="admin-button-submit btn"
+                                                            to={`/admin/eventslist/${evt._id}`}>
+                                                            Update
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <Button
+                                                            className="admin-button-delete"
+                                                            onClick={() => this.handleDelete(evt)}>
+                                                            Delete
+                                                        </Button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                        </tbody>
+                                    </Table>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     </Row>
-                    <br/>
-                    <Table striped bordered hover variant="dark">
-                        <thead>
-                        <tr>
-                            <th>Event name</th>
-                            <th>Information</th>
-                            <th>Date of the event</th>
-                            <th>Location</th>
-                            <th>Additional Info</th>
-                            <th>Update</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.events.map(evt => {
-                            return (
-                                <tr key={evt._id}>
-                                    <td>{evt.eventTitle}</td>
-                                    <td>{evt.eventInfo}</td>
-                                    <td>{evt.eventDate}</td>
-                                    <td>{evt.eventLocation}</td>
-                                    <td>{evt.eventLink}</td>
-                                    <td>
-                                        <Link to={`/admin/eventslist/${evt._id}`}>
-                                            Update
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Button
-                                            variant="danger"
-                                            onClick={() => this.handleDelete(evt)}>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
-                    </Table>
                 </Container>
             </div>
         );

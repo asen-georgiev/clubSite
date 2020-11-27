@@ -6,6 +6,8 @@ import Table from "react-bootstrap/Table";
 import {Button} from "react-bootstrap";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
+import '../../css/admin.css';
+import Card from "react-bootstrap/Card";
 import {deleteTimeTable, getTimeTables} from "../../services/timetableService";
 
 class AllTimeTablesList extends Component {
@@ -48,16 +50,22 @@ class AllTimeTablesList extends Component {
     render() {
         return (
             <div>
-                <Container className="container bg-light" fluid={true}>
-                    <h1>All Time Tables List</h1>
-                    <Row>
-                        <Col md={4}>
-                            <Button variant="primary" onClick={this.adminRedirect}>
-                                Back to Admin Panel
+                <Container className="admin-container container" fluid={true}>
+                    <Row className="m-0">
+                        <Col>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
+                                <h3>All Timetables list :</h3>
+                            </Row>
+                            <Card className="admin-maincard">
+                                <Card.Header>
+                            <Button
+                                className="admin-button-update"
+                                onClick={this.adminRedirect}>
+                               BACK TO ADMIN PANEL
                             </Button>
-                        </Col>
-                    </Row>
-                    <Table striped bordered hover variant="light">
+                                </Card.Header>
+                    <Card.Body className="overflow-auto" style={{height:600}}>
+                    <Table striped bordered hover className="admin-maincard">
                         <thead>
                         <tr>
                             <th>Course name</th>
@@ -75,12 +83,15 @@ class AllTimeTablesList extends Component {
                                     <td>{timetab.timedh.day}</td>
                                     <td>{timetab.timedh.hour}</td>
                                     <td>
-                                        <Link to={`/admin/timetablelist/${timetab._id}`}>
+                                        <Link
+                                            className="admin-button-submit btn"
+                                            to={`/admin/timetablelist/${timetab._id}`}>
                                             Update
                                         </Link>
                                     </td>
                                     <td>
                                         <Button
+                                            className="admin-button-delete"
                                             onClick={() => this.handleDelete(timetab)}>
                                             Delete
                                         </Button>
@@ -90,6 +101,10 @@ class AllTimeTablesList extends Component {
                         })}
                         </tbody>
                     </Table>
+                    </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

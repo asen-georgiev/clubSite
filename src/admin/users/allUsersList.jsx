@@ -85,7 +85,7 @@ class AllUsersList extends Component {
                                                 {!usr.isAdmin && <td>not admin</td>}
                                                 <td>
                                                     <Link
-                                                        className="admin-button-update btn"
+                                                        className="admin-button-submit btn"
                                                         to={`/admin/userslist/${usr._id}`}>
                                                         Update user
                                                     </Link>

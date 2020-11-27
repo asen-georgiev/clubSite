@@ -51,9 +51,28 @@
 }
 
 
-.admin-button-update{
+
+.admin-button-submit{
     font-size: large !important;
     background-color: cadetblue !important;
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    color: navajowhite !important;
+}
+
+
+.admin-button-submit:hover{
+    color: white !important;
+    box-shadow:
+            0 0 0 2px darkslateblue;
+    border-radius: 5px;
+}
+
+
+
+.admin-button-update{
+    font-size: large !important;
+    background-color: darkgoldenrod !important;
     padding: 0.5rem 1rem !important;
     border: none !important;
     color: navajowhite !important;
@@ -63,9 +82,10 @@
 .admin-button-update:hover{
     color: white !important;
     box-shadow:
-            0 0 0 2px darkslategrey;
+            0 0 0 2px saddlebrown;
     border-radius: 5px;
 }
+
 
 .admin-button-delete{
     font-size: large !important;

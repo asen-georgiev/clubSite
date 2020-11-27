@@ -116,6 +116,8 @@ function Contacts(props) {
                         <div className="alert alert-danger">
                             {errors.fullname}
                         </div>}
+                    </FormGroup>
+                    <FormGroup>
                         <FormLabel>
                             {/*{t('Contacts.Email')}*/}
                         </FormLabel>
@@ -131,6 +133,8 @@ function Contacts(props) {
                         <div className="alert alert-danger">
                             {errors.email}
                         </div>}
+                    </FormGroup>
+                    <FormGroup>
                         <FormLabel>
                             {/*{t('Contacts.Subject')}*/}
                         </FormLabel>
@@ -146,6 +150,8 @@ function Contacts(props) {
                         <div className="alert alert-danger">
                             {errors.subject}
                         </div>}
+                    </FormGroup>
+                    <FormGroup>
                         <FormLabel>
                             {/*{t('Contacts.Message')}*/}
                         </FormLabel>
@@ -156,7 +162,7 @@ function Contacts(props) {
                             value={message}
                             as="textarea"
                             placeholder={t('Contacts.Message')}
-                            rows="5"
+                            rows="6"
                             onChange={event => setMessage(event.target.value)}/>
                         {errors.message &&
                         <div className="alert alert-danger">

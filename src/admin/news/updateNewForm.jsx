@@ -30,7 +30,7 @@ class UpdateNewForm extends Component {
             showedPicture: null,
             uploadedPicture: '',
             errors: {},
-            isDisabled: false
+            isDisabled: true
         }
     }
 
@@ -116,7 +116,10 @@ class UpdateNewForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         anew[name] = value;
-        this.setState({anew});
+        this.setState({
+            anew,
+            isDisabled:false
+        });
     }
 
     handlePicture = (event) =>{
@@ -270,7 +273,7 @@ class UpdateNewForm extends Component {
                         <Row className="mt-3">
                             <Col md={4}>
                                 <Button
-                                    className="admin-button-update"
+                                    className="admin-button-submit"
                                     type="submit"
                                     disabled={this.state.isDisabled}>
                                    UPDATE
