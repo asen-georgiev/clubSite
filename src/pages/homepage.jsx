@@ -166,9 +166,9 @@ class Homepage extends Component {
                             <Carousel
                                 style={{width: '21.5rem'}}
                                 className="mt-3">
-                                {this.state.carousel.map(cr => {
+                                {this.state.carousel.map((cr,index) => {
                                     return (
-                                        <Carousel.Item>
+                                        <Carousel.Item key={index}>
                                             <div className="card-img-wrap">
                                             <Image
                                                 className="d-block w-100 rounded-lg"
@@ -235,9 +235,9 @@ class Homepage extends Component {
                                     </Card.Subtitle>
                                 </Card.Body>
                                 <ListGroup className="list-group-flush">
-                                    {this.state.courses.map(crs =>{
+                                    {this.state.courses.map((crs,index) =>{
                                         return(
-                                            <ListGroupItem className="home-listgroup">
+                                            <ListGroupItem key={index} className="home-listgroup">
                                                 {crs.courseName}
                                             </ListGroupItem>
                                         )

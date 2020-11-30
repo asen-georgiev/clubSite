@@ -17,12 +17,12 @@ router.post('/',async(req, res) => {
         //Асинхронен рикуест, която изчаква респонс от сървъра и проверява, дали
         //подаденият имейл съществува в базата данни и е валиден
         let user = await User.findOne({email: req.body.email});
-        if(!user) return res.status(400).send('Invalid email!');
+        if(!user) return res.status(401).send('Invalid email!');
 
         //Асинхронен рикуест, който изчаква БКРИПТ да сравни подадената от Юзъра парола,
         //със съществуващата такава на Юзъра в базата данни
         const validPassword = await bcrypt.compare(req.body.password,user.password);
-        if(!validPassword) return res.status(400).send('Invalid password!');
+        if(!validPassword) return res.status(401).send('Invalid password!');
 
         //Ако подаденият от Юзъра юзър е съществуващ в ДБ, то се извиква функцията за
         //генериране на токен (от Юзър модела) и се връща, като риспонс хедър към Юзъра

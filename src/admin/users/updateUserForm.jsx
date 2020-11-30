@@ -38,7 +38,7 @@ class UpdateUserForm extends Component {
             .label("Full name"),
         email: Joi.string()
             .required()
-            .min(5)
+            .min(8)
             .max(50)
             .label("Email"),
         password: Joi.string()

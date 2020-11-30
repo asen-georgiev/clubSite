@@ -30,7 +30,7 @@ class LoginForm extends Component {
     schema = Joi.object({
         email: Joi.string()
             .required()
-            .min(5)
+            .min(8)
             .label("Email"),
         password: Joi.string()
             .required()
@@ -114,9 +114,9 @@ class LoginForm extends Component {
                                                         value={this.state.email}
                                                         onChange={this.handleChange}/>
                                                     {this.state.errors.email &&
-                                                    <div className="alert alert-danger">
+                                                    <p className="text-danger pt-2">
                                                         {this.state.errors.email}
-                                                    </div>}
+                                                    </p>}
                                                 </Col>
                                                 <Col>
                                                     <FormControl
@@ -128,9 +128,9 @@ class LoginForm extends Component {
                                                         value={this.state.password}
                                                         onChange={this.handleChange}/>
                                                     {this.state.errors.password &&
-                                                    <div className="alert alert-danger">
+                                                    <p className="text-danger pt-2">
                                                         {this.state.errors.password}
-                                                    </div>}
+                                                    </p>}
                                                 </Col>
                                             </Row>
                                         </FormGroup>

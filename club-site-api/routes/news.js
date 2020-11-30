@@ -11,7 +11,7 @@ router.post('/',authorization, async(req, res) => {
 
         let anew = await Anew.findOne({title: req.body.title});
         const reqTitle = req.body.title;
-        if(anew) return res.status(400).send(`A new with ${reqTitle} already exists.`);
+        if(anew) return res.status(409).send(`A new with ${reqTitle} already exists.`);
 
         anew = new Anew(_.pick(req.body,['title','text','linkTo','pictureName','newsDate']));
         await anew.save();

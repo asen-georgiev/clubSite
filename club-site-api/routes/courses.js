@@ -10,7 +10,11 @@ router.post('/',async(req, res) => {
     const {error} = validateCourse(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    let course = new Course(_.pick(req.body,['courseName','courseInfo','coursePrice','courseAge']));
+    let course = await Course.findOne({courseName: req.body.courseName});
+    const reqCourseName = req.body.courseName;
+    if(course) return res.status(409).send(`A course with name ${reqCourseName} already exists!`);
+
+    course = new Course(_.pick(req.body,['courseName','courseInfo','coursePrice','courseAge']));
     await course.save();
     res.send(course);
 })

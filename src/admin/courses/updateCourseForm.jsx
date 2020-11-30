@@ -167,9 +167,9 @@ class UpdateCourseForm extends Component {
                                 onChange={this.handleChange}
                             />
                             {this.state.errors.courseName &&
-                            <div className="alert alert-danger">
+                            <p className="text-danger pt-2">
                                 {this.state.errors.courseName}
-                            </div>}
+                            </p>}
                         </FormGroup>
                         <FormGroup>
                             <FormLabel>
@@ -185,9 +185,9 @@ class UpdateCourseForm extends Component {
                                 onChange={this.handleChange}
                             />
                             {this.state.errors.courseInfo &&
-                            <div className="alert alert-danger">
+                            <p className="text-danger pt-2">
                                 {this.state.errors.courseInfo}
-                            </div>}
+                            </p>}
                         </FormGroup>
                         <Row className="mb-4">
                             <Col>
@@ -204,9 +204,9 @@ class UpdateCourseForm extends Component {
                                 onChange={this.handleChange}
                             />
                             {this.state.errors.coursePrice &&
-                            <div className="alert alert-danger">
+                            <p className="text-danger pt-2">
                                 {this.state.errors.coursePrice}
-                            </div>}
+                            </p>}
                         </FormGroup>
                             </Col>
                             <Col>
@@ -223,9 +223,9 @@ class UpdateCourseForm extends Component {
                                 onChange={this.handleChange}
                             />
                             {this.state.errors.courseAge &&
-                            <div className="alert alert-danger">
+                            <p className="text-danger pt-2">
                                 {this.state.errors.courseAge}
-                            </div>}
+                            </p>}
                         </FormGroup>
                             </Col>
                         </Row>

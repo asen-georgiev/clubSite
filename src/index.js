@@ -7,10 +7,12 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import './i18n';
+import ScrollToTop from "./components/scrollToTop";
 
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
+          <ScrollToTop/>
           <Suspense fallback={(<div></div>)}>
     <App/>
           </Suspense>

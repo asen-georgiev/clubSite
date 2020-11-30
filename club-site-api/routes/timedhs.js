@@ -10,7 +10,12 @@ router.post('/',async (req, res) => {
     const{error} = validateTimeDH(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    let timedh = new TimeDH(_.pick(req.body,['day','hour']));
+    let timedh = await TimeDH.find({day:req.body.day,hour:req.body.hour});
+    const reqDay= req.body.day;
+    const reqHour = req.body.hour;
+    if(timedh) return res.status(409).send(`Day / Hour : ${reqDay} / ${reqHour} already exists!`);
+
+    timedh = new TimeDH(_.pick(req.body,['day','hour']));
     await timedh.save();
     res.send(timedh);
 })

@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 
     let clubBio = await ClubBio.findOne({bioTitle: req.body.bioTitle});
     const reqTitle = req.body.bioTitle;
-    if (clubBio) return res.status(400).sent(`The club biography with title: ${reqTitle} already exists.`)
+    if (clubBio) return res.status(409).send(`The club biography with title: ${reqTitle} already exists.`)
 
     clubBio = new ClubBio(_.pick(req.body, ['bioTitle', 'bioText']));
     await clubBio.save();

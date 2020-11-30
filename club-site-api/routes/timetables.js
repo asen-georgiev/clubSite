@@ -19,7 +19,14 @@ router.post('/',async (req, res) => {
     const timedh = await TimeDH.findById(req.body.timedhId);
     if(!timedh) return res.status(404).send('Invalid day and hour ID!');
 
-    let timetable = new TimeTable({
+    let timetable = await TimeTable.find({courseId:req.body.courseId,timedhId:req.body.timedhId});
+    const reqCourse = course.courseName;
+    const reqTimeDay = timedh.day;
+    const reqTimeHour = timedh.hour;
+    if(timetable) return res.status(409)
+        .send(`Timetable for ${reqCourse} in ${reqTimeDay} at ${reqTimeHour} already exists!`);
+
+    timetable = new TimeTable({
         course:{
             _id: course._id,
             courseName: course.courseName,

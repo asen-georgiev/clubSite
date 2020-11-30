@@ -57,7 +57,7 @@ class AdminPanel extends Component {
                             </Row>
 
                             {this.state.loggedUser.isAdmin &&
-                            <Card className="admin-maincard mt-5">
+                            <Card className="admin-maincard mt-5 overflow-auto">
                                 <Card.Header>
                                     <Button
                                         className="admin-button-delete"

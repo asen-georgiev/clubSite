@@ -1,5 +1,6 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
+import {apiUrl} from "../config.json";
+import {toast} from "react-toastify";
 
 const apiEndpoint = apiUrl + "/auth";
 
@@ -7,22 +8,28 @@ const apiEndpoint = apiUrl + "/auth";
 //В бекенда извика router.post функцията.
 //след което зима риспонза който е юзър с токен и го запазва в сесията на браузъра
 //и вече тея данни се ползват за аутентикации т.н.
-export function loginUser (data){
+export function loginUser(data) {
     return httpService
-        .post(apiEndpoint,data)
-        .then(response =>{
-            if(response.data){
-            sessionStorage.setItem("user",response.data);
+        .post(apiEndpoint, data)
+        .then(response => {
+            if (response.data) {
+                sessionStorage.setItem("user", response.data);
             }
             return response.data;
+        })
+        .catch(err => {
+            if (err.response.status === 401) {
+                toast.error(err.response.statusText + '  user! Invalid email or password!');
+            }
+            return Promise.reject(err);
         });
 }
 
-export function logoutUser (){
+export function logoutUser() {
     sessionStorage.removeItem("user");
 }
 
 //Извиква юзъра с токен, който е запазен в сесията на браузъра
-export function getCurrentUser(){
+export function getCurrentUser() {
     return sessionStorage.getItem("user");
 }

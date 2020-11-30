@@ -107,8 +107,8 @@ class CreateTimeTableForm extends Component {
             <div>
                 <Container className="admin-container container" fluid={true}>
                     <Row className="m-0">
-                        <Col style={{marginBottom: 140}}>
-                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 85}}>
+                        <Col style={{marginBottom: 175}}>
+                            <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 110}}>
                                 <h3>Create Timetable Form :</h3>
                             </Row>
                             <Card className="admin-maincard">

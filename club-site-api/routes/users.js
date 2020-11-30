@@ -25,7 +25,7 @@ router.get('/', authorization, async (req, res) => {
 
 
 //Асинхронна функция за показване на Юзър по ИД
-router.get('/:id', async (req, res) => {
+router.get('/:id', authorization,async (req, res) => {
 
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).send('User with the given ID was not found!');
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 
 
 //Асинхронна функция за създаване на нов Юзър в ДБ
-router.post('/', async (req, res) => {
+router.post('/', authorization,async (req, res) => {
     //Валидация на данните подадени от Юзъра в рикуеста, дали отговарят на
     //изискванията на Joi schemata от (User model)
     const {error} = validateUser(req.body);
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     //Проверява, дали има съществуващ вече Юзър в ДБ с такъв имейл и ако ДА - прекратява създаването на нов юзър
     let user = await User.findOne({email: req.body.email});
     const reqEmail = req.body.email;
-    if (user) return res.status(400).send(`User with email: ${reqEmail} already exists.`);
+    if (user) return res.status(409).send(`User with email: ${reqEmail} already exists.`);
 
     //Създаване на нов юзър Обект, лоудаш ни показва, кои полета трябва да се попълнят
     //Б.А.Трябва да се проверява лоудаш да не се бие със схемата и модела на USER
@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
 })
 
 //Updating user by ID
-router.put('/:id', async (req, res) => {
+router.put('/:id', authorization,async (req, res) => {
     const {error} = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -84,7 +84,7 @@ router.put('/:id', async (req, res) => {
 })
 
 //Deleting user by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorization,async (req, res) => {
     const user = await User.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if (!user) return res.status(404).send(`User with ID: ${reqId} was not found!`);
