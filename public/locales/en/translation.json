@@ -13,7 +13,30 @@
     "Email": "Email",
     "Subject": "Subject",
     "Message": "Message",
-    "Send": "Send Message"
+    "Send": "Send Message",
+    "gsm": "For more information call us on gsm: +359/897 05 73 75",
+    "CardTitle": "Warriors karate dojo",
+    "CardSubtitle": "e-mail: warriors@abv.bg",
+    "CardFooter": "Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1"
+  },
+  "Homepage": {
+    "Links": {
+      "LearnMore": "Learn more",
+      "ContactUs": "Contact us",
+      "Schedule": "See our training schedule",
+      "Info": "Additional information"
+    },
+    "Contacts": {
+      "CardHeader": "Call us on gsm: +359/897 05 73 75",
+      "CardTitle": "Warriors karate dojo",
+      "CardSubtitle": "e-mail: warriors@abv.bg",
+      "CardText": "Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1"
+    },
+    "Schedule": {
+      "CardHeader": "How to begin?",
+      "CardTitle": "Welcome to our courses",
+      "CardSubtitle": "You can choose the class that fits you the most and then follow the link below for more information."
+    }
   },
   "Foot": {
     "ClubName": "Warriors Karate Dojo",
@@ -21,5 +44,16 @@
     "Street": "Dimitar Popgeorgiev str.1",
     "Tel": "gsm:+359/897057275",
     "Email": "e-mail: warriors@gmail.com"
+  },
+  "Rows": {
+    "Contacts": {
+      "Mailer": "Feel free to message us",
+      "Mapper": "Coordinates for contact"
+    },
+    "Homepage": {
+      "ClubBio": "About Warriors karate dojo",
+      "SportEvent": "Sport calendar events",
+      "News": "Recent news"
+    }
   }
 }

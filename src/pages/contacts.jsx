@@ -14,6 +14,7 @@ import {sendEmail} from "../services/emailService";
 import {useTranslation} from "react-i18next";
 import '../css/contacts.css';
 import Card from "react-bootstrap/Card";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 function Contacts(props) {
@@ -25,8 +26,10 @@ function Contacts(props) {
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
     const [errors,setErrors]=useState({});
+
+    const recaptchaRef = React.createRef();
 
 
     const schema = Joi.object({
@@ -86,6 +89,7 @@ function Contacts(props) {
             subject: subject,
             message: message
         };
+        recaptchaRef.current.execute();
         toast.success('Your message was sent successfully!');
         props.history.push("/news");
         await sendEmail(obj);
@@ -97,7 +101,7 @@ function Contacts(props) {
                 <Row className="m-0">
                     <Col md={6}>
                         <Row className="contacts-row d-flex justify-content-start ml-auto mr-auto">
-                            <h3>Feel free to write us :</h3>
+                            <h4>{t('Rows.Contacts.Mailer')}:</h4>
                         </Row>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
@@ -111,7 +115,7 @@ function Contacts(props) {
                             value={fullname}
                             type="text"
                             placeholder={t('Contacts.Fullname')}
-                            onChange={event => setFullname(event.target.value)}/>
+                            onChange={event => (setFullname(event.target.value),setIsDisabled(false))}/>
                         {errors.fullname &&
                         <div className="alert alert-danger">
                             {errors.fullname}
@@ -128,7 +132,7 @@ function Contacts(props) {
                             value={email}
                             type="email"
                             placeholder={t('Contacts.Email')}
-                            onChange={event => setEmail(event.target.value)}/>
+                            onChange={event => (setEmail(event.target.value),setIsDisabled(false))}/>
                         {errors.email &&
                         <div className="alert alert-danger">
                             {errors.email}
@@ -145,7 +149,7 @@ function Contacts(props) {
                             value={subject}
                             type="text"
                             placeholder={t('Contacts.Subject')}
-                            onChange={event => setSubject(event.target.value)}/>
+                            onChange={event => (setSubject(event.target.value),setIsDisabled(false))}/>
                         {errors.subject &&
                         <div className="alert alert-danger">
                             {errors.subject}
@@ -163,34 +167,39 @@ function Contacts(props) {
                             as="textarea"
                             placeholder={t('Contacts.Message')}
                             rows="6"
-                            onChange={event => setMessage(event.target.value)}/>
+                            onChange={event => (setMessage(event.target.value),setIsDisabled(false))}/>
                         {errors.message &&
                         <div className="alert alert-danger">
                             {errors.message}
                         </div>}
                     </FormGroup>
-                    <Row className="justify-content-end">
+                    <Row className="justify-content-start">
                         <Button
-                            className="mr-3"
+                            className="ml-3"
                             type="submit"
                             disabled={isDisabled}>
                             {t('Contacts.Send')}
                         </Button>
                     </Row>
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="6Lf0yvQZAAAAADSthn9kYDsqAm0ZHDQBrNLXXE3t"
+                        size="invisible"
+                    />
                 </Form>
                     </Col>
                     <Col md={6}>
                         <Row className="contacts-row d-flex justify-content-start mr-auto ml-auto">
-                            <h3>Coordinates for contact :</h3>
+                            <h4>{t('Rows.Contacts.Mapper')} :</h4>
                         </Row>
                         <Row className="m-0">
                             <Card
                                 style={{width: '33rem',height:'35rem'}}
                                 className="contacts-maincard mr-auto">
-                                <Card.Header className="text-center">For more information call us on gsm: +359/897 05 73 75</Card.Header>
+                                <Card.Header className="text-center">{t('Contacts.gsm')}</Card.Header>
                                 <Card.Body>
-                                    <Card.Title className="text-center">Warriors karate dojo</Card.Title>
-                                    <Card.Subtitle className="text-center">e-mail: warriors@abv.bg</Card.Subtitle>
+                                    <Card.Title className="text-center">{t('Contacts.CardTitle')}</Card.Title>
+                                    <Card.Subtitle className="text-center">{t('Contacts.SubTitle')}</Card.Subtitle>
                                     <br/>
                                     <div className="mapouter-contacts">
                                         <div className="gmap_canvas-contacts">
@@ -203,7 +212,7 @@ function Contacts(props) {
                                     </div>
                                 </Card.Body>
                                 <Card.Footer className="text-center">
-                                    Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1
+                                    {t('Contacts.CardFooter')}
                                 </Card.Footer>
                             </Card>
                         </Row>
