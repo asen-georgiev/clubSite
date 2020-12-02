@@ -44,23 +44,23 @@
 
 
 .en{
-    background-image: linear-gradient(red,white,blue);
+    background-image: linear-gradient(lightgray,white,lightgray);
     text-align: center !important;
     margin-bottom: 3px !important;
-    color: darkred !important;
+    color: darkcyan !important;
 }
 
 .en:hover{
-    color: darkcyan !important;
-}
-
-.bg{
-    background-image: linear-gradient(green,white,red);
-    text-align: center !important;
-    padding: 0.25rem 1rem !important;
     color: darkred !important;
 }
 
-.bg:hover{
+.bg{
+    background-image: linear-gradient(lightgray,white,lightgray);
+    text-align: center !important;
+    padding: 0.25rem 1rem !important;
     color: darkcyan !important;
+}
+
+.bg:hover{
+    color: darkred !important;
 }

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Row from "react-bootstrap/Row";
 import {getUsers} from "../services/userService";
 import {getImages} from "../services/imageService";
@@ -12,104 +12,103 @@ import Newscards from "../components/newscards";
 import _ from "lodash";
 import '../css/news.css';
 import Button from "react-bootstrap/Button";
+import {useTranslation} from "react-i18next";
 
 
-class News extends Component {
+function News(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            news: [],
-            anew: []
-        }
-    }
+    const {t, i18n} = useTranslation();
 
-    async componentDidMount() {
+    const [news, setNews] = useState([]);
+    const [anew, setAnew] = useState([]);
 
-        const {data: news} = await getNews();
-        let anew = _.first(news);
-        this.setState({news, anew});
-        console.log(this.state);
 
-    }
+    useEffect(() => {
+        (async () => {
+            const {data: news} = await getNews();
+            let anew = _.first(news);
+            setNews(news);
+            setAnew(anew);
+        })();
+    }, [])
 
-    handleNews = async (anewId) => {
+
+    const handleNews = async (anewId) => {
         const {data: anew} = await getNew(anewId);
-        this.setState({anew: anew});
+        setAnew(anew);
     }
 
 
-    render() {
-        return (
-            <div>
-                <Container className="news-containter container d-flex flex-row" fluid={true}>
-                    <Row className="m-0">
-                        <Col md={6}>
-                            <Row className="news-row d-flex justify-content-start">
-                                <h3>News from Karate world :</h3>
-                            </Row>
-                            <Card
-                                className="news-maincard"
-                                style={{width: '33rem'}}>
-                                <Card.Header>
-                                    Date: {this.state.anew.newsDate}
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Title>
-                                        {this.state.anew.title}
-                                    </Card.Title>
-                                    <div className="card-img-wrap">
+    return (
+        <div>
+            <Container className="news-containter container d-flex flex-row" fluid={true}>
+                <Row className="m-0">
+                    <Col md={6}>
+                        <Row className="news-row d-flex justify-content-start">
+                            <h3>{t('Rows.News.Main')} :</h3>
+                        </Row>
+                        <Card
+                            className="news-maincard"
+                            style={{width: '33rem'}}>
+                            <Card.Header>
+                                {t('News.CardHeader')} {anew.newsDate}
+                            </Card.Header>
+                            <Card.Body>
+                                <Card.Title>
+                                    {anew.title}
+                                </Card.Title>
+                                <div className="card-img-wrap">
+                                    <CardImg
+                                        variant="bottom"
+                                        src={picturesUrl + anew.pictureName}
+                                        alt="No Image"/>
+                                </div>
+                                <br/>
+                                <Card.Text>
+                                    {anew.text}
+                                </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Card.Link
+                                    className="news-cardlink"
+                                    href={"http://" + anew.linkTo}>
+                                    {t('News.Links.Info')} : {anew.linkTo}
+                                </Card.Link>
+                            </Card.Footer>
+                        </Card>
+                    </Col>
+                    <Col md={6}>
+                        <Row className="news-row d-flex justify-content-start">
+                            <h3>{t('Rows.News.More')}:</h3>
+                        </Row>
+                        <Container fluid={true} className="p-0 news-newscontainer">
+                            {news.map(ns => {
+                                return (
+                                    <Card style={{width: '32rem'}}
+                                          className="news-maincard flex-row p-2 mb-3 my-0">
                                         <CardImg
-                                            variant="bottom"
-                                            src={picturesUrl + this.state.anew.pictureName}
+                                            variant="top"
+                                            src={picturesUrl + ns.pictureName}
+                                            style={{width: '10rem', height: '10rem'}}
                                             alt="No Image"/>
-                                    </div>
-                                    <br/>
-                                    <Card.Text>
-                                        {this.state.anew.text}
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <Card.Link
-                                        className="news-cardlink"
-                                        href={"http://" + this.state.anew.linkTo}>
-                                        More info at : {this.state.anew.linkTo}
-                                    </Card.Link>
-                                </Card.Footer>
-                            </Card>
-                        </Col>
-                        <Col md={6}>
-                            <Row className="news-row d-flex justify-content-start">
-                                <h3>You may also want to read about :</h3>
-                            </Row>
-                            <Container fluid={true} className="p-0 news-newscontainer">
-                                {this.state.news.map(ns => {
-                                    return (
-                                        <Card style={{width: '32rem'}}
-                                              className="news-maincard flex-row p-2 mb-3 my-0">
-                                            <CardImg
-                                                variant="top"
-                                                src={picturesUrl + ns.pictureName}
-                                                style={{width: '10rem', height: '10rem'}}
-                                                alt="No Image"/>
-                                            <Card.Body>
-                                                <Card.Title>{ns.title}</Card.Title>
-                                                <Card.Subtitle>{ns.newsDate}</Card.Subtitle>
-                                                <br/>
-                                                <Button onClick={() => this.handleNews(ns._id)}>Read the whole
-                                                    article</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    )
-                                })}
-                            </Container>
-                            {/*<Newscards news={this.state.news} onNewSelect={this.handleNews}/>*/}
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
+                                        <Card.Body>
+                                            <Card.Title>{ns.title}</Card.Title>
+                                            <Card.Subtitle>{ns.newsDate}</Card.Subtitle>
+                                            <br/>
+                                            <Button onClick={() => handleNews(ns._id)}>
+                                                {t('News.Links.Article')}
+                                            </Button>
+                                        </Card.Body>
+                                    </Card>
+                                )
+                            })}
+                        </Container>
+                        {/*<Newscards news={this.state.news} onNewSelect={this.handleNews}/>*/}
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
 }
 
 export default News;

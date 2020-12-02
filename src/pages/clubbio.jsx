@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -8,37 +8,36 @@ import Biographs from "../components/biographs";
 import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import '../css/clubbio.css';
+import {useTranslation} from "react-i18next";
 
 
-class Clubbio extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            clubBios: []
-        }
-    }
+function Clubbio (props) {
 
-    async componentDidMount() {
-        const {data: clubBios} = await getClubBios();
-        this.setState({clubBios});
-        console.log(this.state);
-    }
+    const {t, i18n} = useTranslation();
+
+    const[clubBios,setClubBios] = useState([]);
+
+    useEffect(() => {
+        (async() => {
+            const {data: clubBios} = await getClubBios();
+            setClubBios(clubBios);
+        })();
+    },[]);
 
 
-    render() {
         return (
             <div>
                 <Container className="bio-container container" fluid={true}>
 
                     <Row className="m-0">
                     <Col>
-                        <Row className="bio-row d-flex justify-content-start">
-                            <h3>Warriors Karate Dojo History :</h3>
+                        <Row className="bio-row d-flex justify-content-start mx-0">
+                            <h3>{t('Rows.Bio.Main')} :</h3>
                         </Row>
-                    <Row>
+                    <Row className="m-0">
                         <Card
                             style={{width: '80rem'}}
-                            className="bio-biocard ml-auto mr-auto">
+                            className="bio-biocard ml-auto mr-auto mb-3">
                             <div className="card-img-wrap">
                                 <Card.Img
                                     className="bio-biocard-img"
@@ -46,7 +45,7 @@ class Clubbio extends Component {
                                     alt="Card image"/>
                                 <Card.ImgOverlay className="overflow-auto d-flex align-items-stretch">
                                     <Carousel>
-                                        {this.state.clubBios.map(cbs => {
+                                        {clubBios.map(cbs => {
                                             return (
                                                 <Carousel.Item>
                                                     <h3>{cbs.bioTitle}</h3>
@@ -64,7 +63,6 @@ class Clubbio extends Component {
                 </Container>
             </div>
         );
-    }
 }
 
 export default Clubbio;

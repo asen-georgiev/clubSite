@@ -27,17 +27,6 @@ function Homepage(props) {
     const [carousel, setCarousel] = useState([]);
     const [courses, setCourses] = useState([]);
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         clubBio: [],
-    //         eventCalendar: [],
-    //         anew: [],
-    //         carousel: [],
-    //         courses:[]
-    //     }
-    // }
-
     //В тъпия стейтлес компонент за да е асинхронна функцията,
     //требва да се извика допълнителна ламбда функция, която пък
     //да се самоизвика себе си респективно лайна с праз и се адва втори параметър [],

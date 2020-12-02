@@ -8,17 +8,19 @@
     "Contacts": "Contacts",
     "Language": "Language"
   },
+
   "Contacts": {
     "Fullname": "Full name",
     "Email": "Email",
     "Subject": "Subject",
     "Message": "Message",
-    "Send": "Send Message",
+    "Send": "SEND",
     "gsm": "For more information call us on gsm: +359/897 05 73 75",
     "CardTitle": "Warriors karate dojo",
     "CardSubtitle": "e-mail: warriors@abv.bg",
     "CardFooter": "Bulgaria, Sandanski 2800 Dimitar Popgeorgiev str.1"
   },
+
   "Homepage": {
     "Links": {
       "LearnMore": "Learn more",
@@ -38,6 +40,34 @@
       "CardSubtitle": "You can choose the class that fits you the most and then follow the link below for more information."
     }
   },
+
+  "News": {
+    "CardHeader": "Date",
+    "Links": {
+      "Info": "More information at",
+      "Article": "Read the whole article"
+    }
+  },
+
+  "Schedule": {
+    "CardHeader": "Course age limit",
+    "CardFooter1": "Price",
+    "CardFooter2": "eur/month",
+    "Th1": "Class",
+    "Th2": "Days",
+    "Th3": "Hours"
+  },
+
+  "Events": {
+    "Th1": "Event",
+    "Th2": "Information",
+    "Th3": "Date",
+    "Th4": "Location",
+    "Th5": "More info",
+    "Link1": "World Karate Federation",
+    "Link2": "Sport Data"
+  },
+
   "Foot": {
     "ClubName": "Warriors Karate Dojo",
     "Country": "Bulgaria, Sandanski 2800",
@@ -45,6 +75,7 @@
     "Tel": "gsm:+359/897057275",
     "Email": "e-mail: warriors@gmail.com"
   },
+
   "Rows": {
     "Contacts": {
       "Mailer": "Feel free to message us",
@@ -54,6 +85,20 @@
       "ClubBio": "About Warriors karate dojo",
       "SportEvent": "Sport calendar events",
       "News": "Recent news"
+    },
+    "News": {
+      "Main": "News from karate world",
+      "More": "You may also want to read about"
+    },
+    "Bio": {
+      "Main": "Warriors karate dojo history"
+    },
+    "Schedule": {
+      "Courses": "Information about our courses",
+      "Schedule": "Training schedule"
+    },
+    "Events": {
+      "Main": "Karate sport events calendar"
     }
   }
 }

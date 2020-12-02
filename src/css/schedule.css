@@ -24,3 +24,19 @@
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+.schedule-age{
+    color:darkcyan;
+}
+
+.schedule-price{
+    color:darkred;
+}
+
+.schedule-day{
+    color:darkcyan;
+}
+
+.schedule-hour{
+    color:darkred;
+}
