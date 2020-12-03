@@ -9,7 +9,7 @@ const {TimeDH,validateTimeDH} = require('../models/timedh');
 
 
 
-router.post('/',async (req, res) => {
+router.post('/',authorization,async (req, res) => {
     const {error} = validateTimeTable(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -60,7 +60,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authorization,async (req, res) => {
     const {error} = validateTimeTable(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -91,7 +91,7 @@ router.put('/:id', async (req, res) => {
 
 
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorization,async (req, res) => {
     const timetable = await TimeTable.findByIdAndDelete(req.params.id);
     const reqId = req.params.id;
     if (!timetable) return res.status(404).send(`The timetable with ${reqId} was not found!`);

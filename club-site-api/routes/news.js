@@ -36,7 +36,7 @@ router.get('/:id',async(req, res) => {
 })
 
 
-router.put('/:id',async(req, res) => {
+router.put('/:id',authorization,async(req, res) => {
        const{error} = validateAnew(req.body);
        if(error) return res.status(400).send(error.details[0].message);
 
@@ -51,7 +51,7 @@ router.put('/:id',async(req, res) => {
         if(!anew) return res.status(404).send('A New with the given ID was not found!')
 })
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', authorization,async(req, res) => {
         const anew = await Anew.findByIdAndDelete(req.params.id);
         let reqId = req.params.id;
         if(!anew) return res.status(404).send(`A New with ID: ${reqId} was not found!`);

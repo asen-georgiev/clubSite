@@ -5,7 +5,7 @@ const authorization = require('../middleware/authorization');
 const {ClubBio, validateClubBio} = require('../models/clubbio');
 
 
-router.post('/', async (req, res) => {
+router.post('/', authorization, async (req, res) => {
     const {error} = validateClubBio(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -38,7 +38,7 @@ router.get('/:id',async (req, res) => {
 
 
 //Update single BIO
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', authorization,async (req, res, next) => {
     const {error} = validateClubBio(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res, next) => {
 
 
 //Delete BIO
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorization,async (req, res) => {
     const clubBio = await ClubBio.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if (!clubBio) return res.status(404).send(`Biography with Id: ${reqId} was not found`);

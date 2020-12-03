@@ -6,7 +6,7 @@ const {Course,validateCourse} = require('../models/course');
 
 
 //Post a course
-router.post('/',async(req, res) => {
+router.post('/',authorization,async(req, res) => {
     const {error} = validateCourse(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -34,7 +34,7 @@ router.get('/:id',async(req, res) => {
 })
 
 //Update a course
-router.put('/:id',async(req, res) => {
+router.put('/:id',authorization,async(req, res) => {
     const{error} = validateCourse(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -50,7 +50,7 @@ router.put('/:id',async(req, res) => {
 })
 
 //Delete a single course
-router.delete('/:id',async(req, res) => {
+router.delete('/:id',authorization,async(req, res) => {
     const course = await Course.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if(!course) return res.status(404).send(`Course with ID: ${reqId} was not found!`);

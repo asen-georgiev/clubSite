@@ -36,7 +36,7 @@ router.get('/',async(req, res) => {
 
 
 //Update single Event
-router.put('/:id', async(req, res) => {
+router.put('/:id', authorization,async(req, res) => {
     const{error} = validateEventCalendar(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -53,7 +53,7 @@ router.put('/:id', async(req, res) => {
 
 
 //Delete single Event
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorization,async (req, res) => {
     const eventCalendar = await EventCalendar.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if(!eventCalendar) return res.status(404).send(`Event with ID: ${reqId} was not found!`);

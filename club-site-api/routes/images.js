@@ -3,9 +3,10 @@ const router = express.Router();
 const path = require('path');
 const multer = require("multer");
 const {Upload,getImagesFromDirectory} = require('../models/image');
+const authorization = require('../middleware/authorization');
 
 //Post request for uploading image into gallery
-router.post('/',(req, res) => {
+router.post('/',authorization,async (req, res) => {
 
    Upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {

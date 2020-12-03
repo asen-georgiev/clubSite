@@ -35,7 +35,7 @@ router.get('/:id',async(req, res) => {
 
 
 //Update single Schedule
-router.put('/:id', async(req, res) => {
+router.put('/:id', authorization,async(req, res) => {
 
     const{error} = validateSchedule(req.body);
     if(error) return res.status(400).send(error.details[0].message);
@@ -53,7 +53,7 @@ router.put('/:id', async(req, res) => {
 
 
 //Delete single schedule
-router.delete('/:id',async(req, res) => {
+router.delete('/:id',authorization,async(req, res) => {
     const schedule = await Schedule.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if(!schedule) return res.status(404).send(`Schedule with ID: ${reqId} was not found!`);

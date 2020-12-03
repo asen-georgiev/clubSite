@@ -6,11 +6,11 @@ const {TimeDH,validateTimeDH} = require('../models/timedh');
 
 
 //Post TimeDH
-router.post('/',async (req, res) => {
+router.post('/',authorization,async (req, res) => {
     const{error} = validateTimeDH(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    let timedh = await TimeDH.find({day:req.body.day,hour:req.body.hour});
+    let timedh = await TimeDH.findOne({day:req.body.day,hour:req.body.hour});
     const reqDay= req.body.day;
     const reqHour = req.body.hour;
     if(timedh) return res.status(409).send(`Day / Hour : ${reqDay} / ${reqHour} already exists!`);
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 
 
 //Update single TimeDH
-router.put('/:id', async (req, res) => {
+router.put('/:id', authorization,async (req, res) => {
     const {error} = validateTimeDH(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
 
 
 //Delete single TimeDh
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authorization,async (req, res) => {
     const timedh = await TimeDH.findByIdAndDelete(req.params.id);
     let reqId = req.params.id;
     if(!timedh) return res.status(404).send(`TimeDh with ID: ${reqId} was not found!`);
