@@ -8,7 +8,7 @@ const anewSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 50
+        maxlength: 100
     },
     text: {
         type: String,
@@ -43,7 +43,7 @@ const Anew = mongoose.model('Anew', anewSchema);
 
 function validateAnew(anew) {
     const schema = Joi.object({
-        title: Joi.string().required().min(5).max(50),
+        title: Joi.string().required().min(5).max(100),
         text: Joi.string().required().min(10).max(1024),
         linkTo: Joi.string().min(0).max(255).allow(''),
         pictureName: Joi.string().required().min(5).max(100),

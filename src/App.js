@@ -14,7 +14,6 @@ import {getCurrentUser, logoutUser} from "./services/loginService";
 import Contacts from "./pages/contacts";
 import CreateNewsForm from "./admin/news/createNewsForm";
 import Schedule from "./pages/schedule";
-import CreateScheduleForm from "./admin/schedules/createScheduleForm";
 import Events from "./pages/events";
 import CreateEventForm from "./admin/events/createEventForm";
 import Clubbio from "./pages/clubbio";
@@ -61,6 +60,7 @@ class App extends Component {
     componentDidMount() {
         const user = getCurrentUser();
         this.setState({user});
+        console.log(this.state.user);
     }
 
 

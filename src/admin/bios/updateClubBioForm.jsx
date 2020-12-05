@@ -53,7 +53,7 @@ class UpdateClubBioForm extends Component {
         bio[name] = value;
         this.setState({
             bio,
-            isDisabled: true
+            isDisabled: false
         });
     }
 
@@ -87,7 +87,7 @@ class UpdateClubBioForm extends Component {
         };
 
         this.setState({isDisabled: true});
-        toast.success('User update was successful!');
+        toast.success('ClubBio update was successful!');
         await updateClubBio(obj, this.state.bio._id);
     }
 

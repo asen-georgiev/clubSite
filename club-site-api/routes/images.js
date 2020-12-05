@@ -20,7 +20,7 @@ router.post('/',authorization,async (req, res) => {
 })
 
 //Get request for retrieving images from gallery
-router.get('/',async (req, res) => {
+router.get('/',(req, res) => {
 
     let images = getImagesFromDirectory( 'gallery');
     res.send(images);

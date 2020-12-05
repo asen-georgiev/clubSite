@@ -13,7 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
           <ScrollToTop/>
-          <Suspense fallback={(<div></div>)}>
+          <Suspense fallback={(<div>Loading...</div>)}>
     <App/>
           </Suspense>
       </BrowserRouter>

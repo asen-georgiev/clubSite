@@ -37,7 +37,7 @@ class CreateNewsForm extends Component {
         title: Joi.string()
             .required()
             .min(5)
-            .max(50)
+            .max(100)
             .label("Title"),
         text: Joi.string()
             .required()
@@ -121,7 +121,7 @@ class CreateNewsForm extends Component {
         };
 
         await createNews(obj);
-        toast.success('The news are created!');
+        toast.success('News were successfully created!');
     }
 
 

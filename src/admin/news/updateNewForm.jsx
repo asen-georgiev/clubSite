@@ -39,7 +39,7 @@ class UpdateNewForm extends Component {
         title: Joi.string()
             .required()
             .min(5)
-            .max(50)
+            .max(100)
             .label("Title"),
         text: Joi.string()
             .required()

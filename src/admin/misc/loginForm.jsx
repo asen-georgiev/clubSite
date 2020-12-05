@@ -94,7 +94,7 @@ class LoginForm extends Component {
                 <Container className="admin-container container" fluid={true}>
                     {this.state.loggedUser === null &&
                     <Row className="m-0">
-                        <Col style={{marginBottom: 90}}>
+                        <Col style={{marginBottom: 80}}>
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 150}}>
                                 <h3>Login for the Admin panel :</h3>
                             </Row>

@@ -43,7 +43,7 @@ function Schedule(props) {
                             <CardDeck className="schedule-deck flex-column">
                                 {courses.map(crs => {
                                     return (
-                                        <Card className="schedule-maincard mb-3">
+                                        <Card key={crs._id} className="schedule-maincard mb-3">
                                             <Card.Header className="schedule-age">
                                                 {t('Schedule.CardHeader')}: {crs.courseAge}
                                             </Card.Header>

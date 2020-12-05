@@ -8,6 +8,7 @@ import {Link, Route, Switch} from "react-router-dom";
 import {loginUser, logoutUser, getCurrentUser} from "../../services/loginService";
 import {getLoggedUser} from "../../services/userService";
 import '../../css/admin.css';
+import jwtDecode from "jwt-decode";
 import Card from "react-bootstrap/Card";
 
 
@@ -16,15 +17,20 @@ class AdminPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedUser: ''
+            loggedUser: '',
+            user:''
         }
     }
 
 
     async componentDidMount() {
         const {data: loggedUser} = await getLoggedUser();
+        //Toя декод връща само това,което сме заложили в токена от бекенда - демек ИД и исАдмин - чек АПИ то.
+        const jwtuser = getCurrentUser();
+        const user = jwtDecode(jwtuser)
+
         // const loggedUser = [user];
-        this.setState({loggedUser});
+        this.setState({loggedUser,user});
         console.log(this.state);
     }
 

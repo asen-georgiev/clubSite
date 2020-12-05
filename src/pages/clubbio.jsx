@@ -41,13 +41,13 @@ function Clubbio (props) {
                             <div className="card-img-wrap">
                                 <Card.Img
                                     className="bio-biocard-img"
-                                    src={require('../assets/images/karate1.jpg')}
+                                    src={require('../assets/images/wide5.jpg')}
                                     alt="Card image"/>
                                 <Card.ImgOverlay className="overflow-auto d-flex align-items-stretch">
                                     <Carousel>
                                         {clubBios.map(cbs => {
                                             return (
-                                                <Carousel.Item>
+                                                <Carousel.Item key={cbs._id}>
                                                     <h3>{cbs.bioTitle}</h3>
                                                     {cbs.bioText}
                                                 </Carousel.Item>

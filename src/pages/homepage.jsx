@@ -26,6 +26,7 @@ function Homepage(props) {
     const [anew, setAnew] = useState([]);
     const [carousel, setCarousel] = useState([]);
     const [courses, setCourses] = useState([]);
+    const [url,setUrl] = useState('');
 
     //В тъпия стейтлес компонент за да е асинхронна функцията,
     //требва да се извика допълнителна ламбда функция, която пък
@@ -33,6 +34,7 @@ function Homepage(props) {
     //за да не забива браузъра щото влиза в лууп.
     useEffect(() => {
         (async () => {
+            const url = picturesUrl;
             const {data: clubBios} = await getClubBios();
             const {data: eventsCalendar} = await getEventsCalendar();
             const {data: news} = await getNews();
@@ -47,6 +49,7 @@ function Homepage(props) {
             setAnew(anew);
             setCarousel(carousel);
             setCourses(courses);
+            setUrl(url);
         })();
     }, []);
 
@@ -71,9 +74,9 @@ function Homepage(props) {
                                     <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
-                                            src={require('../assets/images/asen-team.jpg')}/>
+                                            src={require('../assets/images/wide.jpg')}/>
                                     </div>
-                                    <br/><br/>
+                                    <br/>
                                     <Card.Text>{clubBio.bioText}</Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
@@ -97,7 +100,7 @@ function Homepage(props) {
                                 <div className="card-img-wrap">
                                     <Card.Img
                                         className="home-eventcard-img"
-                                        src={require('../assets/images/karate1.jpg')}
+                                        src={require('../assets/images/wide2.jpg')}
                                         alt="Card image"/>
                                     <Card.ImgOverlay className="overflow-auto">
                                         <Card.Title className="text-center">
@@ -143,16 +146,16 @@ function Homepage(props) {
                                         <Card.Link
                                             className="home-cardlink"
                                             href={"http://" + anew.linkTo}>
-                                            Additional info: {anew.linkTo}
+                                            {t('Homepage.Links.Info')}: {anew.linkTo}
                                         </Card.Link>
                                     </Card.Subtitle>
                                     <br/>
                                     <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
-                                            src={picturesUrl + anew.pictureName}/>
+                                            src={url + anew.pictureName}/>
                                     </div>
-                                    <br/><br/>
+                                    <br/>
                                     <Card.Text>{anew.text}</Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
@@ -178,7 +181,7 @@ function Homepage(props) {
                                             <Image
                                                 className="d-block w-100 rounded-lg"
                                                 height='260rem'
-                                                src={picturesUrl + cr}/>
+                                                src={url+ cr}/>
                                         </div>
                                     </Carousel.Item>
                                 )
@@ -198,7 +201,7 @@ function Homepage(props) {
                         <Card
                             style={{width: '21.5rem'}}
                             className="home-maincard mr-auto">
-                            <Card.Header>{t('Homepage.Contacts.CardHeader')}</Card.Header>
+                            <Card.Header className="home-map-gsm">{t('Homepage.Contacts.CardHeader')}</Card.Header>
                             <Card.Body>
                                 <Card.Title className="text-center">{t('Homepage.Contacts.CardTitle')}</Card.Title>
                                 <Card.Subtitle
@@ -231,7 +234,7 @@ function Homepage(props) {
                         <Card
                             style={{width: '21.5rem'}}
                             className="home-maincard mr-auto mt-3">
-                            <Card.Header>
+                            <Card.Header className="home-map-gsm">
                                 {t('Homepage.Schedule.CardHeader')}
                             </Card.Header>
                             <Card.Body>
@@ -268,7 +271,6 @@ function Homepage(props) {
                             marginWidth="0"
                             width="344rem"
                             height="300rem"
-                            type="text/html"
                             src="https://www.youtube.com/embed/PGsJqmVLT7Y?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=1&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com">
                         </iframe>
 

@@ -57,6 +57,10 @@
 }
 
 
+.home-map-gsm{
+    color: darkred;
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }

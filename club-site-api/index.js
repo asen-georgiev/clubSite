@@ -27,7 +27,8 @@ require('./startup/validation')();
 
 
 
-//Building the server and the port
+//Building the server and the port env е когато се качи вече на сървъра
+//Ние не знаем какъв порт ще ни се даде
 const port = process.env.PORT || 3900;
 //Must "export PORT = 5000 (or whatever)" on the console so we can have PORT env. variable
 const server = app.listen(port,()=> winston.info(`Listening on port ${port}`));

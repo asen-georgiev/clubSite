@@ -18,7 +18,7 @@ import Button from "react-bootstrap/Button";
 function Navigation (props) {
 
     const { t, i18n } = useTranslation();
-
+        
     async function handleLanguage (language){
         await i18n.changeLanguage(language);
     }

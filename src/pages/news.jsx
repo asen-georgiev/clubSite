@@ -1,7 +1,5 @@
 import React, {Component, useEffect, useState} from 'react';
 import Row from "react-bootstrap/Row";
-import {getUsers} from "../services/userService";
-import {getImages} from "../services/imageService";
 import {CardImg, Image} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import {getLastNew, getNew, getNews} from "../services/newsService";
@@ -21,12 +19,15 @@ function News(props) {
 
     const [news, setNews] = useState([]);
     const [anew, setAnew] = useState([]);
+    const [url,setUrl] = useState('');
 
 
     useEffect(() => {
         (async () => {
+            const url = picturesUrl;
             const {data: news} = await getNews();
             let anew = _.first(news);
+            setUrl(url);
             setNews(news);
             setAnew(anew);
         })();
@@ -60,7 +61,7 @@ function News(props) {
                                 <div className="card-img-wrap">
                                     <CardImg
                                         variant="bottom"
-                                        src={picturesUrl + anew.pictureName}
+                                        src={url + anew.pictureName}
                                         alt="No Image"/>
                                 </div>
                                 <br/>
@@ -84,11 +85,11 @@ function News(props) {
                         <Container fluid={true} className="p-0 news-newscontainer">
                             {news.map(ns => {
                                 return (
-                                    <Card style={{width: '32rem'}}
+                                    <Card key={ns._id} style={{width: '32rem'}}
                                           className="news-maincard flex-row p-2 mb-3 my-0">
                                         <CardImg
                                             variant="top"
-                                            src={picturesUrl + ns.pictureName}
+                                            src={url + ns.pictureName}
                                             style={{width: '10rem', height: '10rem'}}
                                             alt="No Image"/>
                                         <Card.Body>

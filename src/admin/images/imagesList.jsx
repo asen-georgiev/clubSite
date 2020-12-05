@@ -48,7 +48,9 @@ class ImagesList extends Component {
                                     <CardColumns>
                                         {this.state.images.map(img => {
                                             return (
-                                                <Card className="admin-maincard">
+                                                <Card
+                                                    key={img}
+                                                    className="admin-maincard">
                                                     <Card.Header>
                                                         Picture name: {img}
                                                     </Card.Header>
