@@ -1,5 +1,6 @@
 .contacts-container {
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .contacts-row{
@@ -8,7 +9,8 @@
             2px 0 0 0 red,
             0 2px 0 0 cyan;
     padding: 1.25rem;
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 
