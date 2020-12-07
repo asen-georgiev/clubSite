@@ -16,6 +16,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import {getCourses} from "../services/courseService";
 
+const picUrl = process.env.REACT_APP_PICTURES_URL;
 
 function Homepage(props) {
 
@@ -153,7 +154,7 @@ function Homepage(props) {
                                     <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
-                                            src={url + anew.pictureName}/>
+                                            src={picUrl + anew.pictureName}/>
                                     </div>
                                     <br/>
                                     <Card.Text>{anew.text}</Card.Text>
@@ -181,7 +182,7 @@ function Homepage(props) {
                                             <Image
                                                 className="d-block w-100 rounded-lg"
                                                 height='260rem'
-                                                src={url+ cr}/>
+                                                src={picUrl+ cr}/>
                                         </div>
                                     </Carousel.Item>
                                 )

@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import {apiUrl} from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/schedules";
+const apiEndpoint = "/schedules";
 
 function scheduleUrl(id) {
     return `${apiEndpoint}/${id}`;

@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/users";
+const apiEndpoint = "/users";
 
 //function for retrieving single user by ID
 function userUrl(id){

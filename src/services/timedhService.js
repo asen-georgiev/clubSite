@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/timedhs";
+const apiEndpoint = "/timedhs";
 
 function timedhUrl(id){
     return `${apiEndpoint}/${id}`;

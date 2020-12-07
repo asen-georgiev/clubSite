@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/timetables";
+const apiEndpoint = "/timetables";
 
 function timetableUrl(id){
     return `${apiEndpoint}/${id}`;

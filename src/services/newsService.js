@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import {apiUrl} from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/news";
+const apiEndpoint = "/news";
 
 function anewUrl(id) {
     return `${apiEndpoint}/${id}`;

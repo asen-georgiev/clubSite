@@ -1,6 +1,9 @@
 import axios from "axios";
 import {toast} from "react-toastify";
 
+
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+
 axios.interceptors.response.use(success=>{
     console.log(success);
     // toast.success('You are logged in successfully!');

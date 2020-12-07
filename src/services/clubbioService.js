@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/clubbio";
+const apiEndpoint ="/clubbio";
 
 function clubBioUrl(id){
     return `${apiEndpoint}/${id}`;

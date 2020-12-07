@@ -1,7 +1,6 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 
-const apiEndpoint = apiUrl + "/email";
+const apiEndpoint = "/email";
 
 export function sendEmail(email){
     return httpService

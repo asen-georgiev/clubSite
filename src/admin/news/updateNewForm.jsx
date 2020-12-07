@@ -16,6 +16,8 @@ import Card from "react-bootstrap/Card";
 import '../../css/admin.css';
 
 
+const picUrl = process.env.REACT_APP_PICTURES_URL;
+
 class UpdateNewForm extends Component {
     constructor(props) {
         super(props);
@@ -257,7 +259,7 @@ class UpdateNewForm extends Component {
                             {this.state.showedPicture === null &&
                             <Col>
                                 <h5>Current picture:</h5>
-                                <Image src={picturesUrl + this.state.anew.pictureName}
+                                <Image src={picUrl + this.state.anew.pictureName}
                                        width="300"
                                        height="auto"/>
                             </Col>

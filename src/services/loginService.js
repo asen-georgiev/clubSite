@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import {apiUrl} from "../config.json";
 import {toast} from "react-toastify";
 
-const apiEndpoint = apiUrl + "/auth";
+const apiEndpoint = "/auth";
 
 //Подава данните от фронтенда (юзър имейл и парола) като req към сървъра,
 //В бекенда извика router.post функцията.

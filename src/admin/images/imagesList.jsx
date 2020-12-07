@@ -11,6 +11,10 @@ import CardImg from "react-bootstrap/CardImg";
 import CardDeck from "react-bootstrap/CardDeck";
 import CardColumns from "react-bootstrap/CardColumns";
 
+
+const picUrl = process.env.REACT_APP_PICTURES_URL;
+
+
 class ImagesList extends Component {
     constructor(props) {
         super(props);
@@ -57,7 +61,7 @@ class ImagesList extends Component {
                                                     <Card.Body>
                                                         <div className="card-img-wrap">
                                                             <CardImg
-                                                                src={picturesUrl + img}
+                                                                src={picUrl + img}
                                                                 alt="No Image"/>
                                                         </div>
                                                     </Card.Body>

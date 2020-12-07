@@ -1,8 +1,7 @@
 import httpService from "./httpService";
-import { apiUrl } from "../config.json";
 import {getCurrentUser} from "./loginService";
 
-const apiEndpoint = apiUrl + "/events";
+const apiEndpoint = "/events";
 
 function eventCalendarUrl(id){
     return `${apiEndpoint}/${id}`;

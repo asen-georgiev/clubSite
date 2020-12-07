@@ -14,6 +14,9 @@ import Accordion from 'react-bootstrap/Accordion'
 import AccordionToggle, {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
 import AccordionCollapse from "react-bootstrap/AccordionCollapse";
 
+
+const picUrl = process.env.REACT_APP_PICTURES_URL;
+
 class AllNewsList extends Component {
     constructor(props) {
         super(props);
@@ -100,7 +103,7 @@ class AllNewsList extends Component {
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <Image src={picturesUrl + n.pictureName} width="100"/>
+                                                            <Image src={picUrl + n.pictureName} width="100"/>
                                                         </td>
                                                         <td>
                                                             <Link className="admin-button-submit btn"

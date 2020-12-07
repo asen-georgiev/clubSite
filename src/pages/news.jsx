@@ -12,6 +12,7 @@ import '../css/news.css';
 import Button from "react-bootstrap/Button";
 import {useTranslation} from "react-i18next";
 
+const picUrl = process.env.REACT_APP_PICTURES_URL;
 
 function News(props) {
 
@@ -61,7 +62,7 @@ function News(props) {
                                 <div className="card-img-wrap">
                                     <CardImg
                                         variant="bottom"
-                                        src={url + anew.pictureName}
+                                        src={picUrl + anew.pictureName}
                                         alt="No Image"/>
                                 </div>
                                 <br/>
@@ -89,7 +90,7 @@ function News(props) {
                                           className="news-maincard flex-row p-2 mb-3 my-0">
                                         <CardImg
                                             variant="top"
-                                            src={url + ns.pictureName}
+                                            src={picUrl + ns.pictureName}
                                             style={{width: '10rem', height: '10rem'}}
                                             alt="No Image"/>
                                         <Card.Body>
