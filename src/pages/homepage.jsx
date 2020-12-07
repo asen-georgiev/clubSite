@@ -35,7 +35,7 @@ function Homepage(props) {
     //за да не забива браузъра щото влиза в лууп.
     useEffect(() => {
         (async () => {
-            const url = picturesUrl;
+            const url = picUrl;
             const {data: clubBios} = await getClubBios();
             const {data: eventsCalendar} = await getEventsCalendar();
             const {data: news} = await getNews();
@@ -154,7 +154,7 @@ function Homepage(props) {
                                     <div className="card-img-wrap">
                                         <CardImg
                                             variant="bottom"
-                                            src={picUrl + anew.pictureName}/>
+                                            src={url + anew.pictureName}/>
                                     </div>
                                     <br/>
                                     <Card.Text>{anew.text}</Card.Text>
@@ -182,7 +182,7 @@ function Homepage(props) {
                                             <Image
                                                 className="d-block w-100 rounded-lg"
                                                 height='260rem'
-                                                src={picUrl+ cr}/>
+                                                src={url+ cr}/>
                                         </div>
                                     </Carousel.Item>
                                 )

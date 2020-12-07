@@ -25,7 +25,7 @@ function News(props) {
 
     useEffect(() => {
         (async () => {
-            const url = picturesUrl;
+            const url = picUrl;
             const {data: news} = await getNews();
             let anew = _.first(news);
             setUrl(url);
@@ -62,7 +62,7 @@ function News(props) {
                                 <div className="card-img-wrap">
                                     <CardImg
                                         variant="bottom"
-                                        src={picUrl + anew.pictureName}
+                                        src={url + anew.pictureName}
                                         alt="No Image"/>
                                 </div>
                                 <br/>
@@ -90,7 +90,7 @@ function News(props) {
                                           className="news-maincard flex-row p-2 mb-3 my-0">
                                         <CardImg
                                             variant="top"
-                                            src={picUrl + ns.pictureName}
+                                            src={url + ns.pictureName}
                                             style={{width: '10rem', height: '10rem'}}
                                             alt="No Image"/>
                                         <Card.Body>
