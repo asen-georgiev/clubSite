@@ -191,7 +191,7 @@ function Homepage(props) {
 
                         <Card
                             style={{width: '21.5rem'}}
-                            className="home-maincard mr-auto">
+                            className="home-maincard mr-auto mt-3">
                             <Card.Header className="home-map-gsm">{t('Homepage.Contacts.CardHeader')}</Card.Header>
                             <Card.Body>
                                 <Card.Title className="text-center">{t('Homepage.Contacts.CardTitle')}</Card.Title>
