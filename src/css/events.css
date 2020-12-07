@@ -30,3 +30,15 @@
 .events-cardlink:hover{
     color: red;
 }
+
+.events-name{
+    color: darkred;
+}
+
+.events-date{
+    color: darkcyan;
+}
+
+.events-location{
+    color: darkred;
+}

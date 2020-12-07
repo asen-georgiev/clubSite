@@ -196,10 +196,10 @@ function Contacts(props) {
                             <Card
                                 style={{width: '33rem',height:'35rem'}}
                                 className="contacts-maincard mr-auto">
-                                <Card.Header className="text-center">{t('Contacts.gsm')}</Card.Header>
+                                <Card.Header className="text-center contacts-gsm">{t('Contacts.gsm')}</Card.Header>
                                 <Card.Body>
                                     <Card.Title className="text-center">{t('Contacts.CardTitle')}</Card.Title>
-                                    <Card.Subtitle className="text-center">{t('Contacts.SubTitle')}</Card.Subtitle>
+                                    <Card.Subtitle className="text-center">{t('Contacts.CardSubtitle')}</Card.Subtitle>
                                     <br/>
                                     <div className="mapouter-contacts">
                                         <div className="gmap_canvas-contacts">
@@ -211,7 +211,7 @@ function Contacts(props) {
                                             </div>
                                     </div>
                                 </Card.Body>
-                                <Card.Footer className="text-center">
+                                <Card.Footer className="text-center contacts-address">
                                     {t('Contacts.CardFooter')}
                                 </Card.Footer>
                             </Card>

@@ -46,10 +46,10 @@ function Events(props) {
                                 {eventsCalendar.map(evt => {
                                     return (
                                         <tr key={evt._id}>
-                                            <td>{evt.eventTitle}</td>
+                                            <td className="events-name">{evt.eventTitle}</td>
                                             <td>{evt.eventInfo}</td>
-                                            <td>{evt.eventDate}</td>
-                                            <td>{evt.eventLocation}</td>
+                                            <td className="events-date">{evt.eventDate}</td>
+                                            <td className="events-location">{evt.eventLocation}</td>
                                             <td>
                                                 <a className="events-cardlink"
                                                    href={"http://" + evt.eventLink}>
@@ -82,5 +82,4 @@ function Events(props) {
         </div>
     );
 }
-
 export default Events;

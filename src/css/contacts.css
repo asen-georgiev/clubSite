@@ -58,3 +58,11 @@
     height:21rem;
     width:available;
 }
+
+.contacts-gsm{
+    color: darkred;
+}
+
+.contacts-address{
+    color:darkcyan;
+}
