@@ -83,59 +83,116 @@ class AdminPanel extends Component {
                                         <tbody>
                                         <tr>
                                             <td>USERS</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/registeruser">Register
-                                                user</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/userslist">Users
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/registeruser">
+                                                    Register user
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/userslist">
+                                                    Users list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>IMAGES</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/uploadimage">Upload
-                                                image</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/imageslist">Images
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/uploadimage">
+                                                    Upload image
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/imageslist">
+                                                    Images list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>NEWS</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createnews">Create
-                                                news</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/newslist">News
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createnews">
+                                                    Create news
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/newslist">
+                                                    News list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>COURSES</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createcourse">Create
-                                                course</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/courseslist">Courses
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createcourse">
+                                                    Create course
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/courseslist">
+                                                    Courses list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>DAYS/HOURS</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createtimedh">Create
-                                                day/hour</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/timedhslist">Days/Hours
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createtimedh">
+                                                    Create day/hour
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/timedhslist">
+                                                    Days/Hours list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>TIMETABLES</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createtimetable">Create
-                                                timetable</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/timetableslist">Timetables
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createtimetable">
+                                                    Create timetable
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/timetableslist">
+                                                    Timetables list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>SPORT EVENTS</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createevent">Create
-                                                sport event</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/eventslist">Events
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createevent">
+                                                    Create sport event
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/eventslist">
+                                                    Events list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>CLUB BIOS</td>
-                                            <td><Link className="admin-button-submit btn" to="/admin/createclubbio">Create
-                                                club bio</Link></td>
-                                            <td><Link className="admin-button-update btn" to="/admin/bioslist">Club Bios
-                                                list</Link></td>
+                                            <td>
+                                                <Link className="admin-button-submit btn" to="/admin/createclubbio">
+                                                    Create club bio
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/bioslist">
+                                                    Club Bios list
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>EMAILS</td>
+                                            <td>Unavailable</td>
+                                            <td>
+                                                <Link className="admin-button-update btn" to="/admin/emailslist">
+                                                    Emails list
+                                                </Link>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </Table>

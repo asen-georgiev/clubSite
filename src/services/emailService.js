@@ -1,6 +1,11 @@
 import httpService from "./httpService";
+import {getCurrentUser} from "./loginService";
 
 const apiEndpoint = "/email";
+
+function emailUrl(id){
+    return `${apiEndpoint}/${id}`;
+}
 
 export function sendEmail(email){
     return httpService
@@ -17,4 +22,20 @@ export function sendEmail(email){
             console.log(err);
         });
 
+}
+
+export function getEmails(){
+    return httpService.get(apiEndpoint,{
+        headers: {
+            'x-auth-token': getCurrentUser()
+        }
+    });
+}
+
+export function deleteEmail(emailId){
+    return httpService.delete(emailUrl(emailId),{
+        headers:{
+            'x-auth-token': getCurrentUser()
+        }
+    });
 }

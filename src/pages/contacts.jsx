@@ -91,8 +91,8 @@ function Contacts(props) {
         };
         recaptchaRef.current.execute();
         toast.success('Your message was sent successfully!');
-        props.history.push("/news");
         await sendEmail(obj);
+        props.history.push("/news");
     }
 
     return (

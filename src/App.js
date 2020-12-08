@@ -44,6 +44,7 @@ import UpdateTimeDhForm from "./admin/timedhs/updateTimeDhForm";
 import CreateTimeTableForm from "./admin/timetables/createTimeTableForm";
 import AllTimeTablesList from "./admin/timetables/allTimeTablesList";
 import UpdateTimeTableForm from "./admin/timetables/updateTimeTableForm";
+import AllEmailsList from "./admin/emails/allEmailsList";
 
 library.add(fab,faBullhorn,faToriiGate,faCalendarAlt,faThList,faAddressBook,faHome);
 
@@ -103,6 +104,7 @@ class App extends Component {
                                 <Route exact path="/admin/createtimetable" component={CreateTimeTableForm}/>
                                 <Route exact path="/admin/timetablelist/:id" component={UpdateTimeTableForm}/>
                                 <Route exact path="/admin/timetableslist" component={AllTimeTablesList}/>
+                                <Route exact path="/admin/emailslist" component={AllEmailsList}/>
                                 <Route exact path="/admin" component={AdminPanel}/>
                             </Switch>}
                     </Switch>
