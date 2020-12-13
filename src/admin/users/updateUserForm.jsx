@@ -13,6 +13,7 @@ import FormCheck from "react-bootstrap/FormCheck";
 import {getUser, updateUser} from "../../services/userService";
 import '../../css/admin.css';
 import Card from "react-bootstrap/Card";
+import jwtDecode from "jwt-decode";
 
 class UpdateUserForm extends Component {
     constructor(props) {
@@ -102,7 +103,7 @@ class UpdateUserForm extends Component {
             _id: user._id,
             name: user.name,
             email: user.email,
-            password: user.password,
+            // password: user.password,
             isAdmin: user.isAdmin
         };
     }
@@ -187,7 +188,7 @@ class UpdateUserForm extends Component {
                                                 name="password"
                                                 type="password"
                                                 value={this.state.user.password}
-                                                placeholder="Enter password"
+                                                placeholder="Enter user's password"
                                                 onChange={this.handleChange}/>
                                             {this.state.errors.password &&
                                             <p className="text-danger pt-2">
