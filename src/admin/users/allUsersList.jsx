@@ -52,7 +52,7 @@ class AllUsersList extends Component {
             <div>
                 <Container className="admin-container container" fluid={true}>
                     <Row className="m-0">
-                        <Col style={{marginBottom: 60}}>
+                        <Col style={{marginBottom: 70}}>
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
                                 <h3>All registered Users table :</h3>
                             </Row>

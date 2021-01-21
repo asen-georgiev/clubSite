@@ -53,7 +53,7 @@ class UpdateUserForm extends Component {
 
 
     handleChange = (event) => {
-        const user = {...this.state.user}
+        const user = {...this.state.user};
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;

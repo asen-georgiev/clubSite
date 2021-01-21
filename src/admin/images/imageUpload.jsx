@@ -71,7 +71,7 @@ class ImageUpload extends Component {
                 <Form>
                     <FormGroup>
                         <FormLabel htmlFor="image">
-                            Upload from your compurer:
+                            Upload from your computer:
                         </FormLabel>
                         <Form.File
                             type="file"

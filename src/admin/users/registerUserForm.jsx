@@ -93,7 +93,6 @@ class RegisterUserForm extends Component {
             isAdmin: this.state.isAdmin
         };
         await registerUser(obj);
-        console.log(this.state.user);
         // this.props.history.push("/admin");
         toast.success('User registration was successful!');
     }

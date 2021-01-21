@@ -10,9 +10,8 @@ import '../../css/admin.css';
 import Card from "react-bootstrap/Card";
 import {picturesUrl} from "../../config.json";
 import {deleteNew, getNews} from "../../services/newsService";
-import Accordion from 'react-bootstrap/Accordion'
-import AccordionToggle, {useAccordionToggle} from 'react-bootstrap/AccordionToggle';
-import AccordionCollapse from "react-bootstrap/AccordionCollapse";
+import Paginate from "../../components/paginate";
+import {paginateFunct} from "../../services/paginateFunct";
 
 
 const picUrl = process.env.REACT_APP_PICTURES_URL;
@@ -21,7 +20,9 @@ class AllNewsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            news: []
+            news: [],
+            newsPerPage:3,
+            currentPage:1
         }
     }
 
@@ -48,12 +49,21 @@ class AllNewsList extends Component {
         }
     }
 
+    //Re rendering the element using this handler to render cloned news array depending on the page.
+    //С рирендването на елемента и промяната на стойностите на стейта = currentPage,
+    //Променяме и стойностите, които се извикват в рендър метода на paginateFunct()
+    handlePageChange = (pageNumber) => {
+        this.setState({currentPage: pageNumber});
+    }
 
     adminRedirect = () => {
         this.props.history.push("/admin");
     }
 
     render() {
+
+        const paginatedNews = paginateFunct(this.state.news,this.state.newsPerPage,this.state.currentPage);
+
         return (
             <div>
                 <Container className="admin-container container" fluid={true}>
@@ -62,7 +72,6 @@ class AllNewsList extends Component {
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
                                 <h3>All News list :</h3>
                             </Row>
-                            <Accordion>
                                 <Card className="admin-maincard overflow-auto">
                                     <Card.Header>
                                         <Button
@@ -85,14 +94,14 @@ class AllNewsList extends Component {
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {this.state.news.map(n => {
+                                            {paginatedNews.map(n => {
                                                 return (
                                                     <tr key={n._id}>
                                                         <td>{n.title}</td>
                                                         <td>
                                                             <div
                                                                 className="overflow-auto"
-                                                                style={{height: 130}}>
+                                                                style={{height: 150}}>
                                                                 {n.text}
                                                             </div>
                                                         </td>
@@ -123,9 +132,13 @@ class AllNewsList extends Component {
                                             })}
                                             </tbody>
                                         </Table>
+                                        <Paginate
+                                        itemsCount={this.state.news.length}
+                                        itemsPerPage={this.state.newsPerPage}
+                                        currentPage={this.state.currentPage}
+                                        onPageChange={this.handlePageChange}/>
                                     </Card.Body>
                                 </Card>
-                            </Accordion>
                         </Col>
                     </Row>
                 </Container>

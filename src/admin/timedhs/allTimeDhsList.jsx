@@ -8,21 +8,32 @@ import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import '../../css/admin.css';
+import _ from 'lodash'
 import {deleteTimeDH, getTimeDHs} from "../../services/timedhService";
+import ListGroupComp from "../../components/listGroupComp";
+import Paginate from "../../components/paginate";
+import {paginateFunct} from "../../services/paginateFunct";
 
 
 class AllTimeDhsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timedhs: []
+            timedhs: [],
+            list: [],
+            selectedDay:'',
+            daysPerPage: 4,
+            currentPage: 1
         }
     }
 
     async componentDidMount() {
         const {data: timedhs} = await getTimeDHs();
-        this.setState({timedhs});
-        console.log(this.state.timedhs);
+        //Създава нов масив, който съдържа обекти уникални по стойност 'day'
+        const uniqList = _.uniqBy(timedhs,'day');
+        const list = [{day:'Everyday'},...uniqList];
+        this.setState({timedhs,list});
+        console.log(this.state);
     }
 
 
@@ -41,6 +52,13 @@ class AllTimeDhsList extends Component {
         }
     }
 
+    handleDaySort = (day) => {
+        this.setState({selectedDay: day});
+    }
+
+    handlePageChange = (pageNumber) => {
+        this.setState({currentPage: pageNumber});
+    }
 
     adminRedirect = () => {
         this.props.history.push("/admin");
@@ -48,19 +66,34 @@ class AllTimeDhsList extends Component {
 
 
     render() {
+        //If selectedDay is true then apply filter where day property is equal to selectedDayProperty
+        //We are checking for the day and id property so EVERYDAY object don't have ID so can
+        //Render all the days.
+        const filteredByDay = this.state.selectedDay && this.state.selectedDay._id
+            ? this.state.timedhs.filter(d => d.day === this.state.selectedDay.day)
+            : this.state.timedhs;
+
+        const paginatedDays = paginateFunct(filteredByDay,this.state.daysPerPage,this.state.currentPage);
+
         return (
             <div>
                 <Container className="admin-container container" fluid={true}>
                     <Row className="m-0">
-                        <Col>
+                        <Col style={{marginBottom: 150}}>
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
                                 <h3>All Days / Hours list:</h3>
                             </Row>
                             <Card className="admin-maincard">
-                                <Card.Header>
+                                <Card.Header className="d-flex flex-row justify-content-between">
                                     <Button className="admin-button-update" onClick={this.adminRedirect}>
                                         BACK TO ADMIN PANEL
                                     </Button>
+                                    <Paginate
+                                        className="m-0"
+                                        itemsCount={filteredByDay.length}
+                                        itemsPerPage={this.state.daysPerPage}
+                                        currentPage={this.state.currentPage}
+                                        onPageChange={this.handlePageChange}/>
                                 </Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover className="admin-maincard">
@@ -73,7 +106,7 @@ class AllTimeDhsList extends Component {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {this.state.timedhs.map(tim => {
+                                        {paginatedDays.map(tim => {
                                             return (
                                                 <tr key={tim._id}>
                                                     <td>{tim.day}</td>
@@ -98,6 +131,15 @@ class AllTimeDhsList extends Component {
                                         </tbody>
                                     </Table>
                                 </Card.Body>
+                                <Card.Footer>
+                                    <ListGroupComp
+                                    items={this.state.list}
+                                    selectedItem={this.state.selectedDay}
+                                    valueProperty="_id"
+                                    textProperty="day" //Така правим ЛистГруп интерфейса флексибъл,
+                                    //Не всички обекти имат пропърти ден или т.н.
+                                    onListSelect={this.handleDaySort}/>
+                                </Card.Footer>
                             </Card>
                         </Col>
                     </Row>
