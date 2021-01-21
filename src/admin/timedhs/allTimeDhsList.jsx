@@ -53,7 +53,7 @@ class AllTimeDhsList extends Component {
     }
 
     handleDaySort = (day) => {
-        this.setState({selectedDay: day});
+        this.setState({selectedDay: day, currentPage:1});
     }
 
     handlePageChange = (pageNumber) => {
