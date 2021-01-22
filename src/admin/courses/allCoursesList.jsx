@@ -9,12 +9,16 @@ import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import '../../css/admin.css';
 import {deleteCourse, getCourses} from "../../services/courseService";
+import Paginate from "../../components/paginate";
+import {paginateFunct} from "../../services/paginateFunct";
 
 class AllCoursesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            courses: []
+            courses: [],
+            coursesPerPage: 3,
+            currentPage: 1
         }
     }
 
@@ -39,6 +43,9 @@ class AllCoursesList extends Component {
         }
     }
 
+    handlePageChange = (pageNumber) => {
+        this.setState({currentPage: pageNumber});
+    }
 
     adminRedirect = () => {
         this.props.history.push("/admin");
@@ -46,21 +53,29 @@ class AllCoursesList extends Component {
 
 
     render() {
+
+        const paginatedCourses = paginateFunct(this.state.courses, this.state.coursesPerPage, this.state.currentPage);
         return (
             <div>
                 <Container className="admin-container container" fluid={true}>
                     <Row className="m-0">
-                        <Col>
+                        <Col style={{marginBottom: 50}}>
                             <Row className="admin-row d-flex justify-content-start" style={{marginBottom: 50}}>
                                 <h3>All Courses list :</h3>
                             </Row>
                             <Card className="admin-maincard overflow-auto">
-                                <Card.Header>
+                                <Card.Header className="d-flex flex-row justify-content-between">
                                     <Button
                                         className='admin-button-update'
                                         onClick={this.adminRedirect}>
                                         BACK TO ADMIN PANEL
                                     </Button>
+                                    <Paginate
+                                        className="m-0"
+                                        itemsCount={this.state.courses.length}
+                                        itemsPerPage={this.state.coursesPerPage}
+                                        currentPage={this.state.currentPage}
+                                        onPageChange={this.handlePageChange}/>
                                 </Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover className="admin-maincard">
@@ -75,7 +90,7 @@ class AllCoursesList extends Component {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {this.state.courses.map(crs => {
+                                        {paginatedCourses.map(crs => {
                                             return (
                                                 <tr key={crs._id}>
                                                     <td>{crs.courseName}</td>

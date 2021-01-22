@@ -4,11 +4,10 @@
 }
 
 
-.admin-row{
-    background-color: rgba(128,128,128,0.1);
-    box-shadow:
-            2px 0 0 0 red,
-            0 2px 0 0 cyan;
+.admin-row {
+    background-color: rgba(128, 128, 128, 0.1);
+    box-shadow: 2px 0 0 0 red,
+    0 2px 0 0 cyan;
     padding: 1.25rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -34,27 +33,26 @@
 }
 
 
-.admin-maincard{
-    background-color: rgba(255,255,255,0.7) !important; /* Black w/opacity/see-through */
+.admin-maincard {
+    background-color: rgba(255, 255, 255, 0.7) !important; /* Black w/opacity/see-through */
     color: black;
     font-size: large !important;
     margin-bottom: 5rem;
 }
 
 
-.admin-cardlink{
+.admin-cardlink {
     color: darkcyan;
 }
 
 
-.admin-cardlink:hover{
+.admin-cardlink:hover {
     color: red;
     text-decoration: none;
 }
 
 
-
-.admin-button-submit{
+.admin-button-submit {
     font-size: large !important;
     background-color: cadetblue !important;
     padding: 0.5rem 1rem !important;
@@ -63,16 +61,14 @@
 }
 
 
-.admin-button-submit:hover{
+.admin-button-submit:hover {
     color: white !important;
-    box-shadow:
-            0 0 0 2px darkslateblue;
+    box-shadow: 0 0 0 2px darkslateblue;
     border-radius: 5px;
 }
 
 
-
-.admin-button-update{
+.admin-button-update {
     font-size: large !important;
     background-color: darkgoldenrod !important;
     padding: 0.5rem 1rem !important;
@@ -81,15 +77,14 @@
 }
 
 
-.admin-button-update:hover{
+.admin-button-update:hover {
     color: white !important;
-    box-shadow:
-            0 0 0 2px saddlebrown;
+    box-shadow: 0 0 0 2px saddlebrown;
     border-radius: 5px;
 }
 
 
-.admin-button-delete{
+.admin-button-delete {
     font-size: large !important;
     background-color: lightcoral !important;
     padding: 0.5rem 1rem !important;
@@ -98,31 +93,57 @@
 }
 
 
-.admin-button-delete:hover{
+.admin-button-delete:hover {
     color: white !important;
-    box-shadow:
-            0 0 0 2px red;
+    box-shadow: 0 0 0 2px red;
     border-radius: 5px;
 }
 
 
 ::-webkit-file-upload-button {
-    background-color: transparent !important;
+    background-color: coral !important;
     padding: 0.5rem 1rem !important;
     border: none !important;
-    color: darkcyan !important;
-    margin-right: 1rem !important;
+    border-radius: 5px;
+    color: darkred !important;
+    margin: 1rem !important;
 }
 
 ::-webkit-file-upload-button:hover {
-    color: darkcyan !important;
+    color: white !important;
     padding: 0.5rem 1rem !important;
-    box-shadow:
-            0 0 0 2px red,
-            0 0 0 4px cyan;
+    box-shadow: 0 0 0 2px darkred;
     border-radius: 5px;
 }
 
-input{
+input {
     color: darkred !important;
+}
+
+.drd-menu{
+    background-color: rgba(255, 255, 200, 0.9) !important;
+    /*display: inline-flex !important;*/
+    width: 70% !important;
+}
+
+
+.drd-item:focus{
+    background-color:coral !important;
+}
+
+.drd-item:hover{
+    background-color: lightcoral !important;
+    color: wheat !important;
+}
+
+.drd-toggle{
+    background-color: darkgoldenrod !important;
+    color: wheat !important;
+}
+
+.drd-toggle:hover{
+    background-color: darkgoldenrod !important;
+    color: white !important;
+    box-shadow: 0 0 0 2px saddlebrown !important;
+    border-radius: 5px !important;
 }

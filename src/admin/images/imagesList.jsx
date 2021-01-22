@@ -10,6 +10,8 @@ import Card from "react-bootstrap/Card";
 import CardImg from "react-bootstrap/CardImg";
 import CardDeck from "react-bootstrap/CardDeck";
 import CardColumns from "react-bootstrap/CardColumns";
+import Paginate from "../../components/paginate";
+import {paginateFunct} from "../../services/paginateFunct";
 
 
 const picUrl = process.env.REACT_APP_PICTURES_URL;
@@ -19,7 +21,9 @@ class ImagesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: []
+            images: [],
+            imagesPerPage: 6,
+            currentPage: 1
         }
     }
 
@@ -29,11 +33,19 @@ class ImagesList extends Component {
         console.log(this.state.images);
     }
 
+    handlePageChange = (pageNumber) => {
+        this.setState({currentPage: pageNumber});
+    }
+
+
     adminRedirect = () => {
         this.props.history.push("/admin");
     }
 
     render() {
+
+        const paginatedImages = paginateFunct(this.state.images, this.state.imagesPerPage, this.state.currentPage);
+
         return (
             <div>
                 <Container className="admin-container container">
@@ -43,14 +55,20 @@ class ImagesList extends Component {
                                 <h3>Images Gallery :</h3>
                             </Row>
                             <Card className="admin-maincard">
-                                <Card.Header>
+                                <Card.Header className="d-flex flex-row justify-content-between">
                                     <Button className="admin-button-update" onClick={this.adminRedirect}>
                                         BACK TO ADMIN PANEL
                                     </Button>
+                                    <Paginate
+                                        className="m-0"
+                                        itemsCount={this.state.images.length}
+                                        itemsPerPage={this.state.imagesPerPage}
+                                        currentPage={this.state.currentPage}
+                                        onPageChange={this.handlePageChange}/>
                                 </Card.Header>
                                 <Card.Body>
                                     <CardColumns>
-                                        {this.state.images.map(img => {
+                                        {paginatedImages.map(img => {
                                             return (
                                                 <Card
                                                     key={img}

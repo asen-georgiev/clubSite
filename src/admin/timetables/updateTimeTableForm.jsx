@@ -116,7 +116,7 @@ class UpdateTimeTableForm extends Component {
     validate = () => {
         const obj = {
             courseId: this.state.timetable.courseId,
-            hour: this.state.timetable.timedhId
+            timedhId: this.state.timetable.timedhId
         };
 
         const options = {abortEarly: false};
