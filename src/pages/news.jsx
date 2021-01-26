@@ -31,6 +31,7 @@ function News(props) {
             setUrl(url);
             setNews(news);
             setAnew(anew);
+            console.log(news)
         })();
     }, [])
 

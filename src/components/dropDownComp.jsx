@@ -20,8 +20,7 @@ function DropDownComp(props) {
                         <Dropdown.Divider/>
                     <Dropdown.Item
                         className="drd-item text-center"
-                        key={item[valueProperty]}
-                        onClick={() => onSelectDropDown(item)}
+                        onSelect={() => onSelectDropDown(item)}
                     >
                         {item[textProperty]}
                     </Dropdown.Item>

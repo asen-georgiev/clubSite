@@ -72,7 +72,7 @@ class AllTimeTablesList extends Component {
                 selectedDay: day,
                 currentPage: 1
             });
-        console.log(this.state.selectedDay);
+        console.log(day);
     }
 
 
@@ -82,7 +82,7 @@ class AllTimeTablesList extends Component {
                 selectedCourse: course,
                 currentPage: 1
             });
-        console.log(this.state.selectedCourse);
+        console.log(course);
     }
 
 
@@ -93,18 +93,23 @@ class AllTimeTablesList extends Component {
 
     render() {
 
+
         //Filtering the timetables array by DAY
         const filteredByDay = this.state.selectedDay && this.state.selectedDay._id
             ? this.state.timetables.filter(tt => tt.timedh.day === this.state.selectedDay.day)
             : this.state.timetables;
 
-        //Filtering the FilterByday array for second filtering by coursename
+        //Filtering the FilterByday array for second filtering by _id - by name is not working wtf...
         //It returns filtered array or the whole timetable array so...win win!
+
         const filteredByCourse = this.state.selectedCourse && this.state.selectedCourse._id
-            ? filteredByDay.filter(tt => tt.course.courseName === this.state.selectedCourse.courseName)
+           ? filteredByDay.filter(ta => ta.course._id === this.state.selectedCourse._id)
             : filteredByDay;
 
         console.log(filteredByCourse);
+
+        console.log(this.state.selectedDay);
+        console.log(this.state.selectedCourse);
 
         const paginatedTables = paginateFunct(filteredByCourse, this.state.tablesPerPage, this.state.currentPage);
 

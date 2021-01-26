@@ -21,6 +21,7 @@ function Clubbio (props) {
         (async() => {
             const {data: clubBios} = await getClubBios();
             setClubBios(clubBios);
+            console.log(clubBios);
         })();
     },[]);
 
