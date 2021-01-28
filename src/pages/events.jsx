@@ -7,6 +7,8 @@ import {getEventsCalendar} from "../services/eventService";
 import '../css/events.css';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import Paginate from "../components/paginate";
+import {paginateFunct} from "../services/paginateFunct";
 
 
 function Events(props) {
@@ -14,6 +16,8 @@ function Events(props) {
     const {t, i18n} = useTranslation();
 
     const [eventsCalendar, setEventsCalendar] = useState([]);
+    const [eventsPerPage, setEventsPerPage] = useState(4);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         (async () => {
@@ -23,6 +27,12 @@ function Events(props) {
     }, []);
 
 
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+
+    const paginateEvents = paginateFunct(eventsCalendar, eventsPerPage, currentPage);
+
     return (
         <div>
             <Container className="events-container container" fluid={true}>
@@ -31,7 +41,12 @@ function Events(props) {
                         <Row className="events-row d-flex justify-content-start mx-0">
                             <h3>{t('Rows.Events.Main')} :</h3>
                         </Row>
-                        <Row className="overflow-auto m-0" style={{height: 800}}>
+                        <Row className="m-0">
+                            <Paginate
+                                itemsCount={eventsCalendar.length}
+                                itemsPerPage={eventsPerPage}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}/>
                             <Table striped bordered hover className="events-maincard">
                                 <thead>
                                 <tr>
@@ -43,7 +58,7 @@ function Events(props) {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {eventsCalendar.map(evt => {
+                                {paginateEvents.map(evt => {
                                     return (
                                         <tr key={evt._id}>
                                             <td className="events-name">{evt.eventTitle}</td>
@@ -62,7 +77,8 @@ function Events(props) {
                                 </tbody>
                             </Table>
                         </Row>
-                        <Row className="events-row d-flex justify-content-center mt-3">
+                        <Row className="events-row d-flex justify-content-center"
+                             style={{marginBottom: 50, marginTop: 50, marginInline: 0}}>
                             <h5>{t('Events.Link1')} :&ensp;
                                 <a className="events-cardlink"
                                    href={"https://www.wkf.net"}>
@@ -82,4 +98,5 @@ function Events(props) {
         </div>
     );
 }
+
 export default Events;

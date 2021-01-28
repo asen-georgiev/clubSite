@@ -9,12 +9,16 @@ import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import '../../css/admin.css';
 import {deleteEventCalendar, getEventsCalendar} from "../../services/eventService";
+import Paginate from "../../components/paginate";
+import {paginateFunct} from "../../services/paginateFunct";
 
 class AllEventsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: []
+            events: [],
+            eventsPerPage: 4,
+            currentPage: 1
         }
     }
 
@@ -39,11 +43,19 @@ class AllEventsList extends Component {
         }
     }
 
+    handlePageChange = (pageNumber) => {
+        this.setState({
+            currentPage: pageNumber
+        });
+    }
+
     adminRedirect = () => {
         this.props.history.push("/admin");
     }
 
     render() {
+
+        const paginatedEvents = paginateFunct(this.state.events, this.state.eventsPerPage, this.state.currentPage)
         return (
             <div>
                 <Container className="admin-container container" fluid={true}>
@@ -53,10 +65,16 @@ class AllEventsList extends Component {
                                 <h3>All Sport events list :</h3>
                             </Row>
                             <Card className="admin-maincard">
-                                <Card.Header>
+                                <Card.Header className="d-flex flex-row justify-content-between">
                                     <Button className="admin-button-update" onClick={this.adminRedirect}>
                                         BACK TO ADMIN PANEL
                                     </Button>
+                                    <Paginate
+                                        className="m-0"
+                                        itemsCount={this.state.events.length}
+                                        itemsPerPage={this.state.eventsPerPage}
+                                        currentPage={this.state.currentPage}
+                                        onPageChange={this.handlePageChange}/>
                                 </Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover className="admin-maincard">
@@ -72,7 +90,7 @@ class AllEventsList extends Component {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {this.state.events.map(evt => {
+                                        {paginatedEvents.map(evt => {
                                             return (
                                                 <tr key={evt._id}>
                                                     <td>{evt.eventTitle}</td>

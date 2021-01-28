@@ -11,6 +11,8 @@ import _ from "lodash";
 import '../css/news.css';
 import Button from "react-bootstrap/Button";
 import {useTranslation} from "react-i18next";
+import Paginate from "../components/paginate";
+import {paginateFunct} from "../services/paginateFunct";
 
 const picUrl = process.env.REACT_APP_PICTURES_URL;
 
@@ -20,7 +22,9 @@ function News(props) {
 
     const [news, setNews] = useState([]);
     const [anew, setAnew] = useState([]);
-    const [url,setUrl] = useState('');
+    const [url, setUrl] = useState('');
+    const [newsPerPage, setNewsPerPage] = useState(3);
+    const [currentPage, setCurrentPage] = useState(1);
 
 
     useEffect(() => {
@@ -41,10 +45,16 @@ function News(props) {
         setAnew(anew);
     }
 
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+
+    const paginatedNews = paginateFunct(news, newsPerPage, currentPage);
+
 
     return (
         <div>
-            <Container className="news-containter container d-flex flex-row" fluid={true}>
+            <Container className="news-containter container d-flex flex-row" fluid={true} style={{marginBottom: 50}}>
                 <Row className="m-0">
                     <Col md={6}>
                         <Row className="news-row d-flex justify-content-start">
@@ -85,7 +95,13 @@ function News(props) {
                             <h3>{t('Rows.News.More')}:</h3>
                         </Row>
                         <Container fluid={true} className="p-0 news-newscontainer">
-                            {news.map(ns => {
+                            <Paginate
+                                className="justify-content-end mr-2"
+                                itemsCount={news.length}
+                                itemsPerPage={newsPerPage}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}/>
+                            {paginatedNews.map(ns => {
                                 return (
                                     <Card key={ns._id} style={{width: '32rem'}}
                                           className="news-maincard flex-row p-2 mb-3 my-0">

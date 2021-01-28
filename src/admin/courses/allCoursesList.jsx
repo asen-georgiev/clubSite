@@ -11,6 +11,7 @@ import '../../css/admin.css';
 import {deleteCourse, getCourses} from "../../services/courseService";
 import Paginate from "../../components/paginate";
 import {paginateFunct} from "../../services/paginateFunct";
+import _ from "lodash";
 
 class AllCoursesList extends Component {
     constructor(props) {

@@ -29,10 +29,10 @@
 }
 
 
-.news-newscontainer{
-    overflow: auto;
-    height: 60rem;
-}
+/*.news-newscontainer{*/
+/*    overflow: auto;*/
+/*    height: 60rem;*/
+/*}*/
 
 .news-cardlink:hover{
     color: red;
