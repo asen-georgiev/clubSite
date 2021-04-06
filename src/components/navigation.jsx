@@ -7,7 +7,7 @@ import NavbarBrand from "react-bootstrap/NavbarBrand";
 import {DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import Container from "react-bootstrap/Container";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faAddressBook, faBullhorn, faCalendarAlt, faThList, faToriiGate,faHome} from "@fortawesome/free-solid-svg-icons";
 import '../css/navigation.css';
 import Dropdown from "react-bootstrap/Dropdown";
